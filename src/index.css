@@ -1,11 +1,99 @@
+/*  font-family: Abel  */
+@font-face {
+  font-family: Abel;
+  src: url('./fonts/Abel/Abel-Regular.ttf');
+}
+
+/*  font-family: Anton  */
+@font-face {
+  font-family: Anton;
+  src: url('./fonts/Anton/Anton-Regular.ttf');
+}
+
+/*  font-family: Josefin  */
+@font-face {
+  font-family: Josefin;
+  src: url('./fonts/Josefin_Sans/JosefinSans-Regular.ttf');
+}
+
+/*  font-family: Lexend  */
+@font-face {
+  font-family: Lexend;
+  src: url('./fonts/Lexend_Deca/LexendDeca-Regular.ttf');
+}
+
+/*  font-family: Livvic  */
+@font-face {
+  font-family: Livvic;
+  src: url('./fonts/Livvic/Livvic-Regular.ttf');
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /*      Theme colors        */
+  --text-gray: #3f4954;
+  --text-light : #686666da;
+  --bg-color: #0f0f0f;
+  --white: #ffffff;
+  --midnight: #a1c4cf;
+
+    /*      theme font-family   */
+  --Abel: 'Abel', sans-serif;
+  --Anton: 'Anton', sans-serif;
+  --Josefin : 'Josefin', sans-serif;
+  --Lexend: 'Lexend', sans-serif;
+  --Livvic : 'Livvic', sans-serif;  
 }
+
+/* ---------------- Global Classes ---------------*/
+
+a{
+  text-decoration: none;
+  color: var(--text-gray);
+}
+
+.flex-row{
+  display: flex;
+  flex-direction: row;    
+  flex-wrap: wrap;
+}
+
+h1{
+  font-family: var(--Lexend), "Verdana";
+  font-size: 2.5rem;
+}
+
+h2{
+  font-family: var(--Lexend), "Verdana";
+}
+
+h3{
+  font-family: var(--Abel), "Verdana";
+  font-size: 1.3rem;
+}
+
+button.btn{
+  border: none;
+  border-radius: 2rem;
+  padding: 1rem 3rem;
+  font-size: 1rem;
+  font-family: var(--Livvic), "Verdana";
+  cursor: pointer;
+}
+
+.text-gray{
+  color: var(--text-gray);
+}
+
+p{
+  font-family: var(--Lexend), "Verdana";
+  color: var(--text-light);
+}
+
+/* ------x------- Global Classes -------x-------*/
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

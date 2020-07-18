@@ -1,3 +1,22 @@
-.test {
-  font-family: fantasy;
+.nav .nav-menu{    
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav li {
+  display: inline-block;
+  padding-right: 10px;
+  font-family: var(--Abel);
+}
+
+.nav-brand {
+  font-family: var(--Lexend), Verdana, Geneva, Tahoma, sans-serif;
+  padding-left: 10px;
+  font-size: 1.5rem;
 }
