@@ -14,7 +14,11 @@ class App extends Component{
       <>
         <Router>
             <NavBar />
-            <ProjectsHolder />
+            <div className="page-body">
+              <Switch>
+                <Route path="/" component={ProjectsHolder} exact />
+              </Switch>
+            </div>
         </Router>    
       </>
     );
