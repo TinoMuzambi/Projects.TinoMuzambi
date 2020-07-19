@@ -4,7 +4,7 @@ const projects = [
         shortname: "WA",
 		title: "Whatsapp Chat Analyser",
 		content: [
-			`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+			`Loorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
             fringilla tristique vulputate. Sed in turpis leo. 
             Aliquam malesuada in massa tincidunt egestas. Nam consectetur varius turpis, 
             non porta arcu porttitor non. In tincidunt vulputate nulla quis egestas. Ut 
@@ -29,7 +29,7 @@ const projects = [
         shortname: "RC",
 		title: "Remove Contractions",
 		content: [
-			`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+			`Loreem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
             fringilla tristique vulputate. Sed in turpis leo. 
             Aliquam malesuada in massa tincidunt egestas. Nam consectetur varius turpis, 
             non porta arcu porttitor non. In tincidunt vulputate nulla quis egestas. Ut 
