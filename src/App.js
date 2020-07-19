@@ -18,7 +18,7 @@ class App extends Component{
             <div className="page-body">
               <Switch>
                 <Route path="/" component={ProjectsHolder} exact />
-                <Route path="/showcase/" component={ShowCase} />
+                <Route path="/showcase/:name" component={ShowCase} />
               </Switch>
             </div>
         </Router>    

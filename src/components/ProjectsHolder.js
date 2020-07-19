@@ -1,13 +1,11 @@
 import React from "react";
 import Project from "./Project";
-import { Link } from 'react-router-dom';
+import projects from "../pages/projects-content";
 
 const ProjectsHolder = () => (
 	<>
-		<h1 className="projects-title">Projects</h1>
-        <Link to="/showcase"><Project /></Link>
-        <Link to="/showcase"><Project /></Link>
-        <Link to="/showcase"><Project /></Link>
+		<h1 className="project-title">Projects</h1>
+		<Project projects={projects} />
 	</>
 );
 

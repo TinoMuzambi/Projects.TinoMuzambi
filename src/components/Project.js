@@ -1,9 +1,21 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import WA from "./WA.png";
 
-const Project = () => (
+const Project = ({ projects }) => (
 	<>
-		<div class="wrapper">
+		{projects.map((project, key) => (
+            <div className='wrapper'>
+                <Link key={key} to={`/showcase/${project.name}`}>
+                    <h2 className="projects-title">{project.title}</h2>
+                    <div className="project-desc">
+                        <img src={WA} className="project-image" alt="WA" />
+                        <p className="project-desc-text">{project.content}</p>
+                    </div>
+                </Link>
+            </div>
+		))}
+		{/* <div class="wrapper">
 			<h2 className="project-title">Title</h2>
             <div className="project-desc">
                 <img src={WA} className="project-image" alt="WA"/>
@@ -22,7 +34,7 @@ const Project = () => (
                     Aliquam ut sem enim. Nulla vitae ligula a dolor vehicula sollicitudin.
                 </p>
             </div>
-		</div>
+		</div> */}
 	</>
 );
 
