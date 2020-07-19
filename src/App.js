@@ -5,7 +5,8 @@ import {
   Switch,
 } from 'react-router-dom';
 import NavBar from './NavBar';
-import ProjectsHolder from './components/ProjectsHolder'
+import ProjectsHolder from './components/ProjectsHolder';
+import ShowCase from './components/ShowCase';
 import './App.css';
 
 class App extends Component{
@@ -17,6 +18,7 @@ class App extends Component{
             <div className="page-body">
               <Switch>
                 <Route path="/" component={ProjectsHolder} exact />
+                <Route path="/showcase/" component={ShowCase} />
               </Switch>
             </div>
         </Router>    

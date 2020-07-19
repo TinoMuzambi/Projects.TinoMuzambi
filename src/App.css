@@ -33,7 +33,7 @@
   margin: 0 auto;
   width: 70%;
   border-radius: 10px;
-  background-color: rgb(189, 189, 189);
+  background: linear-gradient(137deg, rgba(113,113,113,1) 0%, rgba(142,142,142,1) 27%, rgba(217,217,217,1) 50%);
 }
 
 .project-title {

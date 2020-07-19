@@ -46,6 +46,8 @@ body {
   --Josefin : 'Josefin', sans-serif;
   --Lexend: 'Lexend', sans-serif;
   --Livvic : 'Livvic', sans-serif;  
+
+  background-image: url(./bg.jpg);
 }
 
 /* ---------------- Global Classes ---------------*/
