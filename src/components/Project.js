@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import WA from "./WA.png";
 
 const Project = ({ projects }) => (
 	<>
@@ -9,7 +8,9 @@ const Project = ({ projects }) => (
                 <Link key={key} to={`/showcase/${project.name}`}>
                     <h2 className="projects-title">{project.title}</h2>
                     <div className="project-desc">
-                        <img src={WA} className="project-image" alt="WA" />
+                        <div className="project-image">
+                            <p className="project-image-text">{project.shortname}</p>
+                        </div>
                         <p className="project-desc-text">{project.content}</p>
                     </div>
                 </Link>

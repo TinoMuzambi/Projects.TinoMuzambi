@@ -1,6 +1,7 @@
 const projects = [
 	{
-		name: "whatsapp-analyser",
+        name: "whatsapp-analyser",
+        shortname: "WA",
 		title: "Whatsapp Chat Analyser",
 		content: [
 			`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
@@ -24,7 +25,8 @@ const projects = [
 		],
 	},
 	{
-		name: "remove-contractions",
+        name: "remove-contractions",
+        shortname: "RC",
 		title: "Remove Contractions",
 		content: [
 			`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
@@ -48,7 +50,8 @@ const projects = [
 		],
 	},
 	{
-		name: "amount-divider",
+        name: "amount-divider",
+        shortname: "AD",
 		title: "Amount Divider",
 		content: [
 			`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent

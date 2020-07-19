@@ -1,5 +1,4 @@
 import React from "react";
-import WA from "./WA.png";
 
 const ShowCase = () => {
 	return (
@@ -7,7 +6,9 @@ const ShowCase = () => {
 			<h1 className="project-title">Title</h1>
 			<div class="wrapper">
 				<div className="project-desc">
-					<img src={WA} className="project-image" alt="WA" />
+					<div className="project-image">
+						<p className="project-image-text"></p>
+					</div>
 					<p className="project-desc-text">
 						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
 						fringilla tristique vulputate. Praesent cursus ante sed diam tempus
