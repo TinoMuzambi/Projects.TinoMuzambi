@@ -19,7 +19,7 @@ class App extends Component{
               <Switch>
                 <Route path="/" component={ProjectsHolder} exact />
                 <Route path="/showcase/:name" component={ShowCase} />
-                <Route path="/tags/:name" component={ShowCase} />
+                <Route path="/tags/:name" component={ProjectsHolder} />
               </Switch>
             </div>
         </Router>    

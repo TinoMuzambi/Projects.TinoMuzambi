@@ -41,7 +41,7 @@
   margin: 0 auto;
   width: 70%;
   border-radius: 10px;
-  background: linear-gradient(137deg, rgba(113,113,113,1) 0%, rgba(142,142,142,1) 27%, rgba(217,217,217,1) 50%);
+  background: linear-gradient(137deg, rgba(217,217,217,1) 0%, rgb(209, 253, 246) 60%, rgb(160, 160, 160) 100%);
 }
 
 .project-title {
@@ -84,6 +84,9 @@
   padding-bottom: 20px;
 }
 
+.link-hide {
+  display: none;
+}
 .tag {
   font-family: var(--Livvic), "Verdana";
   list-style: none;

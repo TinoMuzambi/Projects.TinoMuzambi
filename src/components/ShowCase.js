@@ -16,7 +16,7 @@ const ShowCase = ({ match }) => {
 					<p className="project-desc-text">{project.content[0]}</p>
 				</div>
 				<div className="project-footer">
-					<p>Link: <a href={project.link}>{project.link}</a></p>
+					<p className={project.link==="" ? "link-hide" : ""}>Link: <a href={project.link}>{project.link}</a></p>
 					<p>GitHub: <a href={project.github}>{project.github}</a></p>
 					<ul className="tag">
 						{
