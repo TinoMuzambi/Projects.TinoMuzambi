@@ -42,6 +42,9 @@ html, body {
   --bg-color: #0f0f0f;
   --white: #ffffff;
   --midnight: #a1c4cf;
+  
+  /* gradient color   */
+  --sky: linear-gradient(-225deg, #7DE2FC 0%, #B9B6E5 100%);
 
     /*      theme font-family   */
   --Abel: 'Abel', sans-serif;
