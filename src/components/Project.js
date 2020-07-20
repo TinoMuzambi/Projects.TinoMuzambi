@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 const Project = ({ projects }) => (
 	<>
 		{projects.map((project, key) => (
-            <div className='wrapper'>
-                <Link key={key} to={`/showcase/${project.name}`}>
+            <div className='wrapper' key={key}>
+                <Link to={`/showcase/${project.name}`}>
                     <h2 className="projects-title">{project.title}</h2>
                     <div className="project-desc">
                         <div className="project-image">
                             <p className="project-image-text">{project.shortname}</p>
                         </div>
-                        <p className="project-desc-text">{project.content}</p>
+                        <p className="project-desc-text">{project.content[0]}</p>
                     </div>
                 </Link>
             </div>

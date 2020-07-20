@@ -2,7 +2,7 @@ const projects = [
 	{
         name: "whatsapp-analyser",
         shortname: "WA",
-		title: "Whatsapp Chat Analyser",
+		title: "WhatsApp Chat Analyser",
 		content: [
 			`Loorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
             fringilla tristique vulputate. Sed in turpis leo. 
