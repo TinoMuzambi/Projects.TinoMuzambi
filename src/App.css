@@ -120,6 +120,35 @@
 .rights h4 a{
   color: var(--text-gray);
 }
+
+.not-found {
+  display: block;
+}
+
+.four04-title {
+  margin: 0;
+  font-size: 200px;
+  text-align: center;
+}
+
+.four04-body {
+  font-size: 50px;
+  text-align : center;
+}
+
+.four04-redirect {
+  margin: 7px;
+  text-align: center;
+  color: var(--text-light);
+  text-decoration: underline;
+}
+
+.four04-body2 {
+  margin: 0;
+  font-size: 30px;
+  text-align : center;
+}
+
 /*              Viewport less then or equal to 750px            */
 
 @media only screen and (max-width: 750px){
