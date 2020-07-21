@@ -59,6 +59,10 @@
   display: flex;
 }
 
+.project-image:hover {
+  background-color: #adf8fa;
+}
+
 .project-image-text {
   color: white;
   margin: auto;
@@ -106,6 +110,16 @@
   font-size: 15px;
 }
 
+.rights{
+  justify-content: center;
+  /* position: absolute; */
+  bottom: 30px;
+  font-family: var(--Josefin), "Verdana";
+}
+
+.rights h4 a{
+  color: var(--text-gray);
+}
 /*              Viewport less then or equal to 750px            */
 
 @media only screen and (max-width: 750px){

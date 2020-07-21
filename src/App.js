@@ -8,9 +8,17 @@ import NavBar from './NavBar';
 import ProjectsHolder from './components/ProjectsHolder';
 import ShowCase from './components/ShowCase';
 import Tags from './components/Tags';
+import Footer from './components/Footer';
+import AOS from 'aos';
+import './aos.css'
 import './App.css';
 
 class App extends Component{
+  componentDidMount() {
+    // or simply just AOS.init();
+    AOS.init();
+  }
+
   render() {
     return (
       <>
@@ -23,6 +31,7 @@ class App extends Component{
                 <Route path="/tags/:name" component={Tags} />
               </Switch>
             </div>
+            <Footer />
         </Router>    
       </>
     );
