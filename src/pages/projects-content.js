@@ -148,6 +148,156 @@ const projects = [
         keywords: [
             "api", "twitter", "python",
         ],
+    },
+    {
+        name: "tinomuzambi",
+        shortname: "TM",
+		title: "TinoMuzambi.com",
+		content: [
+			`Llorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+            fringilla tristique vulputate. Sed in turpis leo. 
+            Aliquam malesuada in massa tincidunt egestas. Nam consectetur varius turpis, 
+            non porta arcu porttitor non. In tincidunt vulputate nulla quis egestas. Ut 
+            eleifend ut ipsum non fringilla. Praesent imperdiet nulla nec est luctus, at 
+            sodales purus euismod.`,
+			`Donec vel mauris lectus. Etiam nec lectus urna. Sed sodales ultrices dapibus. 
+            Nam blandit tristique risus, eget accumsan nisl interdum eu. Aenean ac accumsan 
+            nisi. Nunc vel pulvinar diam. Nam eleifend egestas viverra. Donec finibus lectus 
+            sed lorem ultricies, eget ornare leo luctus. Morbi vehicula, nulla eu tempor 
+            interdum, nibh elit congue tellus, ac vulputate urna lorem nec nisi. Morbi id 
+            consequat quam. Vivamus accumsan dui in facilisis aliquet.`,
+			`Etiam nec lectus urna. Sed sodales ultrices dapibus. 
+            Nam blandit tristique risus, eget accumsan nisl interdum eu. Aenean ac accumsan 
+            nisi. Nunc vel pulvinar diam. Nam eleifend egestas viverra. Donec finibus lectus 
+            sed lorem ultricies, eget ornare leo luctus. Morbi vehicula, nulla eu tempor 
+            interdum, nibh elit congue tellus, ac vulputate urna lorem nec nisi. Morbi id 
+            consequat quam. Vivamus accumsan dui in facilisis aliquet.`,
+        ],
+        link : "https://tinomuzambi.com",
+        github: "https://github.com/TinoMuzambi/TinoMuzambiSite",
+        keywords: [
+            "html", "css", "bootstrap","netlify","javascript"
+        ],
+    },
+    {
+        name: "go-conversion-tool",
+        shortname: "GC",
+		title: "Go Conversion Tool",
+		content: [
+			`Llorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+            fringilla tristique vulputate. Sed in turpis leo. 
+            Aliquam malesuada in massa tincidunt egestas. Nam consectetur varius turpis, 
+            non porta arcu porttitor non. In tincidunt vulputate nulla quis egestas. Ut 
+            eleifend ut ipsum non fringilla. Praesent imperdiet nulla nec est luctus, at 
+            sodales purus euismod.`,
+			`Donec vel mauris lectus. Etiam nec lectus urna. Sed sodales ultrices dapibus. 
+            Nam blandit tristique risus, eget accumsan nisl interdum eu. Aenean ac accumsan 
+            nisi. Nunc vel pulvinar diam. Nam eleifend egestas viverra. Donec finibus lectus 
+            sed lorem ultricies, eget ornare leo luctus. Morbi vehicula, nulla eu tempor 
+            interdum, nibh elit congue tellus, ac vulputate urna lorem nec nisi. Morbi id 
+            consequat quam. Vivamus accumsan dui in facilisis aliquet.`,
+			`Etiam nec lectus urna. Sed sodales ultrices dapibus. 
+            Nam blandit tristique risus, eget accumsan nisl interdum eu. Aenean ac accumsan 
+            nisi. Nunc vel pulvinar diam. Nam eleifend egestas viverra. Donec finibus lectus 
+            sed lorem ultricies, eget ornare leo luctus. Morbi vehicula, nulla eu tempor 
+            interdum, nibh elit congue tellus, ac vulputate urna lorem nec nisi. Morbi id 
+            consequat quam. Vivamus accumsan dui in facilisis aliquet.`,
+        ],
+        link : "",
+        github: "https://github.com/TinoMuzambi/GoConverstionTool",
+        keywords: [
+            "go",
+        ],
+    },
+    {
+        name: "automate-mail",
+        shortname: "AM",
+		title: "Automate Mail",
+		content: [
+			`Llorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+            fringilla tristique vulputate. Sed in turpis leo. 
+            Aliquam malesuada in massa tincidunt egestas. Nam consectetur varius turpis, 
+            non porta arcu porttitor non. In tincidunt vulputate nulla quis egestas. Ut 
+            eleifend ut ipsum non fringilla. Praesent imperdiet nulla nec est luctus, at 
+            sodales purus euismod.`,
+			`Donec vel mauris lectus. Etiam nec lectus urna. Sed sodales ultrices dapibus. 
+            Nam blandit tristique risus, eget accumsan nisl interdum eu. Aenean ac accumsan 
+            nisi. Nunc vel pulvinar diam. Nam eleifend egestas viverra. Donec finibus lectus 
+            sed lorem ultricies, eget ornare leo luctus. Morbi vehicula, nulla eu tempor 
+            interdum, nibh elit congue tellus, ac vulputate urna lorem nec nisi. Morbi id 
+            consequat quam. Vivamus accumsan dui in facilisis aliquet.`,
+			`Etiam nec lectus urna. Sed sodales ultrices dapibus. 
+            Nam blandit tristique risus, eget accumsan nisl interdum eu. Aenean ac accumsan 
+            nisi. Nunc vel pulvinar diam. Nam eleifend egestas viverra. Donec finibus lectus 
+            sed lorem ultricies, eget ornare leo luctus. Morbi vehicula, nulla eu tempor 
+            interdum, nibh elit congue tellus, ac vulputate urna lorem nec nisi. Morbi id 
+            consequat quam. Vivamus accumsan dui in facilisis aliquet.`,
+        ],
+        link : "",
+        github: "https://github.com/TinoMuzambi/AutomateMail",
+        keywords: [
+            "email", "python",
+        ],
+    },
+    {
+        name: "android-calculator",
+        shortname: "AC",
+		title: "Android Calculator",
+		content: [
+			`Llorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+            fringilla tristique vulputate. Sed in turpis leo. 
+            Aliquam malesuada in massa tincidunt egestas. Nam consectetur varius turpis, 
+            non porta arcu porttitor non. In tincidunt vulputate nulla quis egestas. Ut 
+            eleifend ut ipsum non fringilla. Praesent imperdiet nulla nec est luctus, at 
+            sodales purus euismod.`,
+			`Donec vel mauris lectus. Etiam nec lectus urna. Sed sodales ultrices dapibus. 
+            Nam blandit tristique risus, eget accumsan nisl interdum eu. Aenean ac accumsan 
+            nisi. Nunc vel pulvinar diam. Nam eleifend egestas viverra. Donec finibus lectus 
+            sed lorem ultricies, eget ornare leo luctus. Morbi vehicula, nulla eu tempor 
+            interdum, nibh elit congue tellus, ac vulputate urna lorem nec nisi. Morbi id 
+            consequat quam. Vivamus accumsan dui in facilisis aliquet.`,
+			`Etiam nec lectus urna. Sed sodales ultrices dapibus. 
+            Nam blandit tristique risus, eget accumsan nisl interdum eu. Aenean ac accumsan 
+            nisi. Nunc vel pulvinar diam. Nam eleifend egestas viverra. Donec finibus lectus 
+            sed lorem ultricies, eget ornare leo luctus. Morbi vehicula, nulla eu tempor 
+            interdum, nibh elit congue tellus, ac vulputate urna lorem nec nisi. Morbi id 
+            consequat quam. Vivamus accumsan dui in facilisis aliquet.`,
+        ],
+        link : "",
+        github: "https://github.com/TinoMuzambi/Calculator",
+        keywords: [
+            "kotlin", "android", "xml",
+        ],
+    },
+    {
+        name: "student-number-generator",
+        shortname: "SG",
+		title: "Student Number Generator",
+		content: [
+			`Llorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+            fringilla tristique vulputate. Sed in turpis leo. 
+            Aliquam malesuada in massa tincidunt egestas. Nam consectetur varius turpis, 
+            non porta arcu porttitor non. In tincidunt vulputate nulla quis egestas. Ut 
+            eleifend ut ipsum non fringilla. Praesent imperdiet nulla nec est luctus, at 
+            sodales purus euismod.`,
+			`Donec vel mauris lectus. Etiam nec lectus urna. Sed sodales ultrices dapibus. 
+            Nam blandit tristique risus, eget accumsan nisl interdum eu. Aenean ac accumsan 
+            nisi. Nunc vel pulvinar diam. Nam eleifend egestas viverra. Donec finibus lectus 
+            sed lorem ultricies, eget ornare leo luctus. Morbi vehicula, nulla eu tempor 
+            interdum, nibh elit congue tellus, ac vulputate urna lorem nec nisi. Morbi id 
+            consequat quam. Vivamus accumsan dui in facilisis aliquet.`,
+			`Etiam nec lectus urna. Sed sodales ultrices dapibus. 
+            Nam blandit tristique risus, eget accumsan nisl interdum eu. Aenean ac accumsan 
+            nisi. Nunc vel pulvinar diam. Nam eleifend egestas viverra. Donec finibus lectus 
+            sed lorem ultricies, eget ornare leo luctus. Morbi vehicula, nulla eu tempor 
+            interdum, nibh elit congue tellus, ac vulputate urna lorem nec nisi. Morbi id 
+            consequat quam. Vivamus accumsan dui in facilisis aliquet.`,
+        ],
+        link : "",
+        github: "https://github.com/TinoMuzambi/StudentNumberGenerator",
+        keywords: [
+            "java", "uct",
+        ],
 	},
 ];
 

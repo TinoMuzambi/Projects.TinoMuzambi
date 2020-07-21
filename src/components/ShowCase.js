@@ -8,7 +8,7 @@ const ShowCase = ({ match }) => {
 	return (
 		<>
 			<h1 className="project-title">{project.title}</h1>
-			<div class="wrapper">
+			<div class="wrapper" data-aos="flip-up" data-aos-delay="200">
 				<div className="project-desc">
 					<div className="project-image">
                         <p className="project-image-text">{project.shortname}</p>
