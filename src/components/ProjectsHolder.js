@@ -17,20 +17,21 @@ class ProjectsHolder extends Component {
 	}
 
 	render() {
-		const filteredProjects = projects.filter(eachItem => {
+		const filteredProjects = projects.filter((eachItem) => {
 			return (
 				eachItem["title"]
-				.toLowerCase()
-				.includes(this.state.queryText.toLowerCase()) ||
-				eachItem["keywords"]
-				.join()
-				.includes(this.state.queryText.toLowerCase())
+					.toLowerCase()
+					.includes(this.state.queryText.toLowerCase()) ||
+				eachItem["keywords"].join().includes(this.state.queryText.toLowerCase())
 			);
 		});
 		return (
 			<>
-				<h1 className="project-title">Projects</h1>
-				<SearchProjects searchProj={this.searchProj} />
+				<div className="headline">
+					<h1 className="project-title">Projects</h1>
+					<SearchProjects searchProj={this.searchProj} />
+				</div>
+				<div className="clearfix"></div>
 				<Project projects={filteredProjects} />
 			</>
 		);
