@@ -35,12 +35,7 @@ const projects = [
 		shortname: "WA",
 		title: "WhatsApp Chat Analyser",
 		content: [
-			`Loorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-            fringilla tristique vulputate. Sed in turpis leo. 
-            Aliquam malesuada in massa tincidunt egestas. Nam consectetur varius turpis, 
-            non porta arcu porttitor non. In tincidunt vulputate nulla quis egestas. Ut 
-            eleifend ut ipsum non fringilla. Praesent imperdiet nulla nec est luctus, at 
-            sodales purus euismod.`,
+			`This Python script takes in an exported WhatsApp chat file and using string manipulation shows some statistics about the chat in question. First head over to WhatsApp and export the chat you want analysed and make sure to exclude media. Then copy the text of that file and paste it into the box below and click process.`,
 			`Donec vel mauris lectus. Etiam nec lectus urna. Sed sodales ultrices dapibus. 
             Nam blandit tristique risus, eget accumsan nisl interdum eu. Aenean ac accumsan 
             nisi. Nunc vel pulvinar diam. Nam eleifend egestas viverra. Donec finibus lectus 
@@ -63,12 +58,7 @@ const projects = [
 		shortname: "RC",
 		title: "Remove Contractions",
 		content: [
-			`Loreem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-            fringilla tristique vulputate. Sed in turpis leo. 
-            Aliquam malesuada in massa tincidunt egestas. Nam consectetur varius turpis, 
-            non porta arcu porttitor non. In tincidunt vulputate nulla quis egestas. Ut 
-            eleifend ut ipsum non fringilla. Praesent imperdiet nulla nec est luctus, at 
-            sodales purus euismod.`,
+			`This simple application takes text and replaces any contractions found with their full form. Just enter/paste your text and click uncontract.`,
 			`Donec vel mauris lectus. Etiam nec lectus urna. Sed sodales ultrices dapibus. 
             Nam blandit tristique risus, eget accumsan nisl interdum eu. Aenean ac accumsan 
             nisi. Nunc vel pulvinar diam. Nam eleifend egestas viverra. Donec finibus lectus 
@@ -91,12 +81,7 @@ const projects = [
 		shortname: "AD",
 		title: "Amount Divider",
 		content: [
-			`Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-            fringilla tristique vulputate. Sed in turpis leo. 
-            Aliquam malesuada in massa tincidunt egestas. Nam consectetur varius turpis, 
-            non porta arcu porttitor non. In tincidunt vulputate nulla quis egestas. Ut 
-            eleifend ut ipsum non fringilla. Praesent imperdiet nulla nec est luctus, at 
-            sodales purus euismod.`,
+			`Divide amount into a number of bins.`,
 			`Donec vel mauris lectus. Etiam nec lectus urna. Sed sodales ultrices dapibus. 
             Nam blandit tristique risus, eget accumsan nisl interdum eu. Aenean ac accumsan 
             nisi. Nunc vel pulvinar diam. Nam eleifend egestas viverra. Donec finibus lectus 
@@ -119,12 +104,7 @@ const projects = [
 		shortname: "BT",
 		title: "Blog.TinoMuzambi",
 		content: [
-			`Loremm ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-            fringilla tristique vulputate. Sed in turpis leo. 
-            Aliquam malesuada in massa tincidunt egestas. Nam consectetur varius turpis, 
-            non porta arcu porttitor non. In tincidunt vulputate nulla quis egestas. Ut 
-            eleifend ut ipsum non fringilla. Praesent imperdiet nulla nec est luctus, at 
-            sodales purus euismod.`,
+			`My blog website.`,
 			`Donec vel mauris lectus. Etiam nec lectus urna. Sed sodales ultrices dapibus. 
             Nam blandit tristique risus, eget accumsan nisl interdum eu. Aenean ac accumsan 
             nisi. Nunc vel pulvinar diam. Nam eleifend egestas viverra. Donec finibus lectus 
@@ -147,12 +127,7 @@ const projects = [
 		shortname: "TB",
 		title: "TwiBot",
 		content: [
-			`Llorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-            fringilla tristique vulputate. Sed in turpis leo. 
-            Aliquam malesuada in massa tincidunt egestas. Nam consectetur varius turpis, 
-            non porta arcu porttitor non. In tincidunt vulputate nulla quis egestas. Ut 
-            eleifend ut ipsum non fringilla. Praesent imperdiet nulla nec est luctus, at 
-            sodales purus euismod.`,
+			`My personal Twitter bot for testing the Twitter Developer API.`,
 			`Donec vel mauris lectus. Etiam nec lectus urna. Sed sodales ultrices dapibus. 
             Nam blandit tristique risus, eget accumsan nisl interdum eu. Aenean ac accumsan 
             nisi. Nunc vel pulvinar diam. Nam eleifend egestas viverra. Donec finibus lectus 
@@ -175,12 +150,7 @@ const projects = [
 		shortname: "TM",
 		title: "TinoMuzambi.com",
 		content: [
-			`Llorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-            fringilla tristique vulputate. Sed in turpis leo. 
-            Aliquam malesuada in massa tincidunt egestas. Nam consectetur varius turpis, 
-            non porta arcu porttitor non. In tincidunt vulputate nulla quis egestas. Ut 
-            eleifend ut ipsum non fringilla. Praesent imperdiet nulla nec est luctus, at 
-            sodales purus euismod.`,
+			`Source code for my personal website.`,
 			`Donec vel mauris lectus. Etiam nec lectus urna. Sed sodales ultrices dapibus. 
             Nam blandit tristique risus, eget accumsan nisl interdum eu. Aenean ac accumsan 
             nisi. Nunc vel pulvinar diam. Nam eleifend egestas viverra. Donec finibus lectus 
@@ -203,12 +173,7 @@ const projects = [
 		shortname: "GC",
 		title: "Go Conversion Tool",
 		content: [
-			`Llorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-            fringilla tristique vulputate. Sed in turpis leo. 
-            Aliquam malesuada in massa tincidunt egestas. Nam consectetur varius turpis, 
-            non porta arcu porttitor non. In tincidunt vulputate nulla quis egestas. Ut 
-            eleifend ut ipsum non fringilla. Praesent imperdiet nulla nec est luctus, at 
-            sodales purus euismod.`,
+			`This Go script does all the conversions you could possibly need.`,
 			`Donec vel mauris lectus. Etiam nec lectus urna. Sed sodales ultrices dapibus. 
             Nam blandit tristique risus, eget accumsan nisl interdum eu. Aenean ac accumsan 
             nisi. Nunc vel pulvinar diam. Nam eleifend egestas viverra. Donec finibus lectus 
@@ -231,12 +196,7 @@ const projects = [
 		shortname: "AM",
 		title: "Automate Mail",
 		content: [
-			`Llorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-            fringilla tristique vulputate. Sed in turpis leo. 
-            Aliquam malesuada in massa tincidunt egestas. Nam consectetur varius turpis, 
-            non porta arcu porttitor non. In tincidunt vulputate nulla quis egestas. Ut 
-            eleifend ut ipsum non fringilla. Praesent imperdiet nulla nec est luctus, at 
-            sodales purus euismod.`,
+			`Automate your emails with this simple Python script.`,
 			`Donec vel mauris lectus. Etiam nec lectus urna. Sed sodales ultrices dapibus. 
             Nam blandit tristique risus, eget accumsan nisl interdum eu. Aenean ac accumsan 
             nisi. Nunc vel pulvinar diam. Nam eleifend egestas viverra. Donec finibus lectus 
@@ -259,12 +219,7 @@ const projects = [
 		shortname: "AC",
 		title: "Android Calculator",
 		content: [
-			`Llorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-            fringilla tristique vulputate. Sed in turpis leo. 
-            Aliquam malesuada in massa tincidunt egestas. Nam consectetur varius turpis, 
-            non porta arcu porttitor non. In tincidunt vulputate nulla quis egestas. Ut 
-            eleifend ut ipsum non fringilla. Praesent imperdiet nulla nec est luctus, at 
-            sodales purus euismod.`,
+			`A simple calculator for Android.`,
 			`Donec vel mauris lectus. Etiam nec lectus urna. Sed sodales ultrices dapibus. 
             Nam blandit tristique risus, eget accumsan nisl interdum eu. Aenean ac accumsan 
             nisi. Nunc vel pulvinar diam. Nam eleifend egestas viverra. Donec finibus lectus 
@@ -287,12 +242,7 @@ const projects = [
 		shortname: "SG",
 		title: "Student Number Generator",
 		content: [
-			`Llorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
-            fringilla tristique vulputate. Sed in turpis leo. 
-            Aliquam malesuada in massa tincidunt egestas. Nam consectetur varius turpis, 
-            non porta arcu porttitor non. In tincidunt vulputate nulla quis egestas. Ut 
-            eleifend ut ipsum non fringilla. Praesent imperdiet nulla nec est luctus, at 
-            sodales purus euismod.`,
+			`Determines UCT student numbers based on name and surname.`,
 			`Donec vel mauris lectus. Etiam nec lectus urna. Sed sodales ultrices dapibus. 
             Nam blandit tristique risus, eget accumsan nisl interdum eu. Aenean ac accumsan 
             nisi. Nunc vel pulvinar diam. Nam eleifend egestas viverra. Donec finibus lectus 

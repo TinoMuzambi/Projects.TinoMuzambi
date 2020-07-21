@@ -8,12 +8,16 @@ const ShowCase = ({ match }) => {
 	return (
 		<>
 			<h1 className="project-title">{project.title}</h1>
-			<div class="wrapper" data-aos="flip-up" data-aos-delay="200">
+			<div className="wrapper" data-aos="flip-up" data-aos-delay="200">
 				<div className="project-desc">
 					<div className="project-image">
                         <p className="project-image-text">{project.shortname}</p>
 					</div>
-					<p className="project-desc-text">{project.content}</p>
+					<div className="projects-desc-pars">
+						{project.content.map((paragraph, key) => (
+							<p key={key} className="project-desc-text">{paragraph}</p>
+						))}
+					</div>
 				</div>
 				<div className="project-footer">
 					<p className={project.link==="" ? "link-hide" : ""}>Link: <a href={project.link}>{project.link}</a></p>
