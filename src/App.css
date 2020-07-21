@@ -1,169 +1,172 @@
-.nav .nav-menu{    
-  justify-content: space-between;
-  margin-top: 10px;
+.nav .nav-menu {
+	justify-content: space-between;
+	margin-top: 10px;
 }
 
 .nav-brand {
-  font-family: var(--Lexend), Verdana, Geneva, Tahoma, sans-serif;
-  padding-left: 10px;
-  font-size: 1.5rem;
+	font-family: var(--Lexend), Verdana, Geneva, Tahoma, sans-serif;
+	padding-left: 10px;
+	font-size: 1.5rem;
 }
 
 .page-body {
-  margin: 0;
+	margin: 0;
 }
 
 .projects-title {
-  padding-top: 10px;
-  padding-left: 10px;
+	padding-top: 10px;
+	padding-left: 10px;
 }
 
 .search-field {
-  float: right;
-  font-family: var(--Livvic);
-  padding-right: 10px;
-  margin-top: -65px;
+	float: right;
+	font-family: var(--Livvic);
+	padding-right: 10px;
+	margin-top: -65px;
 }
 
 .wrapper {
-  margin: 0 auto;
-  width: 70%;
-  border-radius: 10px;
-  background: linear-gradient(137deg, rgba(217,217,217,1) 0%, rgb(209, 253, 246) 60%, rgb(160, 160, 160) 100%);
+	margin: 0 auto;
+	width: 70%;
+	border-radius: 10px;
+	background: linear-gradient(
+		137deg,
+		rgba(217, 217, 217, 1) 0%,
+		rgb(209, 253, 246) 60%,
+		rgb(160, 160, 160) 100%
+	);
 }
 
 .project-title {
-  text-align: left;
-  padding-top: 10px;
-  padding-left: 10px;
+	text-align: left;
+	padding-top: 10px;
+	padding-left: 10px;
 }
 
 .project-image {
-  height: 100px;
-  width: 100px;
-  border: 2px solid #adf8fa;
-  border-radius: 50%;
-  margin-top: 20px;
-  display: flex;
+	height: 100px;
+	width: 100px;
+	border: 2px solid #adf8fa;
+	border-radius: 50%;
+	margin-top: 20px;
+	display: flex;
 }
 
 .project-image:hover {
-  background-color: #adf8fa;
+	background-color: #adf8fa;
 }
 
 .project-image-text {
-  color: white;
-  margin: auto;
-  font-size: 2.3rem;
-  font-weight: 700;
+	color: white;
+	margin: auto;
+	font-size: 2.3rem;
+	font-weight: 700;
 }
 
 .project-desc {
-  display: grid;
-  grid-template-columns: 10% 90%;
-  margin-left: 10px;
-  padding-bottom: 20px;
+	display: grid;
+	grid-template-columns: 10% 90%;
+	margin-left: 10px;
+	padding-bottom: 20px;
 }
 
 .project-desc-pars {
-  padding-top: 10px;
+	padding-top: 20px;
 }
 
 .project-desc-text {
-  padding-left: 20px;
-  padding-right: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 .project-footer {
-  padding-left: 20px;
-  padding-right: 0px;
-  padding-bottom: 20px;
+	margin: 0;
+	padding-left: 20px;
+	padding-bottom: 20px;
 }
 
 .link-hide {
-  display: none;
+	display: none;
 }
 .tag {
-  font-family: var(--Livvic), "Verdana";
-  list-style: none;
+	font-family: var(--Livvic), "Verdana";
+	list-style: none;
 }
 
 .tags {
-  background: var(--sky);
-  padding: 0rem .4rem;
-  border-radius: 3rem;
-  justify-content: space-evenly;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  display: inline-block;
+	background: var(--sky);
+	padding: 0rem 0.4rem;
+	border-radius: 3rem;
+	justify-content: space-evenly;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	display: inline-block;
 }
 
 .tag-text {
-  font-size: 15px;
+	font-size: 15px;
 }
 
-.rights{
-  margin: 0;
-  justify-content: center;
-  font-family: var(--Josefin), "Verdana";
-  color: var(--text-light);
+.rights {
+	margin: 0;
+	justify-content: center;
+	font-family: var(--Josefin), "Verdana";
+	color: var(--text-light);
 }
 
 .social {
-  margin: 0;
-  justify-content: center;
-  font-family: var(--Josefin), "Verdana";
+	margin: 0;
+	justify-content: center;
+	font-family: var(--Josefin), "Verdana";
 }
 
 .social span {
-  margin: 0;
-  padding-left: .5rem;
-  font-size: 25px;
-  color: var(--text-light);
+	margin: 0;
+	padding-left: 0.5rem;
+	font-size: 25px;
+	color: var(--text-light);
 }
 
-.social span:hover{
-  color: var(--midnight);
+.social span:hover {
+	color: var(--midnight);
 }
 
 .not-found {
-  display: block;
+	display: block;
 }
 
 .four04-title {
-  margin: 0;
-  font-size: 200px;
-  text-align: center;
+	margin: 0;
+	font-size: 200px;
+	text-align: center;
 }
 
 .four04-body {
-  font-size: 50px;
-  text-align : center;
+	font-size: 50px;
+	text-align: center;
 }
 
 .four04-redirect {
-  margin: 7px;
-  text-align: center;
-  color: var(--text-light);
-  text-decoration: underline;
+	margin: 7px;
+	text-align: center;
+	color: var(--text-light);
+	text-decoration: underline;
 }
 
 .four04-body2 {
-  margin: 0;
-  font-size: 30px;
-  text-align : center;
+	margin: 0;
+	font-size: 30px;
+	text-align: center;
 }
 
 /*              Viewport less then or equal to 750px            */
 
-@media only screen and (max-width: 750px){
+@media only screen and (max-width: 750px) {
+	.wrapper {
+		width: 90%;
+	}
 
-  .wrapper {
-    width: 90%;
-  }
-
-  .project-desc {
-    grid-template-columns: 25% 75%;
-  }
-
+	.project-desc {
+		grid-template-columns: 25% 75%;
+	}
 }

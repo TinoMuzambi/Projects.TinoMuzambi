@@ -20,8 +20,8 @@ const ShowCase = ({ match }) => {
 					</div>
 				</div>
 				<div className="project-footer">
-					<p className={project.link==="" ? "link-hide" : ""}>Link: <a href={project.link}>{project.link.substring(8)}</a></p>
-					<p>GitHub: <a href={project.github}>{project.github.substring(19)}</a></p>
+					<p className={project.link==="" ? "link-hide" : ""}>Link: <a target="_blank" rel="noopener noreferrer" href={project.link}>{project.link.substring(0, 5)==="https"? project.link.substring(8) : project.link.substring(7)}</a></p>
+					<p>GitHub: <a target="_blank" rel="noopener noreferrer" href={project.github}>{project.github.substring(19)}</a></p>
 					<ul className="tag">
 						{
 							project.keywords.map((keyword, key) => (
