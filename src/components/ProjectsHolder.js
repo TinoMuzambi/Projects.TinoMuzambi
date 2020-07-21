@@ -17,7 +17,7 @@ class ProjectsHolder extends Component {
 	}
 
 	render() {
-		let filteredProjects = projects.filter(eachItem => {
+		const filteredProjects = projects.filter(eachItem => {
 			return (
 				eachItem["title"]
 				.toLowerCase()

@@ -7,6 +7,7 @@ import {
 import NavBar from './NavBar';
 import ProjectsHolder from './components/ProjectsHolder';
 import ShowCase from './components/ShowCase';
+import Tags from './components/Tags';
 import './App.css';
 
 class App extends Component{
@@ -19,7 +20,7 @@ class App extends Component{
               <Switch>
                 <Route path="/" component={ProjectsHolder} exact />
                 <Route path="/showcase/:name" component={ShowCase} />
-                <Route path="/tags/:name" component={ProjectsHolder} />
+                <Route path="/tags/:name" component={Tags} />
               </Switch>
             </div>
         </Router>    
