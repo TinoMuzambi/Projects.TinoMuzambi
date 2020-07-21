@@ -103,13 +103,27 @@
 }
 
 .rights{
+  margin: 0;
   justify-content: center;
-  bottom: 30px;
+  font-family: var(--Josefin), "Verdana";
+  color: var(--text-light);
+}
+
+.social {
+  margin: 0;
+  justify-content: center;
   font-family: var(--Josefin), "Verdana";
 }
 
-.rights h4 a{
-  color: var(--text-gray);
+.social span {
+  margin: 0;
+  padding-left: .5rem;
+  font-size: 25px;
+  color: var(--text-light);
+}
+
+.social span:hover{
+  color: var(--midnight);
 }
 
 .not-found {

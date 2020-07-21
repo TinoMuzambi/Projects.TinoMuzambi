@@ -59,6 +59,7 @@ html, body {
 a{
   text-decoration: none;
   color: var(--text-gray);
+  font-family: var(--Lexend), "Verdana";
 }
 
 .flex-row{
@@ -79,6 +80,9 @@ h2{
 h3{
   font-family: var(--Abel), "Verdana";
   font-size: 1.3rem;
+}
+h4 {
+  color: var(--text-light);
 }
 
 button.btn{
