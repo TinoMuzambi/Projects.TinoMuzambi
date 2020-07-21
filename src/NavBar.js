@@ -8,14 +8,6 @@ const NavBar = () => (
             <div className="nav-brand">
                 <Link className="text-gray" to="/">Projects.TinoMuzambi</Link>
             </div>
-            <ul>
-                <li className="nav-link">
-                    <Link to="/">Home</Link>
-                </li>
-                <li className="nav-link">
-                    <Link to="/contact">Contact Me</Link>
-                </li>
-            </ul>
         </div>
     </nav>
 );
