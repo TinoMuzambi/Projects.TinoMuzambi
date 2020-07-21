@@ -3,18 +3,6 @@
   margin-top: 10px;
 }
 
-.nav ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-.nav li {
-  display: inline-block;
-  padding-right: 10px;
-  font-family: var(--Abel);
-}
-
 .nav-brand {
   font-family: var(--Lexend), Verdana, Geneva, Tahoma, sans-serif;
   padding-left: 10px;
@@ -112,7 +100,6 @@
 
 .rights{
   justify-content: center;
-  /* position: absolute; */
   bottom: 30px;
   font-family: var(--Josefin), "Verdana";
 }
@@ -162,17 +149,3 @@
   }
 
 }
-
-/*              Viewport less then or equal to 520px            */
-/* 
-@media only screen and (max-width: 520px){
-
-  .wrapper {
-    width: 90%;
-  }
-
-  .project-desc {
-    grid-template-columns: 25% 75%;
-  }
-  
-} */

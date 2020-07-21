@@ -23,6 +23,7 @@ class ProjectsHolder extends Component {
 				.toLowerCase()
 				.includes(this.state.queryText.toLowerCase()) ||
 				eachItem["keywords"]
+				.join()
 				.includes(this.state.queryText.toLowerCase())
 			);
 		});

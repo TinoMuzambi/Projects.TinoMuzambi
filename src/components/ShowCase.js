@@ -13,7 +13,7 @@ const ShowCase = ({ match }) => {
 					<div className="project-image">
                         <p className="project-image-text">{project.shortname}</p>
 					</div>
-					<p className="project-desc-text">{project.content[0]}</p>
+					<p className="project-desc-text">{project.content}</p>
 				</div>
 				<div className="project-footer">
 					<p className={project.link==="" ? "link-hide" : ""}>Link: <a href={project.link}>{project.link}</a></p>
