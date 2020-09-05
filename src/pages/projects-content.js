@@ -28,27 +28,9 @@ const projects = [
 			"full-stack",
 		],
 	},
-	{
-		name: "whatsapp-analyser",
-		shortname: "WA",
-		title: "WhatsApp Chat Analyser",
-		content: [
-			`This project uses Python to read in exported WhatsApp chat files and perform string manipulation methods to derive stats and insights about the chat in question.`,
-			`The tech stack I used on this project is primarily Python. So it made sense to use Flask to create a web interface. So Flask, along with WTForms were my tools for building out the front-end. For styling I used Bootstrap as well as some plain CSS.`,
-			`In terms of deployment, I used Heroku to deploy the app. My domain is hosted on GoDaddy.`,
-		],
-		link: "http://whatsapp-analyserr.tinomuzambi.com",
-		github: "https://github.com/TinoMuzambi/WhatsAppAnalyser",
-		keywords: [
-			"flask",
-			"python",
-			"html",
-			"css",
-			"bootstrap",
-			"heroku",
-			"godaddy",
-		],
-	},
+	
+
+
 	{
 		name: "projects.tinomuzambi",
 		shortname: "PT",
