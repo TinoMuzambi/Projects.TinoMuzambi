@@ -6,10 +6,10 @@ const projects = [
 		content: [
 			`A simple React Table Tennis scoring progressive web app that stores all matches recorded to a database.`,
 			`This is a full-stack MERN (MongoDB, Express, React Node.js) app. I used React to build the front end with jsx for the layout and vanilla CSS for styling.`,
-			`The frontend hooks up to an Express server backend. The backend uses a REST API to get matches from the database as well as to post and delete them.`,
+			`The front-end hooks up to an Express server back-end. The back-end uses a REST API to get matches from the database as well as to post and delete them.`,
 			`The database in question is the NoSQL MongoDB. This database has a cluster which is being hosted online by MongoDB. I am using Mongoose as a client to connect to the cluster.`,
 			`I integrated Pusher to make updates to the database realtime. Any update on any device will update across all devices in realtime.`,
-			`The backend is hosted on Heroku and the frontend is deployed on Vercel both with continuous integration from GitHub.`,
+			`The back-end is hosted on Heroku and the front-end is deployed on Vercel both with continuous integration from GitHub.`,
 			`In future I plan to add the authentication for users to be able to login and view only their matches. As well as statistics from the matches stored in the database.`,
 		],
 		link: "https://table.tinomuzambi.com",
