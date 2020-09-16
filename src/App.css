@@ -25,8 +25,19 @@
 .search-field {
 	float: right;
 	margin-top: -30px;
-	padding-right: 10px;
+	margin-right: 10px;
 	font-family: var(--Livvic);
+}
+
+.search-field input {
+	border-radius: 0;
+	padding: 0.5rem;
+	outline: none;
+	border: solid 2px black;
+}
+
+.search-field input:hover {
+	border: solid 2px gray;
 }
 
 .clearfix {
@@ -169,7 +180,7 @@
 
 /*              Viewport less then or equal to 2560px            */
 
-@media only screen and (max-width: 2560px){
+@media only screen and (max-width: 2560px) {
 	.search-field {
 		margin-top: -70px;
 	}
@@ -178,11 +189,10 @@
 /*              Viewport less then or equal to 1130px            */
 
 @media only screen and (max-width: 1130px) {
-	
 	.search-field {
 		margin-top: -60px;
 	}
-	
+
 	.project-desc {
 		grid-template-columns: 20% 80%;
 	}
@@ -206,7 +216,7 @@
 	.nav-brand {
 		font-size: 15px;
 	}
-	
+
 	h1 {
 		font-size: 20px;
 	}
@@ -218,7 +228,7 @@
 	p {
 		font-size: 12px;
 	}
-	
+
 	.search-field {
 		margin-top: -30px;
 	}
