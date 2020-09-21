@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Project from "./Project";
-import projects from "../pages/projects-content";
-import SearchProjects from "./SearchProjects";
+import Project from "../components/Project";
+import projects from "../data/projects-content";
+import SearchProjects from "../components/SearchProjects";
 
 class ProjectsHolder extends Component {
 	constructor() {

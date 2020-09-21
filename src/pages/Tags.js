@@ -1,6 +1,6 @@
 import React from "react";
-import projects from "../pages/projects-content";
-import Project from "./Project";
+import projects from "../data/projects-content";
+import Project from "../components/Project";
 
 const Tags = ({ match }) => {
 	const name = match.params.name;

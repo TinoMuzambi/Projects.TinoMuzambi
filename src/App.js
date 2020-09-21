@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import NavBar from "./NavBar";
-import ProjectsHolder from "./components/ProjectsHolder";
-import ShowCase from "./components/ShowCase";
-import Tags from "./components/Tags";
+import NavBar from "./components/NavBar";
+import ProjectsHolder from "./pages/ProjectsHolder";
+import ShowCase from "./pages/ShowCase";
+import Tags from "./pages/Tags";
 import Footer from "./components/Footer";
-import NotFoundPage from "./components/NotFoundPage";
+import NotFoundPage from "./pages/NotFoundPage";
 import AOS from "aos";
 import "./aos.css";
 import "./App.css";
@@ -13,7 +13,6 @@ import { Helmet } from "react-helmet";
 
 class App extends Component {
 	componentDidMount() {
-		// or simply just AOS.init();
 		AOS.init();
 	}
 

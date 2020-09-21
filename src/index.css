@@ -1,117 +1,117 @@
 /*  font-family: Abel  */
 @font-face {
-  font-family: Abel;
-  src: url('./fonts/Abel/Abel-Regular.ttf');
+	font-family: Abel;
+	src: url("./fonts/Abel/Abel-Regular.ttf");
 }
 
 /*  font-family: Anton  */
 @font-face {
-  font-family: Anton;
-  src: url('./fonts/Anton/Anton-Regular.ttf');
+	font-family: Anton;
+	src: url("./fonts/Anton/Anton-Regular.ttf");
 }
 
 /*  font-family: Josefin  */
 @font-face {
-  font-family: Josefin;
-  src: url('./fonts/Josefin_Sans/JosefinSans-Regular.ttf');
+	font-family: Josefin;
+	src: url("./fonts/Josefin_Sans/JosefinSans-Regular.ttf");
 }
 
 /*  font-family: Lexend  */
 @font-face {
-  font-family: Lexend;
-  src: url('./fonts/Lexend_Deca/LexendDeca-Regular.ttf');
+	font-family: Lexend;
+	src: url("./fonts/Lexend_Deca/LexendDeca-Regular.ttf");
 }
 
 /*  font-family: Livvic  */
 @font-face {
-  font-family: Livvic;
-  src: url('./fonts/Livvic/Livvic-Regular.ttf');
+	font-family: Livvic;
+	src: url("./fonts/Livvic/Livvic-Regular.ttf");
 }
 
-html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  background: url(./bg.png);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+html,
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	background: url(/bg.png);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 
-  /*      Theme colors        */
-  --text-gray: #3f4954;
-  --text-light : #686666da;
-  --bg-color: #0f0f0f;
-  --white: #ffffff;
-  --midnight: #a1c4cf;
-  
-  /* gradient color   */
-  --sky: linear-gradient(-225deg, #7DE2FC 0%, #B9B6E5 100%);
+	/*      Theme colors        */
+	--text-gray: #3f4954;
+	--text-light: #686666da;
+	--bg-color: #0f0f0f;
+	--white: #ffffff;
+	--midnight: #a1c4cf;
 
-    /*      theme font-family   */
-  --Abel: 'Abel', sans-serif;
-  --Anton: 'Anton', sans-serif;
-  --Josefin : 'Josefin', sans-serif;
-  --Lexend: 'Lexend', sans-serif;
-  --Livvic : 'Livvic', sans-serif;  
+	/* gradient color   */
+	--sky: linear-gradient(-225deg, #7de2fc 0%, #b9b6e5 100%);
+
+	/*      theme font-family   */
+	--Abel: "Abel", sans-serif;
+	--Anton: "Anton", sans-serif;
+	--Josefin: "Josefin", sans-serif;
+	--Lexend: "Lexend", sans-serif;
+	--Livvic: "Livvic", sans-serif;
 }
 
 /* ---------------- Global Classes ---------------*/
 
-a{
-  text-decoration: none;
-  color: var(--text-gray);
-  font-family: var(--Lexend), "Verdana";
+a {
+	text-decoration: none;
+	color: var(--text-gray);
+	font-family: var(--Lexend), "Verdana";
 }
 
-.flex-row{
-  display: flex;
-  flex-direction: row;    
-  flex-wrap: wrap;
+.flex-row {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
 }
 
-h1{
-  font-family: var(--Lexend), "Verdana";
-  font-size: 2.5rem;
+h1 {
+	font-family: var(--Lexend), "Verdana";
+	font-size: 2.5rem;
 }
 
-h2{
-  font-family: var(--Lexend), "Verdana";
+h2 {
+	font-family: var(--Lexend), "Verdana";
 }
 
-h3{
-  font-family: var(--Abel), "Verdana";
-  font-size: 1.3rem;
+h3 {
+	font-family: var(--Abel), "Verdana";
+	font-size: 1.3rem;
 }
 h4 {
-  color: var(--text-light);
+	color: var(--text-light);
 }
 
-button.btn{
-  border: none;
-  border-radius: 2rem;
-  padding: 1rem 3rem;
-  font-size: 1rem;
-  font-family: var(--Livvic), "Verdana";
-  cursor: pointer;
+button.btn {
+	border: none;
+	border-radius: 2rem;
+	padding: 1rem 3rem;
+	font-size: 1rem;
+	font-family: var(--Livvic), "Verdana";
+	cursor: pointer;
 }
 
-.text-gray{
-  color: var(--text-gray);
+.text-gray {
+	color: var(--text-gray);
 }
 
-p{
-  font-family: var(--Lexend), "Verdana";
-  color: var(--text-light);
+p {
+	font-family: var(--Lexend), "Verdana";
+	color: var(--text-light);
 }
 
 /* ------x------- Global Classes -------x-------*/
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
 }
 
 /*              Viewport less then or equal to 520px            */
 
-@media only screen and (max-width: 520px){
-  
+@media only screen and (max-width: 520px) {
 }

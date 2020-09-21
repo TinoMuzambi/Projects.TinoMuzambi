@@ -128,7 +128,7 @@ const projects = [
 			`The blog is now served by Vercel and my custom domain is linked to this site using GoDaddy.`,
 		],
 		link: "https://blog.tinomuzambi.com",
-		github: "",
+		github: "https://github.com/TinoMuzambi/ReactBlog",
 		keywords: ["javascript", "html", "css", "bootstrap", "netlify", "godaddy"],
 	},
 	{

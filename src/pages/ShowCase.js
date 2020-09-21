@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import projects from "../pages/projects-content";
+import projects from "../data/projects-content";
 import { Link } from "react-router-dom";
 
 class ShowCase extends Component {
