@@ -31,8 +31,9 @@ class ProjectsHolder extends Component {
 					<h1 className="project-title">Projects</h1>
 					<SearchProjects searchProj={this.searchProj} />
 				</div>
-				<div className="clearfix"></div>
-				<Project projects={filteredProjects} />
+				<div className="projects">
+					<Project projects={filteredProjects} />
+				</div>
 			</>
 		);
 	}
