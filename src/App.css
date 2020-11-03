@@ -60,6 +60,7 @@
 
 .wrapper {
 	width: 400px;
+	height: 250px;
 	border-radius: 10px;
 	background: linear-gradient(
 		137deg,
@@ -70,6 +71,7 @@
 }
 
 .project .wrapper {
+	height: unset;
 	width: 90%;
 }
 
@@ -220,6 +222,7 @@
 @media only screen and (max-width: 750px) {
 	.wrapper {
 		width: 90%;
+		height: unset;
 	}
 
 	.project-desc {
