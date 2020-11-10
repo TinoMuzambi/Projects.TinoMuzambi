@@ -23,20 +23,22 @@ class App extends Component {
 					<NavBar />
 					<div className="page-body">
 						<Switch>
-							<Route
-								path="/"
-								exact
-								render={() => (
-									<>
-										<Helmet>
-											<title>Projects.TinoMuzambi</title>
-										</Helmet>
-										<ProjectsHolder />
-									</>
-								)}
-							/>
-							<Route path="/showcase/:name" component={ShowCase} />
-							<Route path="/tags/:name" component={Tags} />
+							<div className="outer">
+								<Route
+									path="/"
+									exact
+									render={() => (
+										<>
+											<Helmet>
+												<title>Projects.TinoMuzambi</title>
+											</Helmet>
+											<ProjectsHolder />
+										</>
+									)}
+								/>
+								<Route path="/showcase/:name" component={ShowCase} />
+								<Route path="/tags/:name" component={Tags} />
+							</div>
 							<Route component={NotFoundPage} />
 						</Switch>
 					</div>

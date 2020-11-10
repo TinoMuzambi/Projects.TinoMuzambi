@@ -13,6 +13,10 @@
 	margin: 0;
 }
 
+.outer {
+	min-height: 80vh;
+}
+
 .headline {
 	width: 100%;
 }
