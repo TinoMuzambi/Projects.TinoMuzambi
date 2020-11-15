@@ -1,31 +1,32 @@
 const projects = [
-        {
-                name: "working-with-clash", 
-                shortname: "WC", 
-                title: "Working With Clash", 
-                content: [
-                         `This React app is built to work with the Clash of Clans API. It fetches player or clan information using their respective tags.`, 
-                         `WWC is a full-stack app with the front-end built with React. JSX is used for templating and Sass for styling.`, 
-                         `The back-end consists of an Express server and it handles calling the Clash of Clans API and sending the data to the front-end. No database was implemented for this app.`,
-                         `The front-end is deployed on Vercel and the back-end on Heroku. Visit the GitHub page to check out the code.`,
-                ], 
-                link: "https://wwc.tinomuzambi.com", 
-                github: "https://github.com/TinoMuzambi/WorkingWithClash", 
-                keywords: [
-                          "react",
+	{
+		name: "working-with-clash",
+		shortname: "WC",
+		title: "Working With Clash",
+		content: [
+			`This React app is built to work with the Clash of Clans API. It fetches player or clan information using their respective tags.`,
+			`WWC is a full-stack app with the front-end built with React. JSX is used for templating and Sass for styling.`,
+			`The back-end consists of an Express server and it handles calling the Clash of Clans API and sending the data to the front-end. No database was implemented for this app.`,
+			`The front-end is deployed on Vercel and the back-end on Heroku. Visit the GitHub page to check out the code.`,
+		],
+		link: "https://wwc.tinomuzambi.com",
+		github: "https://github.com/TinoMuzambi/WorkingWithClash",
+		keywords: [
+			"react",
 			"html",
 			"css",
 			"npm",
 			"jsx",
 			"javascript",
 			"heroku",
-                        "clash of clans", 
-                        "sass", 
-                        "express", 
+			"clash of clans",
+			"sass",
+			"express",
 			"full-stack",
 			"vercel",
-             ], 
-        }, 
+		],
+	},
+
 	{
 		name: "table-time",
 		shortname: "TT",
