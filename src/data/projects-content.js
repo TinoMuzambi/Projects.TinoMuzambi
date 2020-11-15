@@ -1,4 +1,26 @@
 const projects = [
+        {
+                name: "working-with-clash", 
+                shortname: "WC", 
+                title: "Working With Clash", 
+                content: [
+                         `This React app is built to work with the Clash of Clans API. It fetches player or clan information using their respective tags.`, 
+                         ``, 
+                ], 
+                link: "https://wwc.tinomuzambi.com", 
+                github: "https://github.com/TinoMuzambi/WorkingWithClash", 
+                keywords: [
+                          "react",
+			"html",
+			"css",
+			"npm",
+			"jsx",
+			"javascript",
+			"heroku",
+			"full-stack",
+			"vercel",
+             ], 
+        }, 
 	{
 		name: "table-time",
 		shortname: "TT",
