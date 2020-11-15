@@ -1,7 +1,7 @@
 const projects = [
 	{
 		name: "working-with-clash",
-		shortname: "WWC",
+		shortname: "WC",
 		title: "Working With Clash",
 		content: [
 			`This React app is built to work with the Clash of Clans API. It fetches player or clan information using their respective tags.`,
