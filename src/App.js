@@ -7,7 +7,6 @@ import Tags from "./pages/Tags";
 import Footer from "./components/Footer";
 import NotFoundPage from "./pages/NotFoundPage";
 import AOS from "aos";
-import "./aos.css";
 import "./App.css";
 import { Helmet } from "react-helmet";
 
