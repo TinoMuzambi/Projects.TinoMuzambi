@@ -1,5 +1,18 @@
 const projects = [
 	{
+		name: "tinomuzambi",
+		shortname: "TM",
+		title: "TinoMuzambi.com",
+		content: [
+			`This is my personal website which I use as an online CV. It summarises the different tools and technologies I'm comfortable with as well as my work experience and academic history.`,
+			`I recently completely redesigned it from the ground up using React as well as sass for styling.`,
+			`The site is deployed using Vercel and connected to my domain which is hosted by GoDaddy.`,
+		],
+		link: "https://tinomuzambi.com",
+		github: "https://github.com/TinoMuzambi/ReactPortfolio",
+		keywords: ["html", "sass", "react", "vercel", "javascript"],
+	},
+	{
 		name: "working-with-clash",
 		shortname: "WC",
 		title: "Working With Clash",
@@ -180,19 +193,6 @@ const projects = [
 		link: "",
 		github: "https://github.com/TinoMuzambi/TwiBot",
 		keywords: ["api", "twitter", "python"],
-	},
-	{
-		name: "tinomuzambi",
-		shortname: "TM",
-		title: "TinoMuzambi.com",
-		content: [
-			`This is my personal website which I use as an online CV. It summarises the different tools and technologies I'm comfortable with as well as my work experience and academic history.`,
-			`This is a pretty simple website built with plain HTML5 as well as CSS3 for styling. I also utilised a Javascript library to enable smooth scrolling between anchors on the page.`,
-			`The site is deployed using Netlify and connected to my domain which is hosted by GoDaddy.`,
-		],
-		link: "https://tinomuzambi.com",
-		github: "https://github.com/TinoMuzambi/TinoMuzambiSite",
-		keywords: ["html", "css", "bootstrap", "netlify", "javascript"],
 	},
 	{
 		name: "go-conversion-tool",
