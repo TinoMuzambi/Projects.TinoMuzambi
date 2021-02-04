@@ -3,7 +3,7 @@ import projects from "../data/projects-content";
 import { Link } from "react-router-dom";
 
 const ShowCase = ({ match }) => {
-	const [name, setName] = useState(match.params.name);
+	const [name] = useState(match.params.name);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
