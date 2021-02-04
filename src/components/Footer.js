@@ -3,7 +3,7 @@ import { FaLinkedinIn } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 
 const Footer = () => (
-	<>
+	<footer>
 		<div className="rights flex-row">
 			<h4>Made with React. Copyright © Tino Muzambi 2020</h4>
 		</div>
@@ -27,7 +27,7 @@ const Footer = () => (
 				</span>
 			</a>
 		</div>
-	</>
+	</footer>
 );
 
 export default Footer;
