@@ -10,7 +10,7 @@ const projects = [
 		],
 		link: "https://tinomuzambi.com",
 		github: "https://github.com/TinoMuzambi/ReactPortfolio",
-		keywords: ["html", "sass", "react", "vercel", "javascript"],
+		keywords: ["html", "sass", "react", "vercel", "javascript", "yarn"],
 	},
 	{
 		name: "working-with-clash",
