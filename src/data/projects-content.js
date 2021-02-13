@@ -1,5 +1,16 @@
 const projects = [
 	{
+		name: "cubingalgos",
+		shortname: "CA",
+		title: "Cubing Algos",
+		content: [
+			`A simple website showing cubing algorithms for 2-look OLL & PLL.`,
+			`This web app uses plain HTML, CSS and vanilla JavaScript. It makes use of CSS grid, CSS flex and many other CSS tools. In terms of HTML, this app uses semantic HTML with the use of tags like header, main and article.`,
+			`The JavaScript in this web app is used to enable the use of saving and fetching data from Firebases' Firestore so that the statuses of each algorithm is updated across all clients.`,
+			`The project is hosted on Netlify and I've made use of the Netlify badge in my README.`,
+		],
+	},
+	{
 		name: "tinomuzambi",
 		shortname: "TM",
 		title: "TinoMuzambi.com",
