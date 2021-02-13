@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const Project = ({ projects }) => (
 	<>
 		{projects.length > 0 ? (
 			projects.map((project, key) => (
-				<div className="wrapper" key={key}>
+				<motion.div className="wrapper" key={key} layout>
 					<Link to={`/showcase/${project.name}`}>
 						<h2 className="projects-title">{project.title}</h2>
 						<div className="project-desc">
@@ -15,7 +16,7 @@ const Project = ({ projects }) => (
 							<p className="project-desc-text">{project.content[0]}</p>
 						</div>
 					</Link>
-				</div>
+				</motion.div>
 			))
 		) : (
 			<h1>There are no projects that match that search term.</h1>
