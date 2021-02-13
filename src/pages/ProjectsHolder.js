@@ -18,7 +18,7 @@ const ProjectsHolder = ({ queryText, setQueryText }) => {
 		<>
 			<div className="headline">
 				<h1 className="project-title">Projects</h1>
-				<SearchProjects searchProj={searchProj} />
+				<SearchProjects query={queryText} searchProj={searchProj} />
 			</div>
 			<div className="projects">
 				<Project projects={filteredProjects} />

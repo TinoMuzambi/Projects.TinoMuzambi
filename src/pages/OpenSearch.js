@@ -1,13 +1,20 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 
 const OpenSearch = ({ setQueryText }) => {
 	const location = useLocation();
+	const history = useHistory();
 
 	useEffect(() => {
 		const query = location.pathname.substring(8);
 		setQueryText(query);
-	}, [location.pathname, setQueryText]);
+		history.push({
+			pathname: "/",
+			state: {
+				fromOpenSearch: true,
+			},
+		});
+	}, [location.pathname, history, setQueryText]);
 
 	return null;
 };
