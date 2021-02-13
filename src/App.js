@@ -20,7 +20,7 @@ const App = () => {
 
 	return (
 		<Router>
-			<NavBar />
+			<NavBar setQueryText={setQueryText} />
 			<div className="page-body">
 				<Switch>
 					<div className="outer">
