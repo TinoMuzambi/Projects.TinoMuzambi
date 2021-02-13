@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import Project from "../components/Project";
 import projects from "../data/projects-content";
 import SearchProjects from "../components/SearchProjects";
 
-const ProjectsHolder = () => {
-	const [queryText, setQueryText] = useState("");
-
+const ProjectsHolder = ({ queryText, setQueryText }) => {
 	const searchProj = (query) => {
 		setQueryText(query);
 	};
@@ -20,7 +18,7 @@ const ProjectsHolder = () => {
 		<>
 			<div className="headline">
 				<h1 className="project-title">Projects</h1>
-				<SearchProjects searchProj={searchProj} />
+				<SearchProjects query={queryText} searchProj={searchProj} />
 			</div>
 			<div className="projects">
 				<Project projects={filteredProjects} />

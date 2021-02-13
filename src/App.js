@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import ProjectsHolder from "./pages/ProjectsHolder";
@@ -9,8 +9,11 @@ import NotFoundPage from "./pages/NotFoundPage";
 import AOS from "aos";
 import "./App.css";
 import { Helmet } from "react-helmet";
+import OpenSearch from "./pages/OpenSearch";
 
 const App = () => {
+	const [queryText, setQueryText] = useState("");
+
 	useEffect(() => {
 		AOS.init();
 	}, []);
@@ -29,12 +32,21 @@ const App = () => {
 									<Helmet>
 										<title>Projects.TinoMuzambi</title>
 									</Helmet>
-									<ProjectsHolder />
+									<ProjectsHolder
+										queryText={queryText}
+										setQueryText={setQueryText}
+									/>
 								</>
 							)}
 						/>
 						<Route path="/showcase/:name" component={ShowCase} />
 						<Route path="/tags/:name" component={Tags} />
+						<Route
+							exact
+							path="/search/:query"
+							render={() => <OpenSearch setQueryText={setQueryText} />}
+						/>
+						{/* OpenSearch route for searching site.*/}
 					</div>
 					<Route component={NotFoundPage} />
 				</Switch>
