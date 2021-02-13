@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLocation, useHistory } from "react-router-dom";
 
-const OpenSearch = ({ setQueryText, blogsRef }) => {
+const OpenSearch = ({ setQueryText }) => {
 	const location = useLocation();
 	const history = useHistory();
 
