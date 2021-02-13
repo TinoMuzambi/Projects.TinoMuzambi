@@ -9,6 +9,9 @@ const projects = [
 			`The JavaScript in this web app is used to enable the use of saving and fetching data from Firebases' Firestore so that the statuses of each algorithm is updated across all clients.`,
 			`The project is hosted on Netlify and I've made use of the Netlify badge in my README.`,
 		],
+		link: "https://cubingalgos.netlify.app",
+		github: "https://github.com/TinoMuzambi/CubingAlgos",
+		keywords: ["html", "css", "firebase", "netlify", "javascript"],
 	},
 	{
 		name: "tinomuzambi",
