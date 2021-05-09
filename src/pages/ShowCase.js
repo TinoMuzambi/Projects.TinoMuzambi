@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import projects from "../data/projects-content";
+
 import { Link } from "react-router-dom";
 
-const ShowCase = ({ match }) => {
+const ShowCase = ({ match, projects }) => {
 	const [name] = useState(match.params.name);
 
 	useEffect(() => {

@@ -53,8 +53,17 @@ const App = () => {
 								</>
 							)}
 						/>
-						<Route path="/showcase/:name" component={ShowCase} />
-						<Route path="/tags/:name" component={Tags} />
+
+						<Route
+							exact
+							path="/showcase/:name"
+							render={() => <ShowCase projects={projects} />}
+						/>
+						<Route
+							exact
+							path="/tags/:name"
+							render={() => <Tags projects={projects} />}
+						/>
 						<Route
 							exact
 							path="/search/:query"

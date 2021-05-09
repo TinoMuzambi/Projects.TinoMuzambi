@@ -1,8 +1,7 @@
 import React from "react";
-import projects from "../data/projects-content";
 import Project from "../components/Project";
 
-const Tags = ({ match }) => {
+const Tags = ({ match, projects }) => {
 	const name = match.params.name;
 
 	const filteredProjects = projects.filter((eachItem) => {
