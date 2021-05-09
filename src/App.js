@@ -15,16 +15,21 @@ import "./App.css";
 
 const App = () => {
 	const [queryText, setQueryText] = useState("");
+	const [projects, setProjects] = useState([]);
+	const [fetching, setFetching] = useState(true);
 
 	useEffect(() => {
 		AOS.init();
 		let data;
 		const getData = async () => {
 			data = await getProjects();
-			console.log(data);
+			setProjects(data);
+			setFetching(false);
 		};
 		getData();
 	}, []);
+
+	if (fetching) return null;
 
 	return (
 		<Router>
@@ -43,6 +48,7 @@ const App = () => {
 									<ProjectsHolder
 										queryText={queryText}
 										setQueryText={setQueryText}
+										projects={projects}
 									/>
 								</>
 							)}

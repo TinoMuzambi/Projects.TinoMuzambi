@@ -12,7 +12,7 @@ export const getProjects = async () => {
 	let projects = [];
 
 	await Storyblok.get("cdn/stories?starts_with=projects/", {
-		sort_by: "position:desc",
+		sort_by: "position:asc",
 	})
 		.then((response) => {
 			const strictlyProjects = response.data.stories;

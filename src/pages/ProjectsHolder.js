@@ -1,9 +1,9 @@
 import React from "react";
 import Project from "../components/Project";
-import projects from "../data/projects-content";
+
 import SearchProjects from "../components/SearchProjects";
 
-const ProjectsHolder = ({ queryText, setQueryText }) => {
+const ProjectsHolder = ({ queryText, setQueryText, projects }) => {
 	const searchProj = (query) => {
 		setQueryText(query);
 	};
