@@ -21,10 +21,10 @@ export const getProjects = async () => {
 					name: project.content.name,
 					shortname: project.content.shortname,
 					title: project.content.title,
-					content: project.content.content,
+					content: project.content.content.split("\n"),
 					link: project.content.link,
 					github: project.content.github,
-					keywords: project.content.keywords,
+					keywords: project.content.keywords.split("\n"),
 				};
 			});
 			projects = prettyprojects;
