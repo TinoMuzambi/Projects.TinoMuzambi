@@ -1,21 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import AOS from "aos";
+import { Helmet } from "react-helmet";
+
 import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 import ProjectsHolder from "./pages/ProjectsHolder";
 import ShowCase from "./pages/ShowCase";
 import Tags from "./pages/Tags";
-import Footer from "./components/Footer";
 import NotFoundPage from "./pages/NotFoundPage";
-import AOS from "aos";
-import "./App.css";
-import { Helmet } from "react-helmet";
 import OpenSearch from "./pages/OpenSearch";
+import { getProjects } from "./utils/fetch";
+import "./App.css";
 
 const App = () => {
 	const [queryText, setQueryText] = useState("");
 
 	useEffect(() => {
 		AOS.init();
+		let data;
+		const getData = async () => {
+			data = await getProjects();
+			console.log(data);
+		};
+		getData();
 	}, []);
 
 	return (
