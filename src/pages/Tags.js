@@ -14,7 +14,7 @@ const Tags = ({ match, projects }) => {
 	return (
 		<>
 			<h1 className="project-title">{title}</h1>
-			<div className="projects">
+			<div className="projects" data-aos="fade-up">
 				<Project projects={filteredProjects} />
 			</div>
 		</>
