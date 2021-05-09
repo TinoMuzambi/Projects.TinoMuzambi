@@ -1,6 +1,6 @@
 import React from "react";
-import Project from "../components/Project";
 
+import Project from "../components/Project";
 import SearchProjects from "../components/SearchProjects";
 
 const ProjectsHolder = ({ queryText, setQueryText, projects }) => {

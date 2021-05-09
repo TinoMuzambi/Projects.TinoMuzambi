@@ -20,9 +20,8 @@ const App = () => {
 
 	useEffect(() => {
 		AOS.init();
-		let data;
 		const getData = async () => {
-			data = await getProjects();
+			const data = await getProjects();
 			setProjects(data);
 			setFetching(false);
 		};
