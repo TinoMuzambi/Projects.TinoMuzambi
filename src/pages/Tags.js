@@ -1,4 +1,6 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
+
 import Project from "../components/Project";
 
 const Tags = ({ match, projects }) => {
@@ -19,4 +21,4 @@ const Tags = ({ match, projects }) => {
 	);
 };
 
-export default Tags;
+export default withRouter(Tags);
