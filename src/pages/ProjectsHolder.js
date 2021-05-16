@@ -29,14 +29,14 @@ const ProjectsHolder = ({ queryText, setQueryText, projects }) => {
 				<h1 className="project-title">Projects</h1>
 				<SearchProjects query={queryText} searchProj={searchProj} />
 			</div>
-			<div className="quick-links">
+			<div className="quick-links" data-aos="fade-up">
 				{linkTags.map((i, key) => (
 					<a key={key} href={`/tags/${i}`} className="tags">
 						{i}
 					</a>
 				))}
 			</div>
-			<div className="projects" data-aos="fade-up">
+			<div className="projects" data-aos="fade-up" data-aos-delay="200">
 				<Project projects={filteredProjects} />
 			</div>
 		</>
