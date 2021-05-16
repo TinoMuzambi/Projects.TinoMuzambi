@@ -83,11 +83,6 @@ code {
 		monospace;
 }
 
-/*              Viewport less then or equal to 520px            */
-
-@media only screen and (max-width: 520px) {
-}
-
 .nav .nav-menu {
 	justify-content: space-between;
 	margin-top: 10px;
@@ -132,6 +127,15 @@ code {
 
 .search-field input:hover {
 	border: solid 2px gray;
+}
+
+.quick-links {
+	margin: 3rem 1rem 0 3rem;
+}
+
+.quick-links .tags {
+	padding: 0.3rem;
+	color: white;
 }
 
 .projects {
