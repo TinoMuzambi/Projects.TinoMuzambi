@@ -2,6 +2,7 @@ import React from "react";
 
 import Project from "../components/Project";
 import SearchProjects from "../components/SearchProjects";
+import { applyFilters } from "../utils/helpers";
 
 const ProjectsHolder = ({ queryText, setQueryText, projects }) => {
 	const searchProj = (query) => {
@@ -15,13 +16,13 @@ const ProjectsHolder = ({ queryText, setQueryText, projects }) => {
 		);
 	});
 
-	console.log(filteredProjects);
 	let tags = [];
 	projects.forEach((i) => {
 		i.keywords.forEach((j) => tags.push(j));
 	});
 	tags = Array.from(new Set(tags));
-	console.log(tags);
+
+	tags = applyFilters(tags);
 	return (
 		<>
 			<div className="headline">
