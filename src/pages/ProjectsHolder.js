@@ -15,10 +15,12 @@ const ProjectsHolder = ({ queryText, setQueryText, projects }) => {
 		);
 	});
 
+	console.log(filteredProjects);
 	let tags = [];
 	projects.forEach((i) => {
 		i.keywords.forEach((j) => tags.push(j));
 	});
+	tags = Array.from(new Set(tags));
 	console.log(tags);
 	return (
 		<>
@@ -27,9 +29,11 @@ const ProjectsHolder = ({ queryText, setQueryText, projects }) => {
 				<SearchProjects query={queryText} searchProj={searchProj} />
 			</div>
 			<div className="quick-links">
-				{projects.map(({ keywords }) =>
-					Array.from(new Set(keywords)).map((i) => <p>{i}</p>)
-				)}
+				{tags.map((i, key) => (
+					<a key={key} href={`/tags/${i}`} className="tags">
+						{i}
+					</a>
+				))}
 			</div>
 			<div className="projects" data-aos="fade-up">
 				<Project projects={filteredProjects} />
