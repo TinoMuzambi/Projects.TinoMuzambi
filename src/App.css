@@ -242,6 +242,12 @@ code {
 	margin-right: 10px;
 	margin-bottom: 10px;
 	display: inline-block;
+	border: solid 1px transparent;
+	transition: 0.3s ease-in-out;
+}
+
+.tags:hover {
+	border-color: var(--text-light);
 }
 
 .tag-text {
