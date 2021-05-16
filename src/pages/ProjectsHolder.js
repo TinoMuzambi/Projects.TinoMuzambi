@@ -14,6 +14,8 @@ const ProjectsHolder = ({ queryText, setQueryText, projects }) => {
 			eachItem["keywords"].join().includes(queryText.toLowerCase())
 		);
 	});
+
+	console.log(filteredProjects);
 	return (
 		<>
 			<div className="headline">
@@ -21,21 +23,7 @@ const ProjectsHolder = ({ queryText, setQueryText, projects }) => {
 				<SearchProjects query={queryText} searchProj={searchProj} />
 			</div>
 			<div className="quick-links">
-				<a href="/javascript" className="tags">
-					JavaScript
-				</a>
-				<a href="/javascript" className="tags">
-					JavaScript
-				</a>
-				<a href="/javascript" className="tags">
-					JavaScript
-				</a>
-				<a href="/javascript" className="tags">
-					JavaScript
-				</a>
-				<a href="/javascript" className="tags">
-					JavaScript
-				</a>
+				{projects.map(({ keywords }) => keywords.map((i) => <p>{i}</p>))}
 			</div>
 			<div className="projects" data-aos="fade-up">
 				<Project projects={filteredProjects} />
