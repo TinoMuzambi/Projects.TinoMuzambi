@@ -16,13 +16,13 @@ const ProjectsHolder = ({ queryText, setQueryText, projects }) => {
 		);
 	});
 
-	let tags = [];
-	projects.forEach((i) => {
-		i.keywords.forEach((j) => tags.push(j));
+	let linkTags = [];
+	projects.forEach((project) => {
+		project.keywords.forEach((keyword) => linkTags.push(keyword));
 	});
-	tags = Array.from(new Set(tags));
+	linkTags = Array.from(new Set(linkTags));
 
-	tags = applyFilters(tags);
+	linkTags = applyFilters(linkTags);
 	return (
 		<>
 			<div className="headline">
@@ -30,7 +30,7 @@ const ProjectsHolder = ({ queryText, setQueryText, projects }) => {
 				<SearchProjects query={queryText} searchProj={searchProj} />
 			</div>
 			<div className="quick-links">
-				{tags.map((i, key) => (
+				{linkTags.map((i, key) => (
 					<a key={key} href={`/tags/${i}`} className="tags">
 						{i}
 					</a>
