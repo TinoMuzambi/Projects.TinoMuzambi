@@ -25,6 +25,9 @@ export const applyFilters = (tags) => {
 			i !== "mathematics" &&
 			i !== "email" &&
 			i !== "uct" &&
-			i !== "classification"
+			i !== "classification" &&
+			i !== "youtube" &&
+			i !== "bot" &&
+			i !== "paystack"
 	);
 };
