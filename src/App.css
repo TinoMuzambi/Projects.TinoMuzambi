@@ -339,6 +339,11 @@ code {
 		height: unset;
 	}
 
+	.wrapper.featured {
+		grid-column: span 1;
+		border: dashed 3px var(--midnight);
+	}
+
 	.project-desc {
 		grid-template-columns: 25% 75%;
 	}
