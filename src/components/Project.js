@@ -7,8 +7,8 @@ const Project = ({ projects }) => (
 		{projects.length > 0 ? (
 			projects.map((project, key) => (
 				<motion.div
-					className={`wrapper ${
-						project.title === "ReComments" ? "featured" : ""
+					className={`wrapper${
+						project.title === "ReComments" ? " featured" : ""
 					}`}
 					key={key}
 					layout
