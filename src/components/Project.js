@@ -6,7 +6,13 @@ const Project = ({ projects }) => (
 	<>
 		{projects.length > 0 ? (
 			projects.map((project, key) => (
-				<motion.div className="wrapper" key={key} layout>
+				<motion.div
+					className={`wrapper ${
+						project.title === "ReComments" ? "featured" : ""
+					}`}
+					key={key}
+					layout
+				>
 					<Link to={`/showcase/${project.name}`}>
 						<h2 className="projects-title">{project.title}</h2>
 						<div className="project-desc">
