@@ -311,21 +311,9 @@ code {
 	text-align: center;
 }
 
-/*              Viewport less then or equal to 2560px            */
-
-@media only screen and (max-width: 2560px) {
-	.search-field {
-		/* margin-top: -70px; */
-	}
-}
-
 /*              Viewport less then or equal to 1130px            */
 
 @media only screen and (max-width: 1130px) {
-	.search-field {
-		/* margin-top: -60px; */
-	}
-
 	.project-desc {
 		grid-template-columns: 20% 80%;
 	}
@@ -370,10 +358,6 @@ code {
 
 	p {
 		font-size: 12px;
-	}
-
-	.search-field {
-		/* margin-top: -30px; */
 	}
 
 	.project-image {
