@@ -140,7 +140,8 @@ code {
 
 .projects {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+	place-items: center;
 	gap: 2rem;
 	padding: 4rem;
 }
@@ -324,9 +325,9 @@ code {
 	}
 }
 
-/*              Viewport less then or equal to 750px            */
+/*              Viewport less then or equal to 768px            */
 
-@media only screen and (max-width: 750px) {
+@media only screen and (max-width: 768px) {
 	.wrapper {
 		width: 90%;
 		height: unset;
@@ -334,6 +335,10 @@ code {
 
 	.project-desc {
 		grid-template-columns: 25% 75%;
+	}
+
+	.projects {
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 	}
 }
 
