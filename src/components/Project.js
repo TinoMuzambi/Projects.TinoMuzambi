@@ -9,7 +9,7 @@ const Project = ({ projects }) => (
 				<motion.div
 					className={`wrapper${
 						project.title === "ReComments" ||
-						project.title === "TinoMuzambi.com" ||
+						project.title === "Landon Hotel" ||
 						project.title === "Tailwind Expo"
 							? " featured"
 							: ""
