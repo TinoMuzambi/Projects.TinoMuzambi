@@ -1,19 +1,32 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
 import Meta from "../../components/Meta";
 import Project from "../../components/Project";
 import { AppContext } from "../../context/AppContext";
+import { Project as P } from "../../interfaces";
 
 const Tags: React.FC = (): JSX.Element => {
 	const router = useRouter();
 	const { projects } = useContext(AppContext);
-	const name = router.query.name as string;
+	const [name, setName] = useState(router.query.name as string);
+	const [title, setTitle] = useState("");
+	const [filteredProjects, setFilteredProjects] = useState<P[]>([]);
 
-	const filteredProjects = projects.filter((eachItem) => {
-		return eachItem["keywords"].includes(name);
-	});
-	const title = name.charAt(0).toUpperCase() + name.slice(1);
+	useEffect(() => {
+		if (name) {
+			setTitle(name.charAt(0).toUpperCase() + name.slice(1));
+			setFilteredProjects(
+				projects.filter((eachItem) => {
+					return eachItem.keywords.includes(name);
+				})
+			);
+		}
+	}, [name]);
+
+	useEffect(() => {
+		setName(router.query.name as string);
+	}, [router.query]);
 
 	return (
 		<>
