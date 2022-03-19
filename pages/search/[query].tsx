@@ -14,6 +14,7 @@ const OpenSearch: React.FC = (): JSX.Element => {
 				text: query,
 			},
 		});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [router.pathname, setQueryText]);
 
 	return <></>;

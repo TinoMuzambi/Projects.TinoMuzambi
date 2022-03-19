@@ -23,12 +23,14 @@ const ProjectsHolder: React.FC<ProjectsHolderProps> = ({
 		AOS.init();
 
 		if (setProjects) setProjects(projects);
-	}, []);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [projects]);
 
 	useEffect(() => {
 		if (router.query.text) {
 			if (setQueryText) setQueryText(router.query.text);
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [router.query.text]);
 
 	const searchProj = (query: string) => {
@@ -44,7 +46,7 @@ const ProjectsHolder: React.FC<ProjectsHolderProps> = ({
 				);
 			})
 		);
-	}, [queryText]);
+	}, [projects, queryText]);
 
 	useEffect(() => {
 		let linkTags: string[] = [];
@@ -55,7 +57,7 @@ const ProjectsHolder: React.FC<ProjectsHolderProps> = ({
 
 		linkTags = applyFilters(linkTags);
 		setLinks(linkTags);
-	}, []);
+	}, [projects]);
 
 	return (
 		<>
