@@ -24,4 +24,8 @@
 	place-items: center;
 	gap: 2rem;
 	padding: 4rem;
+
+	@include mq(768px) {
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	}
 }

@@ -13,6 +13,11 @@
 	border-radius: 50%;
 	margin-top: 20px;
 	display: flex;
+
+	@include mq(520px) {
+		height: 50px;
+		width: 50px;
+	}
 }
 
 .project .wrapper .project-image {
@@ -29,6 +34,10 @@
 	margin: auto;
 	font-size: 1.5rem;
 	font-weight: 700;
+
+	@include mq(520px) {
+		font-size: 1.5rem;
+	}
 }
 
 .project-desc {
@@ -36,6 +45,18 @@
 	grid-template-columns: 10% 90%;
 	margin-left: 10px;
 	padding-bottom: 20px;
+
+	@include mq(1130px) {
+		grid-template-columns: 20% 80%;
+	}
+
+	@include mq(768px) {
+		grid-template-columns: 25% 75%;
+	}
+
+	@include mq(520px) {
+		grid-template-columns: 15% 85%;
+	}
 }
 
 .project-desc-pars {

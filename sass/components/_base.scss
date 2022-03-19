@@ -27,11 +27,22 @@ a {
 
 h1 {
 	font-size: 2.5rem;
+
+	@include mq(520px) {
+		font-size: 15px;
+	}
+}
+
+h2 {
+	@include mq(520px) {
+		font-size: 15px;
+	}
 }
 
 h3 {
 	font-size: 1.3rem;
 }
+
 h4 {
 	color: $text-light;
 }
@@ -41,7 +52,6 @@ button.btn {
 	border-radius: 2rem;
 	padding: 1rem 3rem;
 	font-size: 1rem;
-
 	cursor: pointer;
 }
 
@@ -51,9 +61,11 @@ button.btn {
 
 p {
 	color: $text-light;
-}
 
-/* ------x------- Global Classes -------x-------*/
+	@include mq(520px) {
+		font-size: 12px;
+	}
+}
 
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
@@ -70,75 +82,4 @@ code {
 
 .link-hide {
 	display: none;
-}
-
-/*              Viewport less then or equal to 1130px            */
-
-@media only screen and (max-width: 1130px) {
-	.project-desc {
-		grid-template-columns: 20% 80%;
-	}
-}
-
-/*              Viewport less then or equal to 768px            */
-
-@media only screen and (max-width: 768px) {
-	.wrapper {
-		width: 90%;
-		height: unset;
-	}
-
-	.wrapper.featured {
-		grid-column: span 1;
-		border: dashed 3px $midnight;
-	}
-
-	.project-desc {
-		grid-template-columns: 25% 75%;
-	}
-
-	.projects {
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-	}
-}
-
-/*              Viewport less then or equal to 520px            */
-
-@media only screen and (max-width: 520px) {
-	.nav-brand {
-		font-size: 15px;
-	}
-
-	h1 {
-		font-size: 20px;
-	}
-
-	h2 {
-		font-size: 15px;
-	}
-
-	p {
-		font-size: 12px;
-	}
-
-	.project-image {
-		height: 50px;
-		width: 50px;
-	}
-
-	.project-image-text {
-		font-size: 1.5rem;
-	}
-
-	.wrapper {
-		width: 90%;
-	}
-
-	.project-desc {
-		grid-template-columns: 15% 85%;
-	}
-
-	.rights {
-		font-size: 12px;
-	}
 }

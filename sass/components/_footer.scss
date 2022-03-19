@@ -3,8 +3,11 @@
 .rights {
 	margin: 0;
 	justify-content: center;
-
 	color: $text-light;
+
+	@include mq(520px) {
+		font-size: 12px;
+	}
 }
 
 .social {
