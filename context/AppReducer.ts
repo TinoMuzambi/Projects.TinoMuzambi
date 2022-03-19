@@ -7,6 +7,12 @@ const Reducer = (state: State, action: Actions): State => {
 				...state,
 				projects: action.projects,
 			};
+		case "SET_QUERY_TEXT": {
+			return {
+				...state,
+				queryText: action.queryText,
+			};
+		}
 	}
 };
 
