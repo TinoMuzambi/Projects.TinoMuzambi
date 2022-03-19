@@ -33,3 +33,21 @@ export type Project = {
 	keywords: string[];
 	image: string;
 };
+
+export interface ContextProps {
+	projects: Project[];
+	setProjects?: Function;
+}
+
+export interface AppProviderProps {
+	children: JSX.Element[] | JSX.Element;
+}
+
+export type State = {
+	projects: Project[];
+};
+
+export type Actions = {
+	type: "SET_PROJECTS";
+	projects: Project[];
+};
