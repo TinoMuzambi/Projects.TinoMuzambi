@@ -7,7 +7,7 @@ const OpenSearch: React.FC = (): JSX.Element => {
 	const { setQueryText } = useContext(AppContext);
 
 	useEffect(() => {
-		const query = router.pathname.substring(8);
+		const query = router.asPath.substring(8);
 		if (setQueryText) setQueryText(query);
 		router.push("/", {
 			query: {

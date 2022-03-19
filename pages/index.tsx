@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from "react";
+import { GetServerSideProps } from "next";
 import Link from "next/link";
 import AOS from "aos";
 
@@ -8,15 +9,14 @@ import { applyFilters } from "../utils/helpers";
 import { getProjects } from "../utils/fetch";
 import { AppContext } from "../context/AppContext";
 import { Project as P, ProjectsHolderProps } from "../interfaces";
-import { GetServerSideProps } from "next";
+import { useRouter } from "next/router";
 
 const ProjectsHolder: React.FC<ProjectsHolderProps> = ({
 	projects,
 }): JSX.Element => {
-	const [fetching, setFetching] = useState(true);
 	const [filteredProjects, setFilteredProjects] = useState<P[]>([]);
 	const [links, setLinks] = useState<string[]>([]);
-
+	const router = useRouter();
 	const { setProjects, queryText, setQueryText } = useContext(AppContext);
 
 	useEffect(() => {
@@ -24,6 +24,14 @@ const ProjectsHolder: React.FC<ProjectsHolderProps> = ({
 
 		if (setProjects) setProjects(projects);
 	}, []);
+
+	useEffect(() => {
+		console.log("here", router.query);
+		if (router.query.text) {
+			console.log(router.query.text);
+			if (setQueryText) setQueryText(router.query.text);
+		}
+	}, [router.query.text]);
 
 	const searchProj = (query: string) => {
 		if (setQueryText) setQueryText(query);
@@ -50,8 +58,6 @@ const ProjectsHolder: React.FC<ProjectsHolderProps> = ({
 		linkTags = applyFilters(linkTags);
 		setLinks(linkTags);
 	}, []);
-
-	if (fetching) return <></>;
 
 	return (
 		<>
