@@ -10,6 +10,7 @@
 .wrapper {
 	width: 400px;
 	height: 250px;
+	padding: 2rem;
 	border-radius: 10px;
 	background: linear-gradient(
 		137deg,
@@ -39,6 +40,7 @@
 .tag {
 	font-family: var(--Livvic), "Verdana";
 	list-style: none;
+	margin: 1rem 0;
 }
 
 .tags {
@@ -46,6 +48,7 @@
 	padding: 0rem 0.4rem;
 	border-radius: 3rem;
 	justify-content: space-evenly;
+	padding: 0.3rem;
 	margin-right: 10px;
 	margin-bottom: 10px;
 	display: inline-block;
