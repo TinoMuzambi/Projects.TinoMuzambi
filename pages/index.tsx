@@ -7,41 +7,47 @@ import SearchProjects from "../components/SearchProjects";
 import { applyFilters } from "../utils/helpers";
 import { getProjects } from "../utils/fetch";
 import { AppContext } from "../context/AppContext";
+import { Project as P } from "../interfaces";
+import { GetServerSideProps } from "next";
 
-const ProjectsHolder = () => {
+const ProjectsHolder = ({ projects }) => {
 	const [fetching, setFetching] = useState(true);
+	const [filteredProjects, setFilteredProjects] = useState<P[]>([]);
+	const [links, setLinks] = useState<string[]>([]);
 
-	const { projects, setProjects, queryText, setQueryText } =
-		useContext(AppContext);
+	const { setProjects, queryText, setQueryText } = useContext(AppContext);
 
 	useEffect(() => {
 		AOS.init();
-		const getData = async () => {
-			const data = await getProjects();
-			if (setProjects) setProjects(data);
-			setFetching(false);
-		};
-		getData();
+
+		if (setProjects) setProjects(projects);
 	}, []);
 
 	const searchProj = (query: string) => {
 		if (setQueryText) setQueryText(query);
 	};
 
-	const filteredProjects = projects.filter((eachItem) => {
-		return (
-			eachItem["title"].toLowerCase().includes(queryText.toLowerCase()) ||
-			eachItem["keywords"].join().includes(queryText.toLowerCase())
+	useEffect(() => {
+		setFilteredProjects(
+			projects.filter((eachItem) => {
+				return (
+					eachItem["title"].toLowerCase().includes(queryText.toLowerCase()) ||
+					eachItem["keywords"].join().includes(queryText.toLowerCase())
+				);
+			})
 		);
-	});
+	}, [queryText]);
 
-	let linkTags: string[] = [];
-	projects.forEach((project) => {
-		project.keywords.forEach((keyword: string) => linkTags.push(keyword));
-	});
-	linkTags = Array.from(new Set(linkTags));
+	useEffect(() => {
+		let linkTags: string[] = [];
+		projects.forEach((project) => {
+			project.keywords.forEach((keyword: string) => linkTags.push(keyword));
+		});
+		linkTags = Array.from(new Set(linkTags));
 
-	linkTags = applyFilters(linkTags);
+		linkTags = applyFilters(linkTags);
+		setLinks(linkTags);
+	}, []);
 
 	if (fetching) return null;
 
@@ -52,7 +58,7 @@ const ProjectsHolder = () => {
 				<SearchProjects query={queryText} searchProj={searchProj} />
 			</div>
 			<div className="quick-links" data-aos="fade-up">
-				{linkTags.map((i, key) => (
+				{links.map((i, key) => (
 					<Link key={key} href={`/tags/${i}`}>
 						<a className="tags">{i}</a>
 					</Link>
@@ -63,6 +69,16 @@ const ProjectsHolder = () => {
 			</div>
 		</>
 	);
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+	const projects: P[] = await getProjects();
+
+	return {
+		props: {
+			projects,
+		},
+	};
 };
 
 export default ProjectsHolder;
