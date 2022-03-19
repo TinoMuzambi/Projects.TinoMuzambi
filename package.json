@@ -17,6 +17,7 @@
 		"storyblok-js-client": "^4.2.1"
 	},
 	"devDependencies": {
+		"@types/aos": "^3.0.4",
 		"@types/node": "latest",
 		"@types/react": "latest",
 		"@types/react-dom": "latest",
