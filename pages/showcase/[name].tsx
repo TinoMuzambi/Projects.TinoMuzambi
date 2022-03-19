@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+
 import { AppContext } from "../../context/AppContext";
 import { Project } from "../../interfaces";
 import Meta from "../../components/Meta";
