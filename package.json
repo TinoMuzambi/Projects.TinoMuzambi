@@ -7,9 +7,14 @@
 		"type-check": "tsc"
 	},
 	"dependencies": {
+		"aos": "^2.3.4",
+		"axios": "^0.26.1",
+		"framer-motion": "^6.2.8",
 		"next": "latest",
 		"react": "latest",
-		"react-dom": "latest"
+		"react-dom": "latest",
+		"react-icons": "^4.3.1",
+		"storyblok-js-client": "^4.2.1"
 	},
 	"devDependencies": {
 		"@types/node": "latest",
