@@ -9,10 +9,10 @@ import { getProjects } from "../utils/fetch";
 import { AppContext } from "../context/AppContext";
 
 const ProjectsHolder = () => {
-	const [queryText, setQueryText] = useState("");
 	const [fetching, setFetching] = useState(true);
 
-	const { projects, setProjects } = useContext(AppContext);
+	const { projects, setProjects, queryText, setQueryText } =
+		useContext(AppContext);
 
 	useEffect(() => {
 		AOS.init();
@@ -25,7 +25,7 @@ const ProjectsHolder = () => {
 	}, []);
 
 	const searchProj = (query: string) => {
-		setQueryText(query);
+		if (setQueryText) setQueryText(query);
 	};
 
 	const filteredProjects = projects.filter((eachItem) => {
