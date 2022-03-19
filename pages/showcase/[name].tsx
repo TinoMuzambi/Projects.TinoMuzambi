@@ -1,23 +1,14 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 
-import { AppContext } from "../../context/AppContext";
-import { Project } from "../../interfaces";
+import { nameParam, Project, ShowcaseProps } from "../../interfaces";
 import Meta from "../../components/Meta";
+import { getProjects } from "../../utils/fetch";
+import { GetStaticPaths, GetStaticProps } from "next";
 
-const ShowCase: React.FC = (): JSX.Element => {
-	const router = useRouter();
-	const { projects } = useContext(AppContext);
-	const [name] = useState(router.query.name);
-	const [project, setProject] = useState<Project>();
-
+const ShowCase: React.FC<ShowcaseProps> = ({ project }): JSX.Element => {
 	useEffect(() => {
 		window.scrollTo(0, 0);
-	}, []);
-
-	useEffect(() => {
-		setProject(projects.find((project) => project?.name === name) as Project);
 	}, []);
 
 	return (
@@ -76,6 +67,30 @@ const ShowCase: React.FC = (): JSX.Element => {
 			</div>
 		</>
 	);
+};
+
+export const getStaticProps: GetStaticProps = async (context) => {
+	const { name } = context.params as nameParam;
+	const projects: Project[] = await getProjects();
+	const project: Project = (await projects.find(
+		(project) => project.name === name
+	)) as Project;
+
+	return {
+		props: { project },
+	};
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+	const projects: Project[] = await getProjects();
+
+	const paths = projects.map((el) => {
+		const name = el.name;
+		return {
+			params: { name },
+		};
+	});
+	return { paths, fallback: false };
 };
 
 export default ShowCase;

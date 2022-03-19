@@ -1,3 +1,5 @@
+import { ParsedUrlQuery } from "querystring";
+
 export interface WrapperProps {
 	children: JSX.Element | JSX.Element[];
 }
@@ -21,6 +23,10 @@ export interface ProjectProps {
 export interface SearchProjectsProps {
 	query: string;
 	searchProj: Function;
+}
+
+export interface ShowcaseProps {
+	project: Project;
 }
 
 export type Project = {
@@ -55,3 +61,7 @@ export type Actions = {
 	projects: Project[];
 	queryText: string;
 };
+
+export interface nameParam extends ParsedUrlQuery {
+	name: string;
+}
