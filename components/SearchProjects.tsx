@@ -1,4 +1,9 @@
-const SearchProjects = ({ query, searchProj }: any) => {
+import { SearchProjectsProps } from "../interfaces";
+
+const SearchProjects: React.FC<SearchProjectsProps> = ({
+	query,
+	searchProj,
+}): JSX.Element => {
 	return (
 		<div className="search-field">
 			<input

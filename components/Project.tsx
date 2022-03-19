@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { ProjectProps } from "../interfaces";
 
-const Project = ({ projects }: any) => (
+const Project: React.FC<ProjectProps> = ({ projects }): JSX.Element => (
 	<>
 		{projects.length > 0 ? (
 			projects.map((project: any, key: any) => (

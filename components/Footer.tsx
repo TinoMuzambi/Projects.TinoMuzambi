@@ -1,7 +1,7 @@
 import { FaLinkedinIn } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 
-const Footer = () => (
+const Footer: React.FC = (): JSX.Element => (
 	<footer>
 		<div className="rights flex-row">
 			<h4>Made with React. Copyright © Tino Muzambi 2020 - 2021</h4>

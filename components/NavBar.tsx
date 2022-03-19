@@ -1,6 +1,7 @@
 import Link from "next/link";
+import { NavBarProps } from "../interfaces";
 
-const NavBar = ({ setQueryText }: any) => (
+const NavBar: React.FC<NavBarProps> = ({ setQueryText }): JSX.Element => (
 	<nav className="nav">
 		<div className="nav-menu flex-row">
 			<div className="nav-brand">
