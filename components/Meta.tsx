@@ -41,16 +41,18 @@ const Meta: React.FC<MetaProps> = ({
 		<link rel="manifest" href="/manifest.json" />
 		<title>{title}</title>
 
-		{/* Add your preconnect links here  */}
+		<link rel="preconnect" href="https://api.storyblok.com" />
 		<link rel="preconnect" href="https://a.storyblok.com" />
+		<link rel="preconnect" href="https://www.google-analytics.com" />
 	</Head>
 );
 
 Meta.defaultProps = {
-	title: "Next.js Boilerplate",
-	keywords: "next.js",
-	description: "Clean Next.js with TypeScript and Sass Boilerplate",
-	image: "https://unsplash.it/1000",
+	title: "Projects.TinoMuzambi",
+	keywords: "next.js, react, typescript, projects, tino muzambi",
+	description:
+		"A landing page for all the projects I've worked on. It provides an overview of each project as well as the stack used in each project and where possible, a link to see it in action.",
+	image: "https://a.storyblok.com/f/105639/512x512/03489159d5/logo512.png",
 	url: BASE_URL,
 };
 
