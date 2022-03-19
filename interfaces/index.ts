@@ -37,6 +37,8 @@ export type Project = {
 export interface ContextProps {
 	projects: Project[];
 	setProjects?: Function;
+	queryText: string;
+	setQueryText?: Function;
 }
 
 export interface AppProviderProps {
@@ -45,9 +47,11 @@ export interface AppProviderProps {
 
 export type State = {
 	projects: Project[];
+	queryText: string;
 };
 
 export type Actions = {
-	type: "SET_PROJECTS";
+	type: "SET_PROJECTS" | "SET_QUERY_TEXT";
 	projects: Project[];
+	queryText: string;
 };
