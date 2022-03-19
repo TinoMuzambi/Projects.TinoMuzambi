@@ -7,7 +7,6 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import { applyFilters } from "../utils/helpers";
 import { getProjects } from "../utils/fetch";
-import { Project as P } from "../interfaces";
 import { AppContext } from "../context/AppContext";
 
 const ProjectsHolder = () => {
