@@ -1,0 +1,30 @@
+{
+	"private": true,
+	"scripts": {
+		"dev": "next",
+		"build": "next build",
+		"start": "next start",
+		"type-check": "tsc"
+	},
+	"dependencies": {
+		"aos": "^2.3.4",
+		"axios": "^0.26.1",
+		"framer-motion": "^6.2.8",
+		"next": "latest",
+		"react": "latest",
+		"react-dom": "latest",
+		"react-icons": "^4.3.1",
+		"storyblok-js-client": "^4.2.1"
+	},
+	"devDependencies": {
+		"@types/aos": "^3.0.4",
+		"@types/node": "latest",
+		"@types/react": "latest",
+		"@types/react-dom": "latest",
+		"eslint": "8.11.0",
+		"eslint-config-next": "12.1.0",
+		"sass": "latest",
+		"typescript": "latest"
+	},
+	"license": "MIT"
+}

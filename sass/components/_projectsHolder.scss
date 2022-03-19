@@ -1,0 +1,25 @@
+.headline {
+	width: 100%;
+}
+
+.projects-title {
+	padding-left: 10px;
+	padding-top: 10px;
+}
+
+.quick-links {
+	margin: 3rem 1rem 0 3rem;
+}
+
+.quick-links .tags {
+	padding: 0.3rem;
+	color: white;
+}
+
+.projects {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+	place-items: center;
+	gap: 2rem;
+	padding: 4rem;
+}
