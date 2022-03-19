@@ -11,7 +11,7 @@ const OpenSearch: React.FC = (): JSX.Element => {
 		if (setQueryText) setQueryText(query);
 		router.push("/", {
 			query: {
-				fromOpenSearch: true,
+				text: query,
 			},
 		});
 	}, [router.pathname, setQueryText]);
