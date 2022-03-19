@@ -25,11 +25,11 @@ export interface SearchProjectsProps {
 
 export type Project = {
 	name: string;
-	shortName: string;
+	shortname: string;
 	title: string;
-	content: string;
+	content: string[];
 	link: string;
 	github: string;
-	keywords: string;
+	keywords: string[];
 	image: string;
 };

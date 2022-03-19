@@ -7,10 +7,11 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import { applyFilters } from "../utils/helpers";
 import { getProjects } from "../utils/fetch";
+import { Project as P } from "../interfaces";
 
 const ProjectsHolder = () => {
 	const [queryText, setQueryText] = useState("");
-	const [projects, setProjects] = useState<any[]>([]);
+	const [projects, setProjects] = useState<P[]>([]);
 	const [fetching, setFetching] = useState(true);
 
 	useEffect(() => {
@@ -27,15 +28,15 @@ const ProjectsHolder = () => {
 		setQueryText(query);
 	};
 
-	const filteredProjects = projects.filter((eachItem: any) => {
+	const filteredProjects = projects.filter((eachItem) => {
 		return (
 			eachItem["title"].toLowerCase().includes(queryText.toLowerCase()) ||
 			eachItem["keywords"].join().includes(queryText.toLowerCase())
 		);
 	});
 
-	let linkTags: any[] = [];
-	projects.forEach((project: any) => {
+	let linkTags: string[] = [];
+	projects.forEach((project) => {
 		project.keywords.forEach((keyword: string) => linkTags.push(keyword));
 	});
 	linkTags = Array.from(new Set(linkTags));

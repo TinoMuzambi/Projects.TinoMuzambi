@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 
-const OpenSearch = ({ setQueryText }: any) => {
+const OpenSearch: React.FC = ({ setQueryText }: any): JSX.Element => {
 	const router = useRouter();
 
 	useEffect(() => {
@@ -14,7 +14,7 @@ const OpenSearch = ({ setQueryText }: any) => {
 		});
 	}, [router.pathname, setQueryText]);
 
-	return null;
+	return <></>;
 };
 
 export default OpenSearch;

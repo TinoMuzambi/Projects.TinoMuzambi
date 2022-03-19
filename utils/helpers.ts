@@ -1,4 +1,4 @@
-export const applyFilters = (tags: any[]) => {
+export const applyFilters = (tags: string[]): string[] => {
 	return tags.filter(
 		(i) =>
 			i !== "jsx" &&

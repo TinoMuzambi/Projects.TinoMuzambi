@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-const ShowCase = ({ match, projects }: any) => {
+const ShowCase: React.FC = (): JSX.Element => {
 	const router = useRouter();
 	const [name] = useState(router.query.name);
 
@@ -10,7 +10,7 @@ const ShowCase = ({ match, projects }: any) => {
 		window.scrollTo(0, 0);
 	}, []);
 
-	const project = projects.find((project: any) => project.name === name);
+	const project = projects.find((project) => project.name === name);
 	document.title = `${project.title} | Projects.TinoMuzambi`;
 	return (
 		<>
@@ -22,7 +22,7 @@ const ShowCase = ({ match, projects }: any) => {
 							<p className="project-image-text">{project.shortname}</p>
 						</div>
 						<div className="projects-desc-pars">
-							{project.content.map((paragraph: any, key: any) => (
+							{project.content.map((paragraph: string, key: number) => (
 								<p key={key} className="project-desc-text">
 									{paragraph}
 								</p>
@@ -49,7 +49,7 @@ const ShowCase = ({ match, projects }: any) => {
 							</a>
 						</p>
 						<ul className="tag">
-							{project.keywords.map((keyword: any, key: any) => (
+							{project.keywords.map((keyword: string, key: number) => (
 								<li className="tags" key={key}>
 									<Link href={`/tags/${keyword}`}>
 										<a>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import { NavBarProps } from "../interfaces";
 
 const NavBar: React.FC<NavBarProps> = ({ setQueryText }): JSX.Element => (

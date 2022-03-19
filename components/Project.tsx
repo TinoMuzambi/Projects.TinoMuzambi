@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
+
 import { ProjectProps } from "../interfaces";
 
 const Project: React.FC<ProjectProps> = ({ projects }): JSX.Element => (
 	<>
 		{projects.length > 0 ? (
-			projects.map((project: any, key: any) => (
+			projects.map((project, key: number) => (
 				<motion.div
 					className={`wrapper${
 						project.title === "ReComments" ||

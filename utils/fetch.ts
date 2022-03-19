@@ -1,4 +1,5 @@
 import StoryblokClient from "storyblok-js-client";
+import { Project } from "../interfaces";
 
 const Storyblok = new StoryblokClient({
 	accessToken: process.env.REACT_APP_STORYBLOK_KEY,
@@ -8,7 +9,7 @@ const Storyblok = new StoryblokClient({
 	},
 });
 
-export const getProjects = async () => {
+export const getProjects = async (): Promise<Project[]> => {
 	let projects: any[] = [];
 
 	await Storyblok.get("cdn/stories?starts_with=projects/", {

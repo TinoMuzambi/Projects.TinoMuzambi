@@ -2,11 +2,11 @@ import { useRouter } from "next/router";
 
 import Project from "../../components/Project";
 
-const Tags = ({ projects }: any) => {
+const Tags: React.FC = (): JSX.Element => {
 	const router = useRouter();
 	const name = router.query.name as string;
 
-	const filteredProjects = projects.filter((eachItem: any) => {
+	const filteredProjects = projects.filter((eachItem) => {
 		return eachItem["keywords"].includes(name);
 	});
 	const title = name.charAt(0).toUpperCase() + name.slice(1);
