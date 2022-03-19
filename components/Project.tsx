@@ -11,7 +11,7 @@ const Project: React.FC<ProjectProps> = ({ projects }): JSX.Element => (
 					className={`wrapper${
 						project.title === "ReComments" ||
 						project.title === "Landon Hotel" ||
-						project.title === "Tailwind Expo"
+						project.title === "Table Time"
 							? " featured"
 							: ""
 					}`}
