@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AOS from "aos";
 
 import Project from "../components/Project";
@@ -8,17 +8,19 @@ import Footer from "../components/Footer";
 import { applyFilters } from "../utils/helpers";
 import { getProjects } from "../utils/fetch";
 import { Project as P } from "../interfaces";
+import { AppContext } from "../context/AppContext";
 
 const ProjectsHolder = () => {
 	const [queryText, setQueryText] = useState("");
-	const [projects, setProjects] = useState<P[]>([]);
 	const [fetching, setFetching] = useState(true);
+
+	const { projects, setProjects } = useContext(AppContext);
 
 	useEffect(() => {
 		AOS.init();
 		const getData = async () => {
 			const data = await getProjects();
-			setProjects(data);
+			if (setProjects) setProjects(data);
 			setFetching(false);
 		};
 		getData();
