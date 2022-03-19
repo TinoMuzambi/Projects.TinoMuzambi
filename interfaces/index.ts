@@ -33,6 +33,10 @@ export interface TagsProps {
 	filteredProjects: Project[];
 }
 
+export interface ProjectsHolderProps {
+	projects: Project[];
+}
+
 export type Project = {
 	name: string;
 	shortname: string;

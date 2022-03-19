@@ -7,10 +7,12 @@ import SearchProjects from "../components/SearchProjects";
 import { applyFilters } from "../utils/helpers";
 import { getProjects } from "../utils/fetch";
 import { AppContext } from "../context/AppContext";
-import { Project as P } from "../interfaces";
+import { Project as P, ProjectsHolderProps } from "../interfaces";
 import { GetServerSideProps } from "next";
 
-const ProjectsHolder = ({ projects }) => {
+const ProjectsHolder: React.FC<ProjectsHolderProps> = ({
+	projects,
+}): JSX.Element => {
 	const [fetching, setFetching] = useState(true);
 	const [filteredProjects, setFilteredProjects] = useState<P[]>([]);
 	const [links, setLinks] = useState<string[]>([]);
@@ -49,7 +51,7 @@ const ProjectsHolder = ({ projects }) => {
 		setLinks(linkTags);
 	}, []);
 
-	if (fetching) return null;
+	if (fetching) return <></>;
 
 	return (
 		<>
