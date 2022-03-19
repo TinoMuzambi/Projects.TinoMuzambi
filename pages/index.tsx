@@ -1,8 +1,26 @@
+import { useEffect, useState } from "react";
+import AOS from "aos";
+
 import Project from "../components/Project";
 import SearchProjects from "../components/SearchProjects";
 import { applyFilters } from "../utils/helpers";
+import { getProjects } from "../utils/fetch";
 
-const ProjectsHolder = ({ queryText, setQueryText, projects }: any) => {
+const ProjectsHolder = () => {
+	const [queryText, setQueryText] = useState("");
+	const [projects, setProjects] = useState<any[]>([]);
+	const [fetching, setFetching] = useState(true);
+
+	useEffect(() => {
+		AOS.init();
+		const getData = async () => {
+			const data = await getProjects();
+			setProjects(data);
+			setFetching(false);
+		};
+		getData();
+	}, []);
+
 	const searchProj = (query: string) => {
 		setQueryText(query);
 	};
@@ -21,6 +39,8 @@ const ProjectsHolder = ({ queryText, setQueryText, projects }: any) => {
 	linkTags = Array.from(new Set(linkTags));
 
 	linkTags = applyFilters(linkTags);
+
+	if (fetching) return null;
 
 	return (
 		<>
