@@ -22,7 +22,10 @@ const ShowCase: React.FC = (): JSX.Element => {
 
 	return (
 		<>
-			<Meta title={`${project?.title} | Projects.TinoMuzambi`} />
+			<Meta
+				title={`${project?.title} | Projects.TinoMuzambi`}
+				description={project?.content[0]}
+			/>
 			<h1 className="project-title">{project?.title}</h1>
 			<div className="project">
 				<div className="wrapper" data-aos="flip-up" data-aos-delay="200">
