@@ -24,7 +24,10 @@ const Tags: React.FC<TagsProps> = ({ filteredProjects }): JSX.Element => {
 
 	return (
 		<>
-			<Meta title={`${title} | Projects.TinoMuzambi`} />
+			<Meta
+				title={`${title} | Projects.TinoMuzambi`}
+				description={`All ${title} projects on Projects.TinoMuzambi`}
+			/>
 			<h1 className="project-title">{title}</h1>
 			<div className="projects" data-aos="fade-up">
 				<Project projects={filteredProjects} />
