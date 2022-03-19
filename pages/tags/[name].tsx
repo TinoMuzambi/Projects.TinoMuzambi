@@ -3,11 +3,11 @@ import { useRouter } from "next/router";
 
 import Meta from "../../components/Meta";
 import Project from "../../components/Project";
-import { nameParam, Project as P } from "../../interfaces";
+import { nameParam, Project as P, TagsProps } from "../../interfaces";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { getProjects } from "../../utils/fetch";
 
-const Tags: React.FC = ({ filteredProjects }): JSX.Element => {
+const Tags: React.FC<TagsProps> = ({ filteredProjects }): JSX.Element => {
 	const [title, setTitle] = useState("");
 	const [name, setName] = useState("");
 	const router = useRouter();

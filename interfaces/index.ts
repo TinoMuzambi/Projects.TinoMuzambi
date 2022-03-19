@@ -29,6 +29,10 @@ export interface ShowcaseProps {
 	project: Project;
 }
 
+export interface TagsProps {
+	filteredProjects: Project[];
+}
+
 export type Project = {
 	name: string;
 	shortname: string;
