@@ -9,7 +9,7 @@ const Wrapper: React.FC<WrapperProps> = ({ children }): JSX.Element => {
 	return (
 		<AppProvider>
 			<Meta />
-			<NavBar setQueryText={() => {}} />
+			<NavBar />
 			{children as JSX.Element}
 			<Footer />
 		</AppProvider>
