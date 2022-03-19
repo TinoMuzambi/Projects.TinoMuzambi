@@ -1,19 +1,26 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { AppContext } from "../../context/AppContext";
+import { Project } from "../../interfaces";
+import Meta from "../../components/Meta";
 
 const ShowCase: React.FC = (): JSX.Element => {
 	const router = useRouter();
+	const { projects } = useContext(AppContext);
 	const [name] = useState(router.query.name);
 
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
 
-	const project = projects.find((project) => project.name === name);
-	document.title = `${project.title} | Projects.TinoMuzambi`;
+	const project: Project = projects.find(
+		(project) => project.name === name
+	) as Project;
+
 	return (
 		<>
+			<Meta title={`${project.title} | Projects.TinoMuzambi`} />
 			<h1 className="project-title">{project.title}</h1>
 			<div className="project">
 				<div className="wrapper" data-aos="flip-up" data-aos-delay="200">
