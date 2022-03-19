@@ -1,0 +1,17 @@
+.search-field {
+	position: absolute;
+	top: 4.5rem;
+	right: 1rem;
+	font-family: inherit;
+}
+
+.search-field input {
+	border-radius: 0;
+	padding: 0.5rem;
+	outline: none;
+	border: solid 2px black;
+}
+
+.search-field input:hover {
+	border: solid 2px gray;
+}
