@@ -1,9 +1,3 @@
-# Clean Next.js with TypeScript and Sass Boilerplate
+### Projects.TinoMuzambi
 
-## Usage
-
-1. `git clone https://github.com/TinoMuzambi/CleanNext.jsBoilerplate .`
-2. Switch to the `with-typescript-sass` branch
-3. `rm -rf .git`
-4. `git init`
-5. `yarn`
+This React app is a landing page for all the projects I've worked on. It provides an overview of each project as well as the stack used in each project and where possible, a link to see it in action.
