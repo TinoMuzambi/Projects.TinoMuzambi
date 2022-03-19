@@ -1,19 +1,28 @@
 import Link from "next/link";
+import { useContext } from "react";
+import { AppContext } from "../context/AppContext";
 
-import { NavBarProps } from "../interfaces";
+const NavBar: React.FC = (): JSX.Element => {
+	const { setQueryText } = useContext(AppContext);
 
-const NavBar: React.FC<NavBarProps> = ({ setQueryText }): JSX.Element => (
-	<nav className="nav">
-		<div className="nav-menu flex-row">
-			<div className="nav-brand">
-				<Link href="/">
-					<a className="text-gray" onClick={() => setQueryText("")}>
-						Projects.TinoMuzambi
-					</a>
-				</Link>
+	return (
+		<nav className="nav">
+			<div className="nav-menu flex-row">
+				<div className="nav-brand">
+					<Link href="/">
+						<a
+							className="text-gray"
+							onClick={() => {
+								if (setQueryText) setQueryText("");
+							}}
+						>
+							Projects.TinoMuzambi
+						</a>
+					</Link>
+				</div>
 			</div>
-		</div>
-	</nav>
-);
+		</nav>
+	);
+};
 
 export default NavBar;
