@@ -1,3 +1,5 @@
+@use "../abstracts/" as *;
+
 .project-title {
 	text-align: left;
 	padding-top: 10px;
@@ -7,7 +9,7 @@
 .project-image {
 	height: 50px;
 	width: 50px;
-	border: 2px solid #adf8fa;
+	border: 2px solid $light-blue;
 	border-radius: 50%;
 	margin-top: 20px;
 	display: flex;
@@ -19,11 +21,11 @@
 }
 
 .project-image:hover {
-	background-color: #adf8fa;
+	background-color: $light-blue;
 }
 
 .project-image-text {
-	color: white;
+	color: $white;
 	margin: auto;
 	font-size: 1.5rem;
 	font-weight: 700;

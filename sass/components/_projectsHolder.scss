@@ -1,3 +1,5 @@
+@use "../abstracts/" as *;
+
 .headline {
 	width: 100%;
 }
@@ -13,7 +15,7 @@
 
 .quick-links .tags {
 	padding: 0.3rem;
-	color: white;
+	color: $white;
 }
 
 .projects {

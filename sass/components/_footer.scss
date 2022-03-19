@@ -1,8 +1,10 @@
+@use "../abstracts/" as *;
+
 .rights {
 	margin: 0;
 	justify-content: center;
 
-	color: var(--text-light);
+	color: $text-light;
 }
 
 .social {
@@ -14,9 +16,9 @@
 	margin: 0;
 	padding-left: 0.5rem;
 	font-size: 25px;
-	color: var(--text-light);
+	color: $text-light;
 }
 
 .social span:hover {
-	color: var(--midnight);
+	color: $midnight;
 }

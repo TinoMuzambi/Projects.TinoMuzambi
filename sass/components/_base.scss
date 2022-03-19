@@ -16,7 +16,7 @@ body {
 
 a {
 	text-decoration: none;
-	color: var(--text-gray);
+	color: $text-gray;
 }
 
 .flex-row {
@@ -33,7 +33,7 @@ h3 {
 	font-size: 1.3rem;
 }
 h4 {
-	color: var(--text-light);
+	color: $text-light;
 }
 
 button.btn {
@@ -46,11 +46,11 @@ button.btn {
 }
 
 .text-gray {
-	color: var(--text-gray);
+	color: $text-gray;
 }
 
 p {
-	color: var(--text-light);
+	color: $text-light;
 }
 
 /* ------x------- Global Classes -------x-------*/
@@ -90,7 +90,7 @@ code {
 
 	.wrapper.featured {
 		grid-column: span 1;
-		border: dashed 3px var(--midnight);
+		border: dashed 3px $midnight;
 	}
 
 	.project-desc {
