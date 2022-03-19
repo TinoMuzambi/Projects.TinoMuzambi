@@ -12,19 +12,7 @@ html,
 body {
 	width: 100%;
 	font-family: "Poppins", sans-serif;
-
-	/*      Theme colors        */
-	--text-gray: #3f4954;
-	--text-light: #686666da;
-	--bg-color: #0f0f0f;
-	--white: #ffffff;
-	--midnight: #a1c4cf;
-
-	/* gradient color   */
-	--sky: linear-gradient(-225deg, #7de2fc 0%, #b9b6e5 100%);
 }
-
-/* ---------------- Global Classes ---------------*/
 
 a {
 	text-decoration: none;
