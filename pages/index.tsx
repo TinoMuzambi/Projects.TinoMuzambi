@@ -26,9 +26,7 @@ const ProjectsHolder: React.FC<ProjectsHolderProps> = ({
 	}, []);
 
 	useEffect(() => {
-		console.log("here", router.query);
 		if (router.query.text) {
-			console.log(router.query.text);
 			if (setQueryText) setQueryText(router.query.text);
 		}
 	}, [router.query.text]);
