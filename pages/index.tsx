@@ -80,7 +80,7 @@ const ProjectsHolder: React.FC<ProjectsHolderProps> = ({
 	);
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async () => {
 	const projects: P[] = await getProjects();
 
 	return {

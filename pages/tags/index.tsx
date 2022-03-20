@@ -30,7 +30,7 @@ const AllTags: React.FC<ProjectsHolderProps> = ({ projects }): JSX.Element => {
 	);
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async () => {
 	const projects: Project[] = await getProjects();
 
 	return {
