@@ -26,21 +26,21 @@ a {
 }
 
 h1 {
-	font-size: 2.5rem;
+	font-size: $font-ml;
 
 	@include mq(520px) {
-		font-size: 15px;
+		font-size: $font-rg;
 	}
 }
 
 h2 {
 	@include mq(520px) {
-		font-size: 15px;
+		font-size: $font-rg;
 	}
 }
 
 h3 {
-	font-size: 1.3rem;
+	font-size: $font-sm;
 }
 
 h4 {
@@ -63,7 +63,7 @@ p {
 	color: $text-light;
 
 	@include mq(520px) {
-		font-size: 12px;
+		font-size: $font-xs;
 	}
 }
 

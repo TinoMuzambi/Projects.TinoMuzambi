@@ -7,9 +7,9 @@
 
 .nav-brand {
 	padding-left: 10px;
-	font-size: 1.5rem;
+	font-size: $font-sm;
 
 	@include mq(520px) {
-		font-size: 15px;
+		font-size: $font-rg;
 	}
 }
