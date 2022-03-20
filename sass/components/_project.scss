@@ -2,7 +2,7 @@
 
 .card {
 	width: 100%;
-	padding: 0.5rem;
+	padding: 1rem;
 	box-shadow: 0 0 2px rgba($color: $white, $alpha: 0.5);
 	transition: 0.5s;
 
@@ -12,8 +12,6 @@
 
 	.title {
 		text-align: left;
-		padding-top: 10px;
-		padding-left: 10px;
 	}
 
 	.body {
