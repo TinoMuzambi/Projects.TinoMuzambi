@@ -17,16 +17,16 @@ const ShowCase: React.FC<ShowcaseProps> = ({ project }): JSX.Element => {
 				title={`${project?.title} | Projects.TinoMuzambi`}
 				description={project?.content[0]}
 			/>
-			<h1 className="project-title">{project?.title}</h1>
-			<div className="project">
-				<div className="wrapper" data-aos="flip-up" data-aos-delay="200">
-					<div className="project-desc">
-						<div className="project-image">
-							<p className="project-image-text">{project?.shortname}</p>
+			<main className="showcase">
+				<h1 className="title">{project?.title}</h1>
+				<div className="project" data-aos="flip-up" data-aos-delay="200">
+					<div className="body">
+						<div className="image">
+							<p className="text">{project?.shortname}</p>
 						</div>
-						<div className="projects-desc-pars">
+						<div className="description">
 							{project?.content.map((paragraph: string, key: number) => (
-								<p key={key} className="project-desc-text">
+								<p key={key} className="text">
 									{paragraph}
 								</p>
 							))}
@@ -64,7 +64,7 @@ const ShowCase: React.FC<ShowcaseProps> = ({ project }): JSX.Element => {
 						</ul>
 					</div>
 				</div>
-			</div>
+			</main>
 		</>
 	);
 };
