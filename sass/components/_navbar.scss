@@ -1,15 +1,17 @@
 @use "../abstracts/" as *;
 
-.nav .nav-menu {
-	justify-content: space-between;
-	margin-top: 10px;
-}
+.nav {
+	.nav-menu {
+		justify-content: space-between;
+		margin-top: 10px;
 
-.nav-brand {
-	padding-left: 10px;
-	font-size: $font-sm;
+		.nav-brand {
+			padding-left: 10px;
+			font-size: $font-sm;
 
-	@include mq(520px) {
-		font-size: $font-rg;
+			@include mq(520px) {
+				font-size: $font-rg;
+			}
+		}
 	}
 }

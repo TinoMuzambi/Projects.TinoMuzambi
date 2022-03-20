@@ -1,27 +1,28 @@
 @use "../abstracts/" as *;
+footer {
+	.rights {
+		margin: 0;
+		justify-content: center;
+		color: $text-light;
 
-.rights {
-	margin: 0;
-	justify-content: center;
-	color: $text-light;
-
-	@include mq(520px) {
-		font-size: $font-xs;
+		@include mq(520px) {
+			font-size: $font-xs;
+		}
 	}
-}
 
-.social {
-	margin: 0;
-	justify-content: center;
-}
+	.social {
+		margin: 0;
+		justify-content: center;
 
-.social span {
-	margin: 0;
-	padding-left: 0.5rem;
-	font-size: $font-sm;
-	color: $text-light;
-}
+		span {
+			margin: 0;
+			padding-left: 0.5rem;
+			font-size: $font-sm;
+			color: $text-light;
 
-.social span:hover {
-	color: $midnight;
+			&:hover {
+				color: $midnight;
+			}
+		}
+	}
 }

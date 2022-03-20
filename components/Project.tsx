@@ -20,7 +20,7 @@ const Project: React.FC<ProjectProps> = ({ projects }): JSX.Element => (
 				>
 					<Link href={`/showcase/${project.name}`}>
 						<a>
-							<h2 className="projects-title">{project.title}</h2>
+							<h2 className="project-title">{project.title}</h2>
 							<div className="project-desc">
 								<div className="project-image">
 									<p className="project-image-text">{project.shortname}</p>

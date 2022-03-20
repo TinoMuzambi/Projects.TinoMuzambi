@@ -12,9 +12,7 @@ const NotFoundPage = () => (
 		</p>
 		<p className="four04-body2">or</p>
 		<Link href="/">
-			<a>
-				<p className="four04-redirect">Return to home</p>
-			</a>
+			<a className="four04-redirect">Return to home</a>
 		</Link>
 	</div>
 );
