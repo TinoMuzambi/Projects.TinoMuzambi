@@ -21,7 +21,6 @@ a {
 
 .flex-row {
 	display: flex;
-	flex-direction: row;
 	flex-wrap: wrap;
 }
 
@@ -82,4 +81,9 @@ code {
 
 .link-hide {
 	display: none;
+}
+
+.container {
+	max-width: min(90rem, 95%);
+	margin: 0 auto;
 }
