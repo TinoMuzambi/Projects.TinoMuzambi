@@ -17,7 +17,7 @@ export interface NavBarProps {
 }
 
 export interface ProjectProps {
-	projects: Project[];
+	project: Project;
 }
 
 export interface SearchProjectsProps {

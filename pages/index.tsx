@@ -61,16 +61,22 @@ const ProjectsHolder: React.FC<ProjectsHolderProps> = ({
 	}, [projects]);
 
 	return (
-		<>
+		<main>
 			<Tags links={links} />
 			<div className="headline">
 				<h1 className="project-title">Projects</h1>
 				<SearchProjects query={queryText} searchProj={searchProj} />
 			</div>
 			<div className="projects" data-aos="fade-up" data-aos-delay="200">
-				<Project projects={filteredProjects} />
+				{projects.length > 0 ? (
+					filteredProjects.map((project, key: number) => (
+						<Project key={key} project={project} />
+					))
+				) : (
+					<h1>There are no projects that match that search term.</h1>
+				)}
 			</div>
-		</>
+		</main>
 	);
 };
 
