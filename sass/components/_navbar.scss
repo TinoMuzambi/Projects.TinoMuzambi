@@ -8,6 +8,11 @@
 	padding-bottom: 1rem;
 	border-bottom: 0.1px solid whitesmoke;
 
+	@include mq(1024px) {
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
 	a {
 		padding: 0.2rem 0.5rem;
 		border-radius: 1000rem;
@@ -21,6 +26,10 @@
 	.secondary {
 		display: flex;
 		gap: 2rem;
+
+		@include mq(1024px) {
+			gap: 1rem;
+		}
 
 		a {
 			background: $white;
