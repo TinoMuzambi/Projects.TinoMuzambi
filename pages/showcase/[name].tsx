@@ -32,7 +32,7 @@ const ShowCase: React.FC<ShowcaseProps> = ({ project }): JSX.Element => {
 							))}
 						</div>
 					</div>
-					<div className="project-footer">
+					<div className="footer">
 						<p className={project?.link === "" ? "link-hide" : ""}>
 							Link:{" "}
 							<a target="_blank" rel="noopener noreferrer" href={project?.link}>
@@ -51,13 +51,11 @@ const ShowCase: React.FC<ShowcaseProps> = ({ project }): JSX.Element => {
 								{project?.github.substring(19)}
 							</a>
 						</p>
-						<ul className="tag">
+						<ul className="tags">
 							{project?.keywords.map((keyword: string, key: number) => (
-								<li className="tags" key={key}>
+								<li className="tag" key={key}>
 									<Link href={`/tags/${keyword}`}>
-										<a>
-											<p className="tag-text">{keyword}</p>
-										</a>
+										<a className="text">{keyword}</a>
 									</Link>
 								</li>
 							))}
