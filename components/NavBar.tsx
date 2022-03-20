@@ -1,5 +1,6 @@
-import Link from "next/link";
 import { useContext } from "react";
+import Link from "next/link";
+
 import { AppContext } from "../context/AppContext";
 
 const NavBar: React.FC = (): JSX.Element => {

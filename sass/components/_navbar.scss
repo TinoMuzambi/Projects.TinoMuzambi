@@ -14,9 +14,15 @@
 	}
 
 	a:first-of-type {
+		font-weight: bold;
+		font-size: $font-ml;
 		padding: 0.2rem 0.5rem;
 		border-radius: 1000rem;
 		transition: 0.5s;
+
+		@include mq(1024px) {
+			font-size: $font-rg;
+		}
 
 		&:hover {
 			box-shadow: 0 0 2px rgba($color: $white, $alpha: 0.5);
@@ -25,6 +31,7 @@
 
 	.secondary {
 		display: flex;
+		align-items: center;
 		gap: 2rem;
 
 		@include mq(1024px) {
@@ -33,6 +40,12 @@
 
 		a {
 			@include whitePill;
+			font-weight: normal;
+			font-size: inherit;
+
+			@include mq(1024px) {
+				font-size: $font-rg;
+			}
 		}
 	}
 }
