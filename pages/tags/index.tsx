@@ -1,4 +1,5 @@
 import { GetServerSideProps } from "next";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import { ProjectsHolderProps, Project } from "../../interfaces";
@@ -21,9 +22,9 @@ const AllTags: React.FC<ProjectsHolderProps> = ({ projects }): JSX.Element => {
 	return (
 		<main>
 			{links.map((link, key) => (
-				<div key={key} className="card">
-					{link}
-				</div>
+				<Link key={key} href={`/tags/${link}`}>
+					<a className="card">{link}</a>
+				</Link>
 			))}
 		</main>
 	);
