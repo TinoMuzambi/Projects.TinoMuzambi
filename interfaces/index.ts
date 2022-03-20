@@ -33,6 +33,10 @@ export interface TagsProps {
 	filteredProjects: Project[];
 }
 
+export interface HomeTagsProps {
+	links: string[];
+}
+
 export interface ProjectsHolderProps {
 	projects: Project[];
 }
