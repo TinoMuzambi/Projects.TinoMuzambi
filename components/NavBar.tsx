@@ -7,19 +7,22 @@ const NavBar: React.FC = (): JSX.Element => {
 
 	return (
 		<nav className="nav">
-			<div className="nav-menu flex-row">
-				<div className="nav-brand">
-					<Link href="/">
-						<a
-							className="text-gray"
-							onClick={() => {
-								if (setQueryText) setQueryText("");
-							}}
-						>
-							Projects.TinoMuzambi
-						</a>
-					</Link>
-				</div>
+			<Link href="/">
+				<a
+					onClick={() => {
+						if (setQueryText) setQueryText("");
+					}}
+				>
+					Projects.TinoMuzambi
+				</a>
+			</Link>
+			<div className="secondary">
+				<Link href="/tags">
+					<a>Tags</a>
+				</Link>
+				<Link href="/featured">
+					<a>Featured</a>
+				</Link>
 			</div>
 		</nav>
 	);

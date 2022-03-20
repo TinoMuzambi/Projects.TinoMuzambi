@@ -12,11 +12,13 @@ html,
 body {
 	width: 100%;
 	font-family: "Poppins", sans-serif;
+	background: rgb(3, 7, 51);
+	color: $white;
 }
 
 a {
 	text-decoration: none;
-	color: $text-gray;
+	color: $white;
 }
 
 .flex-row {
@@ -42,10 +44,6 @@ h3 {
 	font-size: $font-sm;
 }
 
-h4 {
-	color: $text-light;
-}
-
 button.btn {
 	border: none;
 	border-radius: 2rem;
@@ -54,13 +52,7 @@ button.btn {
 	cursor: pointer;
 }
 
-.text-gray {
-	color: $text-gray;
-}
-
 p {
-	color: $text-light;
-
 	@include mq(520px) {
 		font-size: $font-xs;
 	}

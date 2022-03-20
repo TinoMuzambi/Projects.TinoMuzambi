@@ -3,7 +3,6 @@ footer {
 	.rights {
 		margin: 0;
 		justify-content: center;
-		color: $text-light;
 
 		@include mq(520px) {
 			font-size: $font-xs;
@@ -18,7 +17,6 @@ footer {
 			margin: 0;
 			padding-left: 0.5rem;
 			font-size: $font-sm;
-			color: $text-light;
 
 			&:hover {
 				color: $midnight;
