@@ -1,0 +1,11 @@
+@use "../abstracts/" as *;
+
+.quick-links {
+	display: flex;
+	flex-wrap: wrap;
+
+	.tags {
+		padding: 0.3rem;
+		color: $white;
+	}
+}

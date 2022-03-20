@@ -6,15 +6,6 @@
 	align-items: center;
 }
 
-.quick-links {
-	display: flex;
-	flex-wrap: wrap;
-	.tags {
-		padding: 0.3rem;
-		color: $white;
-	}
-}
-
 .projects {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
