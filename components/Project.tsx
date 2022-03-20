@@ -6,7 +6,7 @@ import { ProjectProps } from "../interfaces";
 const Project: React.FC<ProjectProps> = ({ project }): JSX.Element => (
 	<>
 		<motion.div
-			className={`wrapper${
+			className={`card${
 				project.title === "ReComments" ||
 				project.title === "Landon Hotel" ||
 				project.title === "Table Time"
@@ -17,12 +17,12 @@ const Project: React.FC<ProjectProps> = ({ project }): JSX.Element => (
 		>
 			<Link href={`/showcase/${project.name}`}>
 				<a>
-					<h2 className="project-title">{project.title}</h2>
-					<div className="project-desc">
-						<div className="project-image">
-							<p className="project-image-text">{project.shortname}</p>
+					<h2 className="title">{project.title}</h2>
+					<div className="body">
+						<div className="image">
+							<p className="text">{project.shortname}</p>
 						</div>
-						<p className="project-desc-text">{project.content[0]}</p>
+						<p className="description">{project.content[0]}</p>
 					</div>
 				</a>
 			</Link>

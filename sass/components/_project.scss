@@ -1,48 +1,37 @@
 @use "../abstracts/" as *;
 
-.wrapper {
-	.project-title {
+.card {
+	width: 100%;
+
+	.title {
 		text-align: left;
 		padding-top: 10px;
 		padding-left: 10px;
 	}
 
-	.project-desc {
-		display: grid;
-		grid-template-columns: 10% 90%;
-		margin-left: 10px;
-		padding-bottom: 20px;
+	.body {
+		display: flex;
+		gap: 1rem;
 
-		@include mq(1130px) {
-			grid-template-columns: 20% 80%;
-		}
-
-		@include mq(768px) {
-			grid-template-columns: 25% 75%;
-		}
-
-		@include mq(520px) {
-			grid-template-columns: 15% 85%;
-		}
-
-		.project-image {
+		.image {
+			flex: 1;
 			height: 100px;
-			width: 100px;
+			aspect-ratio: 1;
 			border: 2px solid $light-blue;
 			border-radius: 50%;
 			margin-top: 20px;
 			display: flex;
 
-			@include mq(520px) {
+			@include mq(1024px) {
 				height: 50px;
-				width: 50px;
+				flex: 0.5;
 			}
 
 			&:hover {
 				background-color: $light-blue;
 			}
 
-			.project-image-text {
+			.text {
 				color: $white;
 				margin: auto;
 				font-size: $font-sm;
@@ -54,13 +43,8 @@
 			}
 		}
 
-		.project-desc-text {
-			padding-left: 50px;
-			padding-right: 20px;
-		}
-
-		.project-desc-pars {
-			padding-top: 20px;
+		.description {
+			flex: 4;
 		}
 	}
 }
