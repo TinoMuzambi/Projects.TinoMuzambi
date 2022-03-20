@@ -1,9 +1,12 @@
 @use "../abstracts/" as *;
 
 footer {
-	.rights {
-		margin: 0;
+	@include flexAllCol;
+	gap: 0.5rem;
+
+	h4 {
 		justify-content: center;
+		font-weight: normal;
 
 		@include mq(520px) {
 			font-size: $font-xs;
@@ -11,12 +14,9 @@ footer {
 	}
 
 	.social {
-		margin: 0;
-		justify-content: center;
-
+		display: flex;
+		gap: 0.5rem;
 		span {
-			margin: 0;
-			padding-left: 0.5rem;
 			font-size: $font-sm;
 
 			&:hover {
