@@ -1,12 +1,9 @@
 @use "../abstracts/" as *;
 
 .headline {
-	width: 100%;
-
-	.project-title {
-		padding-left: 10px;
-		padding-top: 10px;
-	}
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 .quick-links {
