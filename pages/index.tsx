@@ -42,8 +42,8 @@ const ProjectsHolder: React.FC<ProjectsHolderProps> = ({
 		setFilteredProjects(
 			projects.filter((eachItem) => {
 				return (
-					eachItem["title"].toLowerCase().includes(queryText.toLowerCase()) ||
-					eachItem["keywords"].join().includes(queryText.toLowerCase())
+					eachItem.title.toLowerCase().includes(queryText.toLowerCase()) ||
+					eachItem.keywords.join().includes(queryText.toLowerCase())
 				);
 			})
 		);
@@ -64,7 +64,7 @@ const ProjectsHolder: React.FC<ProjectsHolderProps> = ({
 		<main>
 			<Tags links={links} />
 			<div className="headline">
-				<h1 className="project-title">Projects</h1>
+				<h1>Projects</h1>
 				<SearchProjects query={queryText} searchProj={searchProj} />
 			</div>
 			<div className="projects" data-aos="fade-up" data-aos-delay="200">
