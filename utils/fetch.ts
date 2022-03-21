@@ -26,6 +26,7 @@ export const getProjects = async (): Promise<Project[]> => {
 					link: project.content.link,
 					github: project.content.github,
 					keywords: project.content.keywords.split("\n"),
+					featured: project.conent?.featured || false,
 				};
 			});
 			projects = prettyprojects;
