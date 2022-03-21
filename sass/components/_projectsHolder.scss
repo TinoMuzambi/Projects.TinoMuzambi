@@ -9,6 +9,7 @@
 .projects {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+	grid-auto-flow: dense;
 	place-items: center;
 	gap: 2rem;
 	margin: 1rem 0;
