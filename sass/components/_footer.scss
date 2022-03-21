@@ -1,23 +1,27 @@
-.rights {
-	margin: 0;
-	justify-content: center;
-	font-family: var(--Josefin), "Verdana";
-	color: var(--text-light);
-}
+@use "../abstracts/" as *;
 
-.social {
-	margin: 0;
-	justify-content: center;
-	font-family: var(--Josefin), "Verdana";
-}
+footer {
+	@include flexAllCol;
+	gap: 0.5rem;
 
-.social span {
-	margin: 0;
-	padding-left: 0.5rem;
-	font-size: 25px;
-	color: var(--text-light);
-}
+	h4 {
+		justify-content: center;
+		font-weight: normal;
 
-.social span:hover {
-	color: var(--midnight);
+		@include mq(520px) {
+			font-size: $font-xs;
+		}
+	}
+
+	.social {
+		display: flex;
+		gap: 0.5rem;
+		span {
+			font-size: $font-sm;
+
+			&:hover {
+				color: $midnight;
+			}
+		}
+	}
 }

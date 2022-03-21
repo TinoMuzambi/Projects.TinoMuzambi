@@ -3,10 +3,9 @@ import { FaGithub } from "react-icons/fa";
 
 const Footer: React.FC = (): JSX.Element => (
 	<footer>
-		<div className="rights flex-row">
-			<h4>Made with React. Copyright © Tino Muzambi 2020 - 2021</h4>
-		</div>
-		<div className="flex-row social">
+		<h4>Made with React. Copyright © Tino Muzambi 2020 - 2021</h4>
+
+		<div className="social">
 			<a
 				href="https://bit.ly/TinoLinkedIn"
 				target="_blank"

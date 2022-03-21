@@ -1,0 +1,15 @@
+@use "../abstracts/" as *;
+
+.tags {
+	.quick-links {
+		margin: 1rem 0;
+		display: flex;
+		flex-wrap: wrap;
+		row-gap: 1rem;
+		column-gap: 0.5rem;
+
+		.tag {
+			@include whitePill;
+		}
+	}
+}

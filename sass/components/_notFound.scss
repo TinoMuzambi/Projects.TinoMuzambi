@@ -1,27 +1,28 @@
+@use "../abstracts/" as *;
+
 .not-found {
 	display: block;
-}
 
-.four04-title {
-	margin: 0;
-	font-size: 200px;
-	text-align: center;
-}
+	.four04-title {
+		margin: 0;
+		font-size: $font-xxxl;
+		text-align: center;
+	}
 
-.four04-body {
-	font-size: 50px;
-	text-align: center;
-}
+	.four04-body {
+		font-size: $font-lg;
+		text-align: center;
+	}
 
-.four04-redirect {
-	margin: 7px;
-	text-align: center;
-	color: var(--text-light);
-	text-decoration: underline;
-}
+	.four04-redirect {
+		margin: 7px;
+		text-align: center;
+		text-decoration: underline;
 
-.four04-body2 {
-	margin: 0;
-	font-size: 30px;
-	text-align: center;
+		.four04-body2 {
+			margin: 0;
+			font-size: $font-md;
+			text-align: center;
+		}
+	}
 }

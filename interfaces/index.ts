@@ -17,7 +17,7 @@ export interface NavBarProps {
 }
 
 export interface ProjectProps {
-	projects: Project[];
+	project: Project;
 }
 
 export interface SearchProjectsProps {
@@ -33,6 +33,10 @@ export interface TagsProps {
 	filteredProjects: Project[];
 }
 
+export interface HomeTagsProps {
+	links: string[];
+}
+
 export interface ProjectsHolderProps {
 	projects: Project[];
 }
@@ -46,6 +50,7 @@ export type Project = {
 	github: string;
 	keywords: string[];
 	image: string;
+	featured?: boolean;
 };
 
 export interface ContextProps {

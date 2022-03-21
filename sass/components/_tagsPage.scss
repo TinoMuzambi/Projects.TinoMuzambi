@@ -1,0 +1,17 @@
+.tags-page {
+	margin-bottom: 2rem;
+
+	h1 {
+		margin: 1rem 0;
+	}
+
+	.cards {
+		display: flex;
+		gap: 1rem;
+		flex-wrap: wrap;
+
+		.card {
+			width: fit-content;
+		}
+	}
+}

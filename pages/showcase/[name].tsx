@@ -17,22 +17,22 @@ const ShowCase: React.FC<ShowcaseProps> = ({ project }): JSX.Element => {
 				title={`${project?.title} | Projects.TinoMuzambi`}
 				description={project?.content[0]}
 			/>
-			<h1 className="project-title">{project?.title}</h1>
-			<div className="project">
-				<div className="wrapper" data-aos="flip-up" data-aos-delay="200">
-					<div className="project-desc">
-						<div className="project-image">
-							<p className="project-image-text">{project?.shortname}</p>
+			<main className="showcase">
+				<h1 className="title">{project?.title}</h1>
+				<div className="project" data-aos="flip-up" data-aos-delay="200">
+					<div className="body">
+						<div className="image">
+							<p className="text">{project?.shortname}</p>
 						</div>
-						<div className="projects-desc-pars">
+						<div className="description">
 							{project?.content.map((paragraph: string, key: number) => (
-								<p key={key} className="project-desc-text">
+								<p key={key} className="text">
 									{paragraph}
 								</p>
 							))}
 						</div>
 					</div>
-					<div className="project-footer">
+					<div className="footer">
 						<p className={project?.link === "" ? "link-hide" : ""}>
 							Link:{" "}
 							<a target="_blank" rel="noopener noreferrer" href={project?.link}>
@@ -51,20 +51,18 @@ const ShowCase: React.FC<ShowcaseProps> = ({ project }): JSX.Element => {
 								{project?.github.substring(19)}
 							</a>
 						</p>
-						<ul className="tag">
+						<ul className="tags">
 							{project?.keywords.map((keyword: string, key: number) => (
-								<li className="tags" key={key}>
+								<li className="tag" key={key}>
 									<Link href={`/tags/${keyword}`}>
-										<a>
-											<p className="tag-text">{keyword}</p>
-										</a>
+										<a className="text">{keyword}</a>
 									</Link>
 								</li>
 							))}
 						</ul>
 					</div>
 				</div>
-			</div>
+			</main>
 		</>
 	);
 };

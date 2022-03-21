@@ -9,9 +9,11 @@ const Wrapper: React.FC<WrapperProps> = ({ children }): JSX.Element => {
 	return (
 		<AppProvider>
 			<Meta />
-			<NavBar />
-			{children as JSX.Element}
-			<Footer />
+			<div className="container">
+				<NavBar />
+				{children as JSX.Element}
+				<Footer />
+			</div>
 		</AppProvider>
 	);
 };

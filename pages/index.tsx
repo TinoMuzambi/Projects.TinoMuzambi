@@ -10,6 +10,7 @@ import { getProjects } from "../utils/fetch";
 import { AppContext } from "../context/AppContext";
 import { Project as P, ProjectsHolderProps } from "../interfaces";
 import { useRouter } from "next/router";
+import Tags from "../components/Tags";
 
 const ProjectsHolder: React.FC<ProjectsHolderProps> = ({
 	projects,
@@ -60,26 +61,26 @@ const ProjectsHolder: React.FC<ProjectsHolderProps> = ({
 	}, [projects]);
 
 	return (
-		<>
+		<main>
+			<Tags links={links} />
 			<div className="headline">
 				<h1 className="project-title">Projects</h1>
 				<SearchProjects query={queryText} searchProj={searchProj} />
 			</div>
-			<div className="quick-links" data-aos="fade-up">
-				{links.map((i, key) => (
-					<Link key={key} href={`/tags/${i}`}>
-						<a className="tags">{i}</a>
-					</Link>
-				))}
-			</div>
 			<div className="projects" data-aos="fade-up" data-aos-delay="200">
-				<Project projects={filteredProjects} />
+				{filteredProjects.length > 0 ? (
+					filteredProjects.map((project, key: number) => (
+						<Project key={key} project={project} />
+					))
+				) : (
+					<h1>There are no projects that match that search term.</h1>
+				)}
 			</div>
-		</>
+		</main>
 	);
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async () => {
 	const projects: P[] = await getProjects();
 
 	return {

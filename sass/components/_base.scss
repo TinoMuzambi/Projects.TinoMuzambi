@@ -8,62 +8,40 @@
 	padding: 0;
 }
 
-@import url("https://fonts.googleapis.com/css2?family=Abel&family=Anton&family=Josefin+Sans&family=Lexend+Deca&family=Livvic&display=swap");
-
 html,
 body {
 	width: 100%;
-	background: url(/bg.png);
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-
-	/*      Theme colors        */
-	--text-gray: #3f4954;
-	--text-light: #686666da;
-	--bg-color: #0f0f0f;
-	--white: #ffffff;
-	--midnight: #a1c4cf;
-
-	/* gradient color   */
-	--sky: linear-gradient(-225deg, #7de2fc 0%, #b9b6e5 100%);
-
-	/*      theme font-family   */
-	--Abel: "Abel", sans-serif;
-	--Anton: "Anton", sans-serif;
-	--Josefin: "Josefin Sans", sans-serif;
-	--Lexend: "Lexend Deca", sans-serif;
-	--Livvic: "Livvic", sans-serif;
+	font-family: "Poppins", sans-serif;
+	background: $bg-color;
+	color: $white;
 }
-
-/* ---------------- Global Classes ---------------*/
 
 a {
 	text-decoration: none;
-	color: var(--text-gray);
-	font-family: var(--Lexend), "Verdana";
+	color: inherit;
 }
 
 .flex-row {
 	display: flex;
-	flex-direction: row;
 	flex-wrap: wrap;
 }
 
 h1 {
-	font-family: var(--Lexend), "Verdana";
-	font-size: 2.5rem;
+	font-size: $font-ml;
+
+	@include mq(520px) {
+		font-size: $font-rg;
+	}
 }
 
 h2 {
-	font-family: var(--Lexend), "Verdana";
+	@include mq(520px) {
+		font-size: $font-rg;
+	}
 }
 
 h3 {
-	font-family: var(--Abel), "Verdana";
-	font-size: 1.3rem;
-}
-h4 {
-	color: var(--text-light);
+	font-size: $font-sm;
 }
 
 button.btn {
@@ -71,20 +49,14 @@ button.btn {
 	border-radius: 2rem;
 	padding: 1rem 3rem;
 	font-size: 1rem;
-	font-family: var(--Livvic), "Verdana";
 	cursor: pointer;
 }
 
-.text-gray {
-	color: var(--text-gray);
-}
-
 p {
-	font-family: var(--Lexend), "Verdana";
-	color: var(--text-light);
+	@include mq(520px) {
+		font-size: $font-xs;
+	}
 }
-
-/* ------x------- Global Classes -------x-------*/
 
 code {
 	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
@@ -103,73 +75,7 @@ code {
 	display: none;
 }
 
-/*              Viewport less then or equal to 1130px            */
-
-@media only screen and (max-width: 1130px) {
-	.project-desc {
-		grid-template-columns: 20% 80%;
-	}
-}
-
-/*              Viewport less then or equal to 768px            */
-
-@media only screen and (max-width: 768px) {
-	.wrapper {
-		width: 90%;
-		height: unset;
-	}
-
-	.wrapper.featured {
-		grid-column: span 1;
-		border: dashed 3px var(--midnight);
-	}
-
-	.project-desc {
-		grid-template-columns: 25% 75%;
-	}
-
-	.projects {
-		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-	}
-}
-
-/*              Viewport less then or equal to 520px            */
-
-@media only screen and (max-width: 520px) {
-	.nav-brand {
-		font-size: 15px;
-	}
-
-	h1 {
-		font-size: 20px;
-	}
-
-	h2 {
-		font-size: 15px;
-	}
-
-	p {
-		font-size: 12px;
-	}
-
-	.project-image {
-		height: 50px;
-		width: 50px;
-	}
-
-	.project-image-text {
-		font-size: 1.5rem;
-	}
-
-	.wrapper {
-		width: 90%;
-	}
-
-	.project-desc {
-		grid-template-columns: 15% 85%;
-	}
-
-	.rights {
-		font-size: 12px;
-	}
+.container {
+	max-width: min(90rem, 95%);
+	margin: 0 auto;
 }

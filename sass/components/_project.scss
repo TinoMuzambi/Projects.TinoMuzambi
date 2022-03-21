@@ -1,46 +1,70 @@
-.project-title {
-	text-align: left;
-	padding-top: 10px;
-	padding-left: 10px;
-}
+@use "../abstracts/" as *;
 
-.project-image {
-	height: 50px;
-	width: 50px;
-	border: 2px solid #adf8fa;
-	border-radius: 50%;
-	margin-top: 20px;
-	display: flex;
-}
+.card {
+	width: 100%;
+	padding: 1rem;
+	box-shadow: 0 0 2px rgba($color: $white, $alpha: 0.5);
+	transition: 0.5s;
 
-.project .wrapper .project-image {
-	height: 100px;
-	width: 100px;
-}
+	&.featured {
+		grid-column: span 2;
 
-.project-image:hover {
-	background-color: #adf8fa;
-}
+		@include mq(1024px) {
+			grid-column: span 1;
+		}
 
-.project-image-text {
-	color: white;
-	margin: auto;
-	font-size: 1.5rem;
-	font-weight: 700;
-}
+		.body {
+			.image {
+				flex: 0.5;
+			}
+		}
+	}
 
-.project-desc {
-	display: grid;
-	grid-template-columns: 10% 90%;
-	margin-left: 10px;
-	padding-bottom: 20px;
-}
+	&:hover {
+		box-shadow: 0 0 2px rgba($color: $white, $alpha: 1);
+	}
 
-.project-desc-pars {
-	padding-top: 20px;
-}
+	.title {
+		text-align: left;
+	}
 
-.project-desc-text {
-	padding-left: 50px;
-	padding-right: 20px;
+	.body {
+		display: flex;
+		gap: 1rem;
+		margin-top: 0.5rem;
+
+		.image {
+			flex: 1;
+			height: 100px;
+			aspect-ratio: 1;
+			border: 2px solid $light-blue;
+			border-radius: 50%;
+			display: flex;
+			transition: 0.5s;
+
+			@include mq(1024px) {
+				height: 50px;
+				flex: 0.5;
+			}
+
+			&:hover {
+				background-color: $light-blue;
+			}
+
+			.text {
+				color: $white;
+				margin: auto;
+				font-size: $font-sm;
+				font-weight: 700;
+
+				@include mq(520px) {
+					font-size: $font-sm;
+				}
+			}
+		}
+
+		.description {
+			flex: 4;
+		}
+	}
 }

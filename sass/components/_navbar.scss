@@ -1,10 +1,51 @@
-.nav .nav-menu {
-	justify-content: space-between;
-	margin-top: 10px;
-}
+@use "../abstracts/" as *;
 
-.nav-brand {
-	font-family: var(--Lexend), Verdana, Geneva, Tahoma, sans-serif;
-	padding-left: 10px;
-	font-size: 1.5rem;
+.nav {
+	display: flex;
+	justify-content: space-between;
+	margin: 1rem 0;
+	font-size: $font-sm;
+	padding-bottom: 1rem;
+	border-bottom: 0.1px solid whitesmoke;
+
+	@include mq(1024px) {
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	a:first-of-type {
+		font-weight: bold;
+		font-size: $font-ml;
+		padding: 0.2rem 0.5rem;
+		border-radius: 1000rem;
+		transition: 0.5s;
+
+		@include mq(1024px) {
+			font-size: $font-rg;
+		}
+
+		&:hover {
+			box-shadow: 0 0 2px rgba($color: $white, $alpha: 0.5);
+		}
+	}
+
+	.secondary {
+		display: flex;
+		align-items: center;
+		gap: 2rem;
+
+		@include mq(1024px) {
+			gap: 1rem;
+		}
+
+		a {
+			@include whitePill;
+			font-weight: normal;
+			font-size: inherit;
+
+			@include mq(1024px) {
+				font-size: $font-rg;
+			}
+		}
+	}
 }

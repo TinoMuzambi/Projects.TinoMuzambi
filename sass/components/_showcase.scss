@@ -1,65 +1,74 @@
-.project {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	gap: 2rem;
-	/* flex-wrap: wrap; */
-	margin-top: 3rem;
-}
+@use "../abstracts/" as *;
+.showcase {
+	.project {
+		margin: 1rem 0;
+		padding: 1rem;
+		box-shadow: 0 0 2px rgba($color: $white, $alpha: 0.5);
+		transition: 0.5s;
 
-.wrapper {
-	width: 400px;
-	height: 250px;
-	padding: 2rem;
-	border-radius: 10px;
-	background: linear-gradient(
-		137deg,
-		rgba(217, 217, 217, 1) 0%,
-		rgb(209, 253, 246) 60%,
-		rgb(160, 160, 160) 100%
-	);
-}
+		&:hover {
+			box-shadow: 0 0 2px rgba($color: $white, $alpha: 1);
+		}
 
-.wrapper.featured {
-	grid-column: span 2;
-	width: 100%;
-	height: 100%;
-}
+		.body {
+			display: flex;
+			gap: 1rem;
+			margin-bottom: 1rem;
 
-.project .wrapper {
-	height: unset;
-	width: 90%;
-}
+			.image {
+				flex: 1;
+				height: 100px;
+				aspect-ratio: 1;
+				border: 2px solid $light-blue;
+				border-radius: 50%;
+				display: flex;
+				transition: 0.5s;
 
-.project-footer {
-	margin: 0;
-	padding-left: 20px;
-	padding-bottom: 20px;
-}
+				@include mq(1024px) {
+					height: 50px;
+					flex: 0.5;
+				}
 
-.tag {
-	font-family: var(--Livvic), "Verdana";
-	list-style: none;
-	margin: 1rem 0;
-}
+				&:hover {
+					background-color: $light-blue;
+				}
 
-.tags {
-	background: var(--sky);
-	padding: 0rem 0.4rem;
-	border-radius: 3rem;
-	justify-content: space-evenly;
-	padding: 0.3rem;
-	margin-right: 10px;
-	margin-bottom: 10px;
-	display: inline-block;
-	border: solid 1px transparent;
-	transition: 0.3s ease-in-out;
-}
+				.text {
+					color: $white;
+					margin: auto;
+					font-size: $font-sm;
+					font-weight: 700;
 
-.tags:hover {
-	border-color: var(--text-light);
-}
+					@include mq(520px) {
+						font-size: $font-sm;
+					}
+				}
+			}
 
-.tag-text {
-	font-size: 15px;
+			.description {
+				.text {
+					margin: 0.5rem 0;
+				}
+			}
+		}
+
+		.footer {
+			.tags {
+				list-style: none;
+				margin: 1rem 0;
+				display: flex;
+				flex-wrap: wrap;
+				row-gap: 1rem;
+				column-gap: 0.5rem;
+
+				.tag {
+					@include whitePill;
+
+					.text {
+						font-size: $font-rg;
+					}
+				}
+			}
+		}
+	}
 }
