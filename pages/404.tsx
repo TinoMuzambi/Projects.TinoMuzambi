@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const NotFoundPage = () => (
-	<div className="not-found">
+	<main className="not-found">
 		<h1 className="four04-title">404</h1>
 		<p className="four04-body">
 			Looks like I&apos;m still working on that project.
@@ -14,7 +14,7 @@ const NotFoundPage = () => (
 		<Link href="/">
 			<a className="four04-redirect">Return to home</a>
 		</Link>
-	</div>
+	</main>
 );
 
 export default NotFoundPage;
