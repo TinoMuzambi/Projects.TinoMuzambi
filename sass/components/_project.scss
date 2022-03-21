@@ -8,6 +8,7 @@
 
 	&.featured {
 		grid-column: span 2;
+		box-shadow: 0 0 5px 2px rgba($color: $white, $alpha: 0.8);
 
 		@include mq(1024px) {
 			grid-column: span 1;
@@ -21,7 +22,7 @@
 	}
 
 	&:hover {
-		box-shadow: 0 0 2px rgba($color: $white, $alpha: 1);
+		box-shadow: 0 0 2px 2px rgba($color: $white, $alpha: 1);
 	}
 
 	.title {
