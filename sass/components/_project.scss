@@ -5,10 +5,19 @@
 	padding: 1rem;
 	box-shadow: 0 0 2px rgba($color: $white, $alpha: 0.5);
 	transition: 0.5s;
+	position: relative;
 
 	&.featured {
 		grid-column: span 2;
 		box-shadow: 0 0 5px 2px rgba($color: $white, $alpha: 0.8);
+
+		&::after {
+			content: "\2605";
+			position: absolute;
+			top: 1rem;
+			right: 1rem;
+			color: rgba($color: gold, $alpha: 0.5);
+		}
 
 		@include mq(1024px) {
 			grid-column: span 1;
@@ -23,6 +32,10 @@
 
 	&:hover {
 		box-shadow: 0 0 2px 2px rgba($color: $white, $alpha: 1);
+
+		&::after {
+			color: rgba($color: gold, $alpha: 1);
+		}
 	}
 
 	.title {
