@@ -28,12 +28,14 @@ const Tags: React.FC<TagsProps> = ({ filteredProjects }): JSX.Element => {
 				title={`${title} | Projects.TinoMuzambi`}
 				description={`All ${title} projects on Projects.TinoMuzambi`}
 			/>
-			<h1 className="project-title">{title}</h1>
-			<div className="projects" data-aos="fade-up">
-				{filteredProjects.map((project, key) => (
-					<Project project={project} key={key} />
-				))}
-			</div>
+			<main className="tags-page">
+				<h1>{title}</h1>
+				<div className="projects" data-aos="fade-up">
+					{filteredProjects.map((project, key) => (
+						<Project project={project} key={key} />
+					))}
+				</div>
+			</main>
 		</>
 	);
 };
