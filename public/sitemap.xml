@@ -1,0 +1,499 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+		<!--	created with www.mysitemapgenerator.com	-->
+		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+	<loc>https://projects.tinomuzambi.com/</loc>
+	<lastmod>2022-03-21T19:59:52+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags</loc>
+	<lastmod>2022-03-21T19:59:52+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/featured</loc>
+	<lastmod>2022-03-21T19:59:52+01:00</lastmod>
+	<priority>0.2</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/showcase/landon-hotel</loc>
+	<lastmod>2022-03-21T19:59:55+01:00</lastmod>
+	<priority>0.1</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/showcase/tailwind-expo</loc>
+	<lastmod>2022-03-21T19:59:55+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/showcase/recomments</loc>
+	<lastmod>2022-03-21T19:59:55+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/showcase/ml-video-annotations</loc>
+	<lastmod>2022-03-21T19:59:55+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/showcase/cubingalgos</loc>
+	<lastmod>2022-03-21T19:59:55+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/showcase/tinomuzambi</loc>
+	<lastmod>2022-03-21T19:59:55+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/showcase/working-with-clash</loc>
+	<lastmod>2022-03-21T19:59:55+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/showcase/table-time</loc>
+	<lastmod>2022-03-21T19:59:55+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/showcase/projects.tinomuzambi</loc>
+	<lastmod>2022-03-21T19:59:55+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/showcase/whatsapp-analyser</loc>
+	<lastmod>2022-03-21T19:59:55+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/showcase/blog.tinomuzambi</loc>
+	<lastmod>2022-03-21T19:59:55+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/aws</loc>
+	<lastmod>2022-03-21T19:59:55+01:00</lastmod>
+	<priority>0.1</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/amplify</loc>
+	<lastmod>2022-03-21T19:59:55+01:00</lastmod>
+	<priority>0.1</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/lambda</loc>
+	<lastmod>2022-03-21T19:59:55+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/serverless</loc>
+	<lastmod>2022-03-21T19:59:55+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/dynamodb</loc>
+	<lastmod>2022-03-21T19:59:55+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/api-gateway</loc>
+	<lastmod>2022-03-21T19:59:55+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/typescript</loc>
+	<lastmod>2022-03-21T19:59:56+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/react</loc>
+	<lastmod>2022-03-21T19:59:56+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/sass</loc>
+	<lastmod>2022-03-21T19:59:56+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/api</loc>
+	<lastmod>2022-03-21T19:59:56+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/youtube</loc>
+	<lastmod>2022-03-21T19:59:56+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/google</loc>
+	<lastmod>2022-03-21T19:59:56+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/mongodb</loc>
+	<lastmod>2022-03-21T19:59:56+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/nodemailer</loc>
+	<lastmod>2022-03-21T19:59:56+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/ssr</loc>
+	<lastmod>2022-03-21T19:59:56+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/vercel</loc>
+	<lastmod>2022-03-21T19:59:56+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/machine%20learning</loc>
+	<lastmod>2022-03-21T19:59:57+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/classification</loc>
+	<lastmod>2022-03-21T19:59:57+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/video</loc>
+	<lastmod>2022-03-21T19:59:57+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/javascript</loc>
+	<lastmod>2022-03-21T19:59:57+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/html</loc>
+	<lastmod>2022-03-21T19:59:57+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/ml5js</loc>
+	<lastmod>2022-03-21T19:59:57+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/p5js</loc>
+	<lastmod>2022-03-21T19:59:57+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/teachable%20machine</loc>
+	<lastmod>2022-03-21T19:59:57+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/obs%20studio</loc>
+	<lastmod>2022-03-21T19:59:57+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/css</loc>
+	<lastmod>2022-03-21T19:59:57+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/firebase</loc>
+	<lastmod>2022-03-21T19:59:57+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/netlify</loc>
+	<lastmod>2022-03-21T19:59:57+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/yarn</loc>
+	<lastmod>2022-03-21T19:59:58+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/gsap</loc>
+	<lastmod>2022-03-21T19:59:58+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/svg</loc>
+	<lastmod>2022-03-21T19:59:58+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/content%20management%20system</loc>
+	<lastmod>2022-03-21T19:59:58+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/cms</loc>
+	<lastmod>2022-03-21T19:59:58+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/nextjs</loc>
+	<lastmod>2022-03-21T19:59:58+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/tailwindcss</loc>
+	<lastmod>2022-03-21T19:59:58+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/npm</loc>
+	<lastmod>2022-03-21T19:59:58+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/jsx</loc>
+	<lastmod>2022-03-21T19:59:58+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/heroku</loc>
+	<lastmod>2022-03-21T19:59:58+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/sports</loc>
+	<lastmod>2022-03-21T19:59:58+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/table%20tennis</loc>
+	<lastmod>2022-03-21T19:59:58+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/mern</loc>
+	<lastmod>2022-03-21T19:59:58+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/nodejs</loc>
+	<lastmod>2022-03-21T19:59:58+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/pusher</loc>
+	<lastmod>2022-03-21T19:59:58+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/full-stack</loc>
+	<lastmod>2022-03-21T19:59:58+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/express</loc>
+	<lastmod>2022-03-21T19:59:58+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/clash%20of%20clans</loc>
+	<lastmod>2022-03-21T19:59:58+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/formik</loc>
+	<lastmod>2022-03-21T19:59:58+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/json</loc>
+	<lastmod>2022-03-21T19:59:59+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/godaddy</loc>
+	<lastmod>2022-03-21T19:59:59+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/storyblok</loc>
+	<lastmod>2022-03-21T19:59:59+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/scss</loc>
+	<lastmod>2022-03-21T19:59:59+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/responsive</loc>
+	<lastmod>2022-03-21T19:59:59+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/custom%20components</loc>
+	<lastmod>2022-03-21T19:59:59+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/firestore</loc>
+	<lastmod>2022-03-21T19:59:59+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/dark%20mode</loc>
+	<lastmod>2022-03-21T19:59:59+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/flask</loc>
+	<lastmod>2022-03-21T20:00:00+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/python</loc>
+	<lastmod>2022-03-21T20:00:00+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/bootstrap</loc>
+	<lastmod>2022-03-21T20:00:00+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/showcase/paystack</loc>
+	<lastmod>2022-03-21T20:00:00+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/showcase/colour-schemes</loc>
+	<lastmod>2022-03-21T20:00:01+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/showcase/clash-ratios</loc>
+	<lastmod>2022-03-21T20:00:01+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/showcase/marvel-characters</loc>
+	<lastmod>2022-03-21T20:00:01+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/showcase/tweet-streams</loc>
+	<lastmod>2022-03-21T20:00:01+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/showcase/next-blog</loc>
+	<lastmod>2022-03-21T20:00:01+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/showcase/twibot</loc>
+	<lastmod>2022-03-21T20:00:02+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/showcase/remove-contractions</loc>
+	<lastmod>2022-03-21T20:00:05+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/showcase/amount-divider</loc>
+	<lastmod>2022-03-21T20:00:05+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/showcase/automate-mail</loc>
+	<lastmod>2022-03-21T20:00:14+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/paystack</loc>
+	<lastmod>2022-03-21T20:00:15+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/react%20native</loc>
+	<lastmod>2022-03-21T20:00:15+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/mobile</loc>
+	<lastmod>2022-03-21T20:00:15+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/expo</loc>
+	<lastmod>2022-03-21T20:00:15+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/android</loc>
+	<lastmod>2022-03-21T20:00:15+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/ios</loc>
+	<lastmod>2022-03-21T20:00:15+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/socketio</loc>
+	<lastmod>2022-03-21T20:00:16+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/socket.io</loc>
+	<lastmod>2022-03-21T20:00:16+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/twitter</loc>
+	<lastmod>2022-03-21T20:00:16+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/server-side-rendering</loc>
+	<lastmod>2022-03-21T20:00:16+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/seo</loc>
+	<lastmod>2022-03-21T20:00:16+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/bot</loc>
+	<lastmod>2022-03-21T20:00:16+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/email</loc>
+	<lastmod>2022-03-21T20:00:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/smtplib</loc>
+	<lastmod>2022-03-21T20:00:17+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/showcase/android-calculator</loc>
+	<lastmod>2022-03-21T20:00:18+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/kotlin</loc>
+	<lastmod>2022-03-21T20:00:19+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://projects.tinomuzambi.com/tags/xml</loc>
+	<lastmod>2022-03-21T20:00:19+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+</urlset>
