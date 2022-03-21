@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
 import { GetServerSideProps } from "next";
-import Link from "next/link";
 import AOS from "aos";
 
 import Project from "../components/Project";
@@ -11,6 +10,7 @@ import { AppContext } from "../context/AppContext";
 import { Project as P, ProjectsHolderProps } from "../interfaces";
 import { useRouter } from "next/router";
 import Tags from "../components/Tags";
+import "aos/dist/aos.css";
 
 const ProjectsHolder: React.FC<ProjectsHolderProps> = ({
 	projects,
