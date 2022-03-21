@@ -1,6 +1,7 @@
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import Meta from "../../components/Meta";
 
 import { ProjectsHolderProps, Project } from "../../interfaces";
 import { getProjects } from "../../utils/fetch";
@@ -20,13 +21,19 @@ const AllTags: React.FC<ProjectsHolderProps> = ({ projects }): JSX.Element => {
 		setLinks(linkTags);
 	}, [projects]);
 	return (
-		<main>
-			{links.map((link, key) => (
-				<Link key={key} href={`/tags/${link}`}>
-					<a className="card">{link}</a>
-				</Link>
-			))}
-		</main>
+		<>
+			<Meta
+				title="Tags | Projects.TinoMuzambi"
+				description="View languages, tools and technologies I've used in my projects."
+			/>
+			<main className="tags">
+				{links.map((link, key) => (
+					<Link key={key} href={`/tags/${link}`}>
+						<a className="card">{link}</a>
+					</Link>
+				))}
+			</main>
+		</>
 	);
 };
 
