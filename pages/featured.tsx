@@ -14,9 +14,10 @@ const Featured: React.FC<ProjectsHolderProps> = ({ projects }): JSX.Element => {
 			<main className="featured">
 				<h1>Featured Projects</h1>
 				<div className="cards">
-					{projects.map((project, key) => (
-						<Project project={project} key={key} />
-					))}
+					{projects.map((project, key) => {
+						if (project.featured)
+							return <Project project={project} key={key} />;
+					})}
 				</div>
 			</main>
 		</>
