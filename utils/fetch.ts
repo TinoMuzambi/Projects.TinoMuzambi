@@ -1,4 +1,5 @@
 import StoryblokClient from "storyblok-js-client";
+
 import { Project } from "../interfaces";
 
 const Storyblok = new StoryblokClient({
