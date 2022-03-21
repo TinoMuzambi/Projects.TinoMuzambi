@@ -26,12 +26,15 @@ const AllTags: React.FC<ProjectsHolderProps> = ({ projects }): JSX.Element => {
 				title="Tags | Projects.TinoMuzambi"
 				description="View languages, tools and technologies I've used in my projects."
 			/>
-			<main className="tags">
-				{links.map((link, key) => (
-					<Link key={key} href={`/tags/${link}`}>
-						<a className="card">{link}</a>
-					</Link>
-				))}
+			<main className="tags-page">
+				<h1>Tags</h1>
+				<div className="cards">
+					{links.map((link, key) => (
+						<Link key={key} href={`/tags/${link}`}>
+							<a className="card">{link}</a>
+						</Link>
+					))}
+				</div>
 			</main>
 		</>
 	);
