@@ -50,6 +50,7 @@ export type Project = {
 	github: string;
 	keywords: string[];
 	image: string;
+	featured?: boolean;
 };
 
 export interface ContextProps {
