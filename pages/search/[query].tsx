@@ -1,5 +1,6 @@
 import { useContext, useEffect } from "react";
 import { useRouter } from "next/router";
+
 import { AppContext } from "../../context/AppContext";
 
 const OpenSearch: React.FC = (): JSX.Element => {

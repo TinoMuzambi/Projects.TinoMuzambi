@@ -1,8 +1,8 @@
+import { useEffect, useState } from "react";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import Meta from "../../components/Meta";
 
+import Meta from "../../components/Meta";
 import { ProjectsHolderProps, Project } from "../../interfaces";
 import { getProjects } from "../../utils/fetch";
 import { applyFilters } from "../../utils/helpers";

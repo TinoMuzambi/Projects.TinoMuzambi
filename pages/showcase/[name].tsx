@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import Link from "next/link";
+import { GetStaticPaths, GetStaticProps } from "next";
 
 import { nameParam, Project, ShowcaseProps } from "../../interfaces";
 import Meta from "../../components/Meta";
 import { getProjects } from "../../utils/fetch";
-import { GetStaticPaths, GetStaticProps } from "next";
 
 const ShowCase: React.FC<ShowcaseProps> = ({ project }): JSX.Element => {
 	useEffect(() => {

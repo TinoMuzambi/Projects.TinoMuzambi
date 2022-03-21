@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { GetStaticPaths, GetStaticProps } from "next";
 
 import Meta from "../../components/Meta";
 import Project from "../../components/Project";
 import { nameParam, Project as P, TagsProps } from "../../interfaces";
-import { GetStaticPaths, GetStaticProps } from "next";
 import { getProjects } from "../../utils/fetch";
 
 const Tags: React.FC<TagsProps> = ({ filteredProjects }): JSX.Element => {

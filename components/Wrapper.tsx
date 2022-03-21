@@ -1,7 +1,6 @@
 import { AppProvider } from "../context/AppContext";
 import { WrapperProps } from "../interfaces";
 import Footer from "./Footer";
-
 import Meta from "./Meta";
 import NavBar from "./NavBar";
 
