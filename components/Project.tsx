@@ -5,16 +5,7 @@ import { ProjectProps } from "../interfaces";
 
 const Project: React.FC<ProjectProps> = ({ project }): JSX.Element => (
 	<>
-		<motion.div
-			className={`card${
-				project.title === "ReComments" ||
-				project.title === "Landon Hotel" ||
-				project.title === "Table Time"
-					? " featured"
-					: ""
-			}`}
-			layout
-		>
+		<motion.div className={`card${project.featured ? " featured" : ""}`} layout>
 			<Link href={`/showcase/${project.name}`}>
 				<a>
 					<h2 className="title">{project.title}</h2>
