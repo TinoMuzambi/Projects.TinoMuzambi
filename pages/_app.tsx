@@ -18,6 +18,7 @@ const MyApp: Function = ({ Component, pageProps }: AppProps) => {
 		};
 		if (process.env.NODE_ENV === "production") disableReactDevTools();
 	}, []);
+
 	return (
 		<Wrapper>
 			<Component {...pageProps} />
