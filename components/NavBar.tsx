@@ -20,10 +20,10 @@ const NavBar: React.FC = (): JSX.Element => {
 				</Link>
 				<div className="secondary">
 					<Link href="/tags">
-						<a>Tags</a>
+						<a className="link">Tags</a>
 					</Link>
 					<Link href="/featured">
-						<a>Featured</a>
+						<a className="link">Featured</a>
 					</Link>
 				</div>
 			</nav>

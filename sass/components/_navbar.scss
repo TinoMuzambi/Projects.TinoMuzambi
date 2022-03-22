@@ -34,7 +34,7 @@
 			gap: 1rem;
 		}
 
-		a {
+		a.link {
 			font-weight: normal;
 			font-size: inherit;
 
@@ -43,7 +43,7 @@
 			}
 
 			:hover {
-				color: red !important;
+				color: $light-blue !important;
 			}
 		}
 	}
