@@ -1,28 +1,23 @@
 @use "../abstracts/" as *;
 
 .not-found {
-	display: block;
+	text-align: center;
 
 	.four04-title {
-		margin: 0;
 		font-size: $font-xxxl;
-		text-align: center;
 	}
 
 	.four04-body {
 		font-size: $font-lg;
-		text-align: center;
+	}
+
+	.four04-body2 {
+		font-size: $font-md;
 	}
 
 	.four04-redirect {
-		margin: 7px;
-		text-align: center;
+		margin: 2rem;
+		display: block;
 		text-decoration: underline;
-
-		.four04-body2 {
-			margin: 0;
-			font-size: $font-md;
-			text-align: center;
-		}
 	}
 }
