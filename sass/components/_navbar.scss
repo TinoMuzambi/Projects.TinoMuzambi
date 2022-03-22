@@ -3,6 +3,7 @@
 .nav {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 	margin: 1rem 0;
 	font-size: $font-sm;
 	padding-bottom: 1rem;
@@ -13,7 +14,7 @@
 		gap: 0.5rem;
 	}
 
-	a:first-of-type {
+	a {
 		font-weight: bold;
 		font-size: $font-ml;
 		padding: 0.2rem 0.5rem;
@@ -26,24 +27,18 @@
 	}
 
 	.secondary {
-		display: flex;
-		align-items: center;
-		gap: 2rem;
-
-		@include mq(1024px) {
-			gap: 1rem;
-		}
-
 		a.link {
+			display: block;
 			font-weight: normal;
 			font-size: inherit;
 
-			@include mq(1024px) {
-				font-size: $font-rg;
+			:hover {
+				text-decoration: underline;
+				color: $light-blue !important;
 			}
 
-			:hover {
-				color: $light-blue !important;
+			@include mq(1024px) {
+				font-size: $font-rg;
 			}
 		}
 	}

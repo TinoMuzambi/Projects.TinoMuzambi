@@ -19,11 +19,8 @@ const NavBar: React.FC = (): JSX.Element => {
 					</a>
 				</Link>
 				<div className="secondary">
-					<Link href="/tags">
-						<a className="link">Tags</a>
-					</Link>
 					<Link href="/featured">
-						<a className="link">Featured</a>
+						<a className="link">Featured Projects</a>
 					</Link>
 				</div>
 			</nav>
