@@ -7,11 +7,13 @@ const Tags: React.FC<HomeTagsProps> = ({ links }): JSX.Element => {
 		<div className="tags">
 			<h1>Tags</h1>
 			<div className="quick-links" data-aos="fade-up">
-				{links.map((i, key) => (
-					<Link key={key} href={`/tags/${i}`}>
-						<a className="tag">{i}</a>
-					</Link>
-				))}
+				{links
+					.sort((a, b) => b.length - a.length)
+					.map((i, key) => (
+						<Link key={key} href={`/tags/${i}`}>
+							<a className="tag">{i}</a>
+						</Link>
+					))}
 			</div>
 		</div>
 	);
