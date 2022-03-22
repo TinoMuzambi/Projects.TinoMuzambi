@@ -23,10 +23,6 @@
 		@include mq(1024px) {
 			font-size: $font-rg;
 		}
-
-		&:hover {
-			box-shadow: 0 0 2px rgba($color: $white, $alpha: 0.5);
-		}
 	}
 
 	.secondary {
@@ -39,12 +35,15 @@
 		}
 
 		a {
-			@include whitePill;
 			font-weight: normal;
 			font-size: inherit;
 
 			@include mq(1024px) {
 				font-size: $font-rg;
+			}
+
+			:hover {
+				color: red !important;
 			}
 		}
 	}
