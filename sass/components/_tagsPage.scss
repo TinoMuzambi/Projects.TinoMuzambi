@@ -9,9 +9,9 @@
 		display: flex;
 		gap: 1rem;
 		flex-wrap: wrap;
+	}
 
-		.card {
-			width: fit-content;
-		}
+	.card.featured {
+		grid-column: span 1;
 	}
 }
