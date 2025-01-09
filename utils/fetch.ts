@@ -13,7 +13,8 @@ const Storyblok = new StoryblokClient({
 export const getProjects = async (): Promise<Project[]> => {
 	let projects: any[] = [];
 
-	await Storyblok.get("cdn/stories?starts_with=projects/", {
+	await Storyblok.get("cdn/stories", {
+		starts_with: "projects/",
 		sort_by: "created_at:desc",
 	})
 		.then((response) => {
