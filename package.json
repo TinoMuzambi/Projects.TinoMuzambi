@@ -5,7 +5,7 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",
-		"test": "ts-node --project tests/tsconfig.json tests/projects.test.ts",
+		"test": "TS_NODE_PROJECT=tests/tsconfig.json uvu tests -r ts-node/register",
 		"type-check": "tsc"
 	},
 	"dependencies": {
