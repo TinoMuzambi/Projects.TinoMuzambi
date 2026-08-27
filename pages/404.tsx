@@ -14,8 +14,8 @@ const NotFoundPage = () => (
 				<a href="https://www.linkedin.com/in/tinomuzambi/">LinkedIn.</a>
 			</p>
 			<p className="four04-body2">or</p>
-			<Link href="/">
-				<a className="four04-redirect">Return to home</a>
+			<Link href="/" className="four04-redirect">
+				Return to home
 			</Link>
 		</main>
 	</>

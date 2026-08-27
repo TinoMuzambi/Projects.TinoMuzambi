@@ -54,8 +54,8 @@ const ShowCase: React.FC<ShowcaseProps> = ({ project }): JSX.Element => {
 						<ul className="tags">
 							{project?.keywords.map((keyword: string, key: number) => (
 								<li className="tag" key={key}>
-									<Link href={`/tags/${keyword}`}>
-										<a className="text">{keyword}</a>
+									<Link href={`/tags/${keyword}`} className="text">
+										{keyword}
 									</Link>
 								</li>
 							))}

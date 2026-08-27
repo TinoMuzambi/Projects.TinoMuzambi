@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useMemo } from "react";
 import { GetServerSideProps } from "next";
 import AOS from "aos";
 
@@ -7,7 +7,7 @@ import SearchProjects from "../components/SearchProjects";
 import { applyFilters } from "../utils/helpers";
 import { loadProjectsPageProps } from "../utils/fetch";
 import { AppContext } from "../context/AppContext";
-import { Project as P, ProjectsHolderProps } from "../interfaces";
+import { ProjectsHolderProps } from "../interfaces";
 import { useRouter } from "next/router";
 import Tags from "../components/Tags";
 import "aos/dist/aos.css";
@@ -15,8 +15,6 @@ import "aos/dist/aos.css";
 const ProjectsHolder: React.FC<ProjectsHolderProps> = ({
 	projects,
 }): JSX.Element => {
-	const [filteredProjects, setFilteredProjects] = useState<P[]>([]);
-	const [links, setLinks] = useState<string[]>([]);
 	const router = useRouter();
 	const { setProjects, queryText, setQueryText } = useContext(AppContext);
 
@@ -28,8 +26,12 @@ const ProjectsHolder: React.FC<ProjectsHolderProps> = ({
 	}, [projects]);
 
 	useEffect(() => {
-		if (router.query.text) {
-			if (setQueryText) setQueryText(router.query.text);
+		const routeText = router.query.text;
+
+		if (typeof routeText === "string") {
+			if (setQueryText) setQueryText(routeText);
+		} else if (routeText?.[0]) {
+			if (setQueryText) setQueryText(routeText[0]);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [router.query.text]);
@@ -38,26 +40,23 @@ const ProjectsHolder: React.FC<ProjectsHolderProps> = ({
 		if (setQueryText) setQueryText(query);
 	};
 
-	useEffect(() => {
-		setFilteredProjects(
-			projects.filter((eachItem) => {
-				return (
-					eachItem.title.toLowerCase().includes(queryText.toLowerCase()) ||
-					eachItem.keywords.join().includes(queryText.toLowerCase())
-				);
-			})
-		);
+	const filteredProjects = useMemo(() => {
+		const normalizedQuery = queryText.toLowerCase();
+
+		return projects.filter((project) => {
+			return (
+				project.title.toLowerCase().includes(normalizedQuery) ||
+				project.keywords.join().includes(normalizedQuery)
+			);
+		});
 	}, [projects, queryText]);
 
-	useEffect(() => {
-		let linkTags: string[] = [];
-		projects.forEach((project) => {
-			project.keywords.forEach((keyword: string) => linkTags.push(keyword));
-		});
-		linkTags = Array.from(new Set(linkTags));
+	const links = useMemo(() => {
+		const uniqueTags = Array.from(
+			new Set(projects.flatMap((project) => project.keywords))
+		);
 
-		linkTags = applyFilters(linkTags);
-		setLinks(linkTags);
+		return applyFilters(uniqueTags);
 	}, [projects]);
 
 	return (

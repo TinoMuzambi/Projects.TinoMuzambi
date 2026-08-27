@@ -13,7 +13,7 @@ export const AppContext = createContext<ContextProps>(initialState);
 export const AppProvider = ({ children }: AppProviderProps): JSX.Element => {
 	const [state, dispatch] = useReducer(AppReducer, initialState);
 
-	const setProjects: Function = (value: Project[]) => {
+	const setProjects = (value: Project[]): void => {
 		dispatch({
 			type: "SET_PROJECTS",
 			projects: value,
@@ -21,7 +21,7 @@ export const AppProvider = ({ children }: AppProviderProps): JSX.Element => {
 		});
 	};
 
-	const setQueryText: Function = (value: string) => {
+	const setQueryText = (value: string): void => {
 		dispatch({
 			type: "SET_QUERY_TEXT",
 			queryText: value,

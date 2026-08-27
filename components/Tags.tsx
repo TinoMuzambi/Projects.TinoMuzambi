@@ -10,8 +10,8 @@ const Tags: React.FC<HomeTagsProps> = ({ links }): JSX.Element => {
 				{links
 					.sort((a, b) => a.localeCompare(b))
 					.map((i, key) => (
-						<Link key={key} href={`/tags/${i}`}>
-							<a className="tag">{i}</a>
+						<Link key={key} href={`/tags/${i}`} className="tag">
+							{i}
 						</Link>
 					))}
 			</div>

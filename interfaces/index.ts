@@ -1,7 +1,8 @@
 import { ParsedUrlQuery } from "querystring";
+import { ReactNode } from "react";
 
 export interface WrapperProps {
-	children: JSX.Element | JSX.Element[];
+	children: ReactNode;
 }
 
 export interface MetaProps {
@@ -13,7 +14,7 @@ export interface MetaProps {
 }
 
 export interface NavBarProps {
-	setQueryText: Function;
+	setQueryText: (query: string) => void;
 }
 
 export interface ProjectProps {
@@ -22,7 +23,7 @@ export interface ProjectProps {
 
 export interface SearchProjectsProps {
 	query: string;
-	searchProj: Function;
+	searchProj: (query: string) => void;
 }
 
 export interface ShowcaseProps {
@@ -54,13 +55,13 @@ export type Project = {
 
 export interface ContextProps {
 	projects: Project[];
-	setProjects?: Function;
+	setProjects?: (projects: Project[]) => void;
 	queryText: string;
-	setQueryText?: Function;
+	setQueryText?: (query: string) => void;
 }
 
 export interface AppProviderProps {
-	children: JSX.Element[] | JSX.Element;
+	children: ReactNode;
 }
 
 export type State = {

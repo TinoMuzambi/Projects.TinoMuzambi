@@ -4,7 +4,7 @@ This Next.js application is a landing page for projects by Tino Muzambi. Storybl
 
 ## Prerequisites
 
-- Node.js 22.x
+- Node.js 22.13 or newer within the 22.x release line
 - Yarn Classic 1.22.22
 
 The Node requirement and Yarn version are declared in `package.json`. Yarn enforces the Node requirement during installation, while GitHub Actions and Vercel read the same manifest, keeping the runtime contract aligned. Keep `yarn.lock` when changing dependencies.

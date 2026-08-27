@@ -1,24 +1,33 @@
-import { useContext, useEffect } from "react";
-import { useRouter } from "next/router";
+import { GetServerSideProps } from "next";
 
-import { AppContext } from "../../context/AppContext";
+export const getSearchDestination = (
+	query: string | string[] | undefined
+): string => {
+	const searchText = Array.isArray(query) ? query[0] : query ?? "";
 
-const OpenSearch: React.FC = (): JSX.Element => {
-	const router = useRouter();
-	const { setQueryText } = useContext(AppContext);
-
-	useEffect(() => {
-		const query = router.asPath.substring(8);
-		if (setQueryText) setQueryText(query);
-		router.push("/", {
-			query: {
-				text: query,
-			},
-		});
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [router.pathname, setQueryText]);
-
-	return <></>;
+	return `/?text=${encodeURIComponent(searchText)}`;
 };
+
+type SearchRedirect = {
+	redirect: {
+		destination: string;
+		permanent: false;
+	};
+};
+
+export const createSearchRedirect = (
+	query: string | string[] | undefined
+): SearchRedirect => ({
+	redirect: {
+		destination: getSearchDestination(query),
+		permanent: false,
+	},
+});
+
+const OpenSearch: React.FC = (): null => null;
+
+export const getServerSideProps: GetServerSideProps<
+	Record<string, never>
+> = async ({ params }) => createSearchRedirect(params?.query);
 
 export default OpenSearch;
