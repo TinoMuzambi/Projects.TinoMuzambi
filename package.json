@@ -4,6 +4,8 @@
 		"dev": "next",
 		"build": "next build",
 		"start": "next start",
+		"lint": "next lint",
+		"test": "playwright test",
 		"type-check": "tsc"
 	},
 	"dependencies": {
@@ -17,6 +19,7 @@
 		"storyblok-js-client": "^4.2.1"
 	},
 	"devDependencies": {
+		"@playwright/test": "1.62.1",
 		"@types/aos": "^3.0.4",
 		"@types/node": "latest",
 		"@types/react": "latest",
