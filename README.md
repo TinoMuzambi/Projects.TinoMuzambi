@@ -7,7 +7,7 @@ This Next.js application is a landing page for projects by Tino Muzambi. Storybl
 - Node.js 22.x
 - Yarn Classic 1.22.22
 
-The Node major matches the Vercel project and GitHub Actions. The Yarn version is declared in `package.json`; keep `yarn.lock` when changing dependencies.
+The Node requirement and Yarn version are declared in `package.json`. Yarn enforces the Node requirement during installation, while GitHub Actions and Vercel read the same manifest, keeping the runtime contract aligned. Keep `yarn.lock` when changing dependencies.
 
 ## Local setup
 
