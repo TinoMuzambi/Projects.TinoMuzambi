@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-import { ProjectProps } from "../interfaces";
+import type { ProjectProps } from "../interfaces";
 
 const Project: React.FC<ProjectProps> = ({ project }): JSX.Element => (
 	<motion.div className={`card${project.featured ? " featured" : ""}`} layout>

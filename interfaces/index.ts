@@ -1,5 +1,5 @@
-import { ParsedUrlQuery } from "querystring";
-import { ReactNode } from "react";
+import type { ParsedUrlQuery } from "querystring";
+import type { ReactNode } from "react";
 
 export interface WrapperProps {
 	children: ReactNode;
@@ -11,10 +11,6 @@ export interface MetaProps {
 	keywords?: string;
 	url?: string;
 	image?: string;
-}
-
-export interface NavBarProps {
-	setQueryText: (query: string) => void;
 }
 
 export interface ProjectProps {
@@ -46,35 +42,33 @@ export type Project = {
 	name: string;
 	shortname: string;
 	title: string;
-	content: string[];
+	content: [string, ...string[]];
 	link: string;
 	github: string;
 	keywords: string[];
-	featured?: boolean;
+	featured: boolean;
 };
 
 export interface ContextProps {
 	projects: Project[];
-	setProjects?: (projects: Project[]) => void;
+	setProjects: (projects: Project[]) => void;
 	queryText: string;
-	setQueryText?: (query: string) => void;
+	setQueryText: (query: string) => void;
 }
 
 export interface AppProviderProps {
 	children: ReactNode;
 }
 
-export type State = {
+export type AppState = {
 	projects: Project[];
 	queryText: string;
 };
 
-export type Actions = {
-	type: "SET_PROJECTS" | "SET_QUERY_TEXT";
-	projects: Project[];
-	queryText: string;
-};
+export type AppAction =
+	| { type: "SET_PROJECTS"; projects: Project[] }
+	| { type: "SET_QUERY_TEXT"; queryText: string };
 
-export interface nameParam extends ParsedUrlQuery {
+export interface NameParams extends ParsedUrlQuery {
 	name: string;
 }

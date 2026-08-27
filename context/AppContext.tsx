@@ -1,33 +1,40 @@
-import { createContext, useReducer } from "react";
+import { createContext, useCallback, useReducer } from "react";
 
 import AppReducer from "./AppReducer";
-import { AppProviderProps, ContextProps, Project } from "../interfaces";
+import type {
+	AppProviderProps,
+	AppState,
+	ContextProps,
+	Project,
+} from "../interfaces";
 
-const initialState: ContextProps = {
+const initialState: AppState = {
 	projects: [],
 	queryText: "",
 };
 
-export const AppContext = createContext<ContextProps>(initialState);
+export const AppContext = createContext<ContextProps>({
+	...initialState,
+	setProjects: () => undefined,
+	setQueryText: () => undefined,
+});
 
 export const AppProvider = ({ children }: AppProviderProps): JSX.Element => {
 	const [state, dispatch] = useReducer(AppReducer, initialState);
 
-	const setProjects = (value: Project[]): void => {
+	const setProjects = useCallback((value: Project[]): void => {
 		dispatch({
 			type: "SET_PROJECTS",
 			projects: value,
-			queryText: state.queryText,
 		});
-	};
+	}, []);
 
-	const setQueryText = (value: string): void => {
+	const setQueryText = useCallback((value: string): void => {
 		dispatch({
 			type: "SET_QUERY_TEXT",
 			queryText: value,
-			projects: state.projects,
 		});
-	};
+	}, []);
 
 	return (
 		<AppContext.Provider

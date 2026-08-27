@@ -9,12 +9,7 @@ const NavBar: React.FC = (): JSX.Element => {
 	return (
 		<header>
 			<nav className="nav">
-				<Link
-					href="/"
-					onClick={() => {
-						if (setQueryText) setQueryText("");
-					}}
-				>
+				<Link href="/" onClick={() => setQueryText("")}>
 					Projects.TinoMuzambi
 				</Link>
 				<div className="secondary">

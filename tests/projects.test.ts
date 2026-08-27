@@ -14,6 +14,12 @@ import {
 
 const projects = suite("Storyblok projects");
 
+const assertProjectRequestError: (
+	error: unknown
+) => asserts error is ProjectRequestError = (error) => {
+	assert(error instanceof ProjectRequestError);
+};
+
 const projectContent = {
 	name: "projects.tinomuzambi",
 	shortname: "PT",
@@ -64,6 +70,7 @@ projects("preserves the existing false default for featured projects", () => {
 	};
 	delete contentWithoutFeatured.featured;
 	const [project] = parseProjectStories([projectStory(contentWithoutFeatured)]);
+	assert(project);
 
 	assert.equal(project.name, "projects.tinomuzambi");
 	assert.equal(project.featured, false);
@@ -74,6 +81,7 @@ projects("preserves legacy truthiness for optional featured values", () => {
 		const [project] = parseProjectStories([
 			projectStory({ ...projectContent, featured }),
 		]);
+		assert(project);
 		assert.equal(project.featured, false);
 	}
 
@@ -81,6 +89,7 @@ projects("preserves legacy truthiness for optional featured values", () => {
 		const [project] = parseProjectStories([
 			projectStory({ ...projectContent, featured }),
 		]);
+		assert(project);
 		assert.equal(project.featured, true);
 	}
 });
@@ -112,7 +121,8 @@ projects("reports request failures without upstream error details", async () => 
 		throw upstreamError;
 	});
 
-	await assert.rejects(getProjects, (error: ProjectRequestError) => {
+	await assert.rejects(getProjects, (error: unknown) => {
+		assertProjectRequestError(error);
 		assert.equal(error.name, "ProjectRequestError");
 		assert.equal(error.message, "Unable to load projects from Storyblok.");
 		assert.equal(error.message.includes(upstreamMessage), false);
@@ -140,7 +150,8 @@ projects("drops hostile values from request diagnostics", async () => {
 		throw upstreamError;
 	});
 
-	await assert.rejects(getProjects, (error: ProjectRequestError) => {
+	await assert.rejects(getProjects, (error: unknown) => {
+		assertProjectRequestError(error);
 		assert.equal(error.cause.name, "StoryblokError");
 		assert.equal(error.cause.status, 401);
 		assert.equal(error.transient, false);
@@ -165,7 +176,8 @@ projects("keeps genuine transport failures transient and private", async () => {
 		createStoryblokProjectFetcher(client, () => "fixture-token")
 	);
 
-	await assert.rejects(getProjects, (error: ProjectRequestError) => {
+	await assert.rejects(getProjects, (error: unknown) => {
+		assertProjectRequestError(error);
 		assert.equal(error.cause.name, "StoryblokError");
 		assert.equal(error.cause.status, 599);
 		assert.equal(error.transient, true);
@@ -207,7 +219,8 @@ projects("fails closed for malformed Storyblok response bodies", async () => {
 
 	await assert.rejects(
 		loadProjectsPageProps,
-		(error: ProjectRequestError) => {
+		(error: unknown) => {
+			assertProjectRequestError(error);
 			assert.equal(error.cause.name, "StoryblokError");
 			assert.equal(error.cause.status, undefined);
 			assert.equal(error.transient, false);
@@ -230,7 +243,8 @@ projects("adapts Storyblok v7 HTTP failures without leaking responses", async ()
 		createStoryblokProjectFetcher(client, () => "fixture-token")
 	);
 
-	await assert.rejects(getProjects, (error: ProjectRequestError) => {
+	await assert.rejects(getProjects, (error: unknown) => {
+		assertProjectRequestError(error);
 		assert.equal(error.cause.name, "StoryblokError");
 		assert.equal(error.cause.status, 503);
 		assert.equal(error.transient, true);
@@ -339,7 +353,8 @@ projects("names a missing Storyblok variable without exposing a value", async ()
 
 	await assert.rejects(
 		createGetProjects(fetchProjectStories),
-		(error: Error) => {
+		(error: unknown) => {
+			assert(error instanceof Error);
 			assert.equal(error.name, "ProjectConfigurationError");
 			assert.equal(
 				error.message,
@@ -406,7 +421,8 @@ projects("refreshes and isolates the last successful SSR payload", async () => {
 	);
 
 	const isolatedLoader = createProjectsPagePropsLoader(getProjects);
-	await assert.rejects(isolatedLoader, (error: ProjectRequestError) => {
+	await assert.rejects(isolatedLoader, (error: unknown) => {
+		assertProjectRequestError(error);
 		assert.equal(error.cause.status, 599);
 		return true;
 	});
@@ -464,7 +480,8 @@ projects("does not hide implementation failures behind the SSR cache", async () 
 
 	await assert.rejects(
 		loadProjectsPageProps,
-		(error: ProjectRequestError) => {
+		(error: unknown) => {
+			assertProjectRequestError(error);
 			assert.equal(error.cause.name, "TypeError");
 			assert.equal(error.transient, false);
 			return true;
