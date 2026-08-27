@@ -3,7 +3,9 @@ import type { GetServerSideProps } from "next";
 import AOS from "aos";
 
 import Project from "../components/Project";
-import SearchProjects from "../components/SearchProjects";
+import SearchProjects, {
+	NoSearchResults,
+} from "../components/SearchProjects";
 import { applyFilters } from "../utils/helpers";
 import { loadProjectsPageProps } from "../utils/fetch";
 import { AppContext } from "../context/AppContext";
@@ -66,7 +68,7 @@ const ProjectsHolder: React.FC<ProjectsHolderProps> = ({
 						<Project key={key} project={project} />
 					))
 				) : (
-					<h1>There are no projects that match that search term.</h1>
+					<NoSearchResults />
 				)}
 			</div>
 		</main>

@@ -4,7 +4,7 @@ footer {
 	@include flexAllCol;
 	gap: 0.5rem;
 
-	h4 {
+	.copyright {
 		justify-content: center;
 		font-weight: normal;
 

@@ -6,6 +6,7 @@ const SearchProjects: React.FC<SearchProjectsProps> = ({
 }): JSX.Element => {
 	return (
 		<input
+			aria-label="Search projects"
 			type="text"
 			placeholder="Search Projects"
 			value={query}
@@ -13,5 +14,11 @@ const SearchProjects: React.FC<SearchProjectsProps> = ({
 		/>
 	);
 };
+
+export const NoSearchResults: React.FC = (): JSX.Element => (
+	<p className="empty-results" role="status">
+		There are no projects that match that search term.
+	</p>
+);
 
 export default SearchProjects;

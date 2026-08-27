@@ -24,13 +24,13 @@ const AllTags: React.FC<ProjectsHolderProps> = ({ projects }): JSX.Element => {
 			/>
 			<main className="tags-page">
 				<h1>Tags</h1>
-				<div className="cards">
+				<nav className="cards" aria-label="All project tags">
 					{links.map((link, key) => (
 						<Link key={key} href={`/tags/${link}`} className="card">
 							{link}
 						</Link>
 					))}
-				</div>
+				</nav>
 			</main>
 		</>
 	);

@@ -6,6 +6,15 @@
 	align-items: center;
 }
 
+.empty-results {
+	font-size: $font-ml;
+	font-weight: bold;
+
+	@include mq(520px) {
+		font-size: $font-rg;
+	}
+}
+
 .projects {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
