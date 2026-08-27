@@ -13,6 +13,7 @@ type ProjectRequestDiagnostic = {
 	status?: number;
 };
 type ReportStaleProjects = (error: ProjectRequestError) => void;
+const STORYBLOK_TRANSPORT_ERROR_STATUS = 599;
 
 type StoryblokProjectParams = Required<
 	Pick<ISbStoriesParams, "per_page" | "sort_by" | "starts_with" | "token">
@@ -36,6 +37,22 @@ export class ProjectConfigurationError extends Error {
 
 const isRecord = (value: unknown): value is UnknownRecord =>
 	typeof value === "object" && value !== null && !Array.isArray(value);
+
+export const createStoryblokFetch =
+	(request: typeof fetch): typeof fetch =>
+	async (...args) => {
+		try {
+			return await request(...args);
+		} catch {
+			return new Response(
+				JSON.stringify({ error: "Storyblok transport request failed." }),
+				{
+					headers: { "content-type": "application/json" },
+					status: STORYBLOK_TRANSPORT_ERROR_STATUS,
+				}
+			);
+		}
+	};
 
 const safeRequestDiagnostic = (error: unknown): ProjectRequestDiagnostic => {
 	const errorRecord = isRecord(error) ? error : {};
@@ -84,8 +101,8 @@ export class ProjectRequestError extends Error {
 		this.cause = new ProjectRequestCause(safeRequestDiagnostic(error));
 		this.transient =
 			this.cause.name === "StoryblokError" &&
-			(this.cause.status === undefined ||
-				this.cause.status === 429 ||
+			this.cause.status !== undefined &&
+			(this.cause.status === 429 ||
 				this.cause.status >= 500);
 		Object.setPrototypeOf(this, new.target.prototype);
 	}
@@ -226,6 +243,7 @@ const Storyblok = new StoryblokClient({
 		clear: "auto",
 		type: "memory",
 	},
+	fetch: createStoryblokFetch(fetch),
 });
 
 const fetchProjectStories = createStoryblokProjectFetcher(
