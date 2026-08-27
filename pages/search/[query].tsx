@@ -3,7 +3,7 @@ import { GetServerSideProps } from "next";
 export const getSearchDestination = (
 	query: string | string[] | undefined
 ): string => {
-	const searchText = Array.isArray(query) ? query[0] : query ?? "";
+	const searchText = (Array.isArray(query) ? query[0] : query) ?? "";
 
 	return `/?text=${encodeURIComponent(searchText)}`;
 };

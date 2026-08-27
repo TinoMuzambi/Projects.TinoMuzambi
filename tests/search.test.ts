@@ -21,4 +21,8 @@ search("safely encodes search text in the redirect", () => {
 	assert.equal(getSearchDestination("react native"), "/?text=react%20native");
 });
 
+search("defaults an empty query array to an empty search", () => {
+	assert.equal(getSearchDestination([]), "/?text=");
+});
+
 search.run();

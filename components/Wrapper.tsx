@@ -10,7 +10,7 @@ const Wrapper: React.FC<WrapperProps> = ({ children }): JSX.Element => {
 			<Meta />
 			<div className="container">
 				<NavBar />
-				{children as JSX.Element}
+				{children}
 				<Footer />
 			</div>
 		</AppProvider>
