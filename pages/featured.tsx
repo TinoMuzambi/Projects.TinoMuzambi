@@ -1,8 +1,8 @@
 import { GetServerSideProps } from "next";
 import Meta from "../components/Meta";
 import Project from "../components/Project";
-import { Project as P, ProjectsHolderProps } from "../interfaces";
-import { getProjects } from "../utils/fetch";
+import { ProjectsHolderProps } from "../interfaces";
+import { loadProjectsPageProps } from "../utils/fetch";
 
 const Featured: React.FC<ProjectsHolderProps> = ({ projects }): JSX.Element => {
 	return (
@@ -24,13 +24,5 @@ const Featured: React.FC<ProjectsHolderProps> = ({ projects }): JSX.Element => {
 	);
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
-	const projects: P[] = await getProjects();
-
-	return {
-		props: {
-			projects,
-		},
-	};
-};
+export const getServerSideProps: GetServerSideProps = loadProjectsPageProps;
 export default Featured;

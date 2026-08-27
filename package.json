@@ -4,6 +4,8 @@
 		"dev": "next",
 		"build": "next build",
 		"start": "next start",
+		"lint": "next lint",
+		"test": "TS_NODE_PROJECT=tests/tsconfig.json uvu tests -r ts-node/register",
 		"type-check": "tsc"
 	},
 	"dependencies": {
@@ -24,7 +26,9 @@
 		"eslint": "8.11.0",
 		"eslint-config-next": "12.1.0",
 		"sass": "latest",
-		"typescript": "latest"
+		"ts-node": "10.9.2",
+		"typescript": "latest",
+		"uvu": "0.5.6"
 	},
 	"license": "MIT"
 }

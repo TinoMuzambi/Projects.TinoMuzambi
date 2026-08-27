@@ -3,8 +3,8 @@ import { GetServerSideProps } from "next";
 import Link from "next/link";
 
 import Meta from "../../components/Meta";
-import { ProjectsHolderProps, Project } from "../../interfaces";
-import { getProjects } from "../../utils/fetch";
+import { ProjectsHolderProps } from "../../interfaces";
+import { loadProjectsPageProps } from "../../utils/fetch";
 import { applyFilters } from "../../utils/helpers";
 
 const AllTags: React.FC<ProjectsHolderProps> = ({ projects }): JSX.Element => {
@@ -40,14 +40,6 @@ const AllTags: React.FC<ProjectsHolderProps> = ({ projects }): JSX.Element => {
 	);
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
-	const projects: Project[] = await getProjects();
-
-	return {
-		props: {
-			projects,
-		},
-	};
-};
+export const getServerSideProps: GetServerSideProps = loadProjectsPageProps;
 
 export default AllTags;

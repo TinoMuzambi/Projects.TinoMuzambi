@@ -49,7 +49,6 @@ export type Project = {
 	link: string;
 	github: string;
 	keywords: string[];
-	image: string;
 	featured?: boolean;
 };
 
