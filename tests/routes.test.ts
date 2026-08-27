@@ -44,7 +44,20 @@ routes("finds the exact project selected by a showcase route", () => {
 routes("fails closed when Storyblok does not contain a showcase route", () => {
 	assert.throws(
 		() => getRequiredProject([project], "missing-project"),
-		/Missing required project for showcase route\./
+		{
+			message:
+				'Missing required project for showcase route "missing-project".',
+		}
+	);
+});
+
+routes("escapes route names in missing-project diagnostics", () => {
+	assert.throws(
+		() => getRequiredProject([project], 'missing\n"project'),
+		{
+			message:
+				'Missing required project for showcase route "missing\\n\\\"project".',
+		}
 	);
 });
 

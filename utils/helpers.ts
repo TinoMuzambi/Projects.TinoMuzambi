@@ -51,7 +51,9 @@ export const getRequiredProject = (
 	const project = projects.find((candidate) => candidate.name === name);
 
 	if (!project) {
-		throw new Error("Missing required project for showcase route.");
+		throw new Error(
+			`Missing required project for showcase route ${JSON.stringify(name)}.`
+		);
 	}
 
 	return project;
