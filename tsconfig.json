@@ -19,6 +19,12 @@
     "jsx": "preserve",
     "incremental": true
   },
+  "ts-node": {
+    "compilerOptions": {
+      "incremental": false,
+      "module": "commonjs"
+    }
+  },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
