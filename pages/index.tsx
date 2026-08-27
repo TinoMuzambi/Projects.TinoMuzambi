@@ -1,5 +1,5 @@
 import { useContext, useEffect, useMemo } from "react";
-import { GetServerSideProps } from "next";
+import type { GetServerSideProps } from "next";
 import AOS from "aos";
 
 import Project from "../components/Project";
@@ -7,7 +7,7 @@ import SearchProjects from "../components/SearchProjects";
 import { applyFilters } from "../utils/helpers";
 import { loadProjectsPageProps } from "../utils/fetch";
 import { AppContext } from "../context/AppContext";
-import { ProjectsHolderProps } from "../interfaces";
+import type { ProjectsHolderProps } from "../interfaces";
 import { useRouter } from "next/router";
 import Tags from "../components/Tags";
 import "aos/dist/aos.css";
@@ -17,28 +17,22 @@ const ProjectsHolder: React.FC<ProjectsHolderProps> = ({
 }): JSX.Element => {
 	const router = useRouter();
 	const { setProjects, queryText, setQueryText } = useContext(AppContext);
+	const routeText = router.query["text"];
 
 	useEffect(() => {
 		AOS.init();
-
-		if (setProjects) setProjects(projects);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [projects]);
+		setProjects(projects);
+	}, [projects, setProjects]);
 
 	useEffect(() => {
-		const routeText = router.query.text;
-
 		if (typeof routeText === "string") {
-			if (setQueryText) setQueryText(routeText);
+			setQueryText(routeText);
 		} else if (routeText?.[0]) {
-			if (setQueryText) setQueryText(routeText[0]);
+			setQueryText(routeText[0]);
 		}
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [router.query.text]);
+	}, [routeText, setQueryText]);
 
-	const searchProj = (query: string) => {
-		if (setQueryText) setQueryText(query);
-	};
+	const searchProj = (query: string): void => setQueryText(query);
 
 	const filteredProjects = useMemo(() => {
 		const normalizedQuery = queryText.toLowerCase();
@@ -79,6 +73,7 @@ const ProjectsHolder: React.FC<ProjectsHolderProps> = ({
 	);
 };
 
-export const getServerSideProps: GetServerSideProps = loadProjectsPageProps;
+export const getServerSideProps: GetServerSideProps<ProjectsHolderProps> =
+	loadProjectsPageProps;
 
 export default ProjectsHolder;

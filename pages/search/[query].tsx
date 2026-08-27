@@ -1,4 +1,5 @@
-import { GetServerSideProps } from "next";
+import type { GetServerSideProps } from "next";
+import type { ParsedUrlQuery } from "querystring";
 
 export const getSearchDestination = (
 	query: string | string[] | undefined
@@ -15,6 +16,10 @@ type SearchRedirect = {
 	};
 };
 
+interface SearchParams extends ParsedUrlQuery {
+	query: string;
+}
+
 export const createSearchRedirect = (
 	query: string | string[] | undefined
 ): SearchRedirect => ({
@@ -27,7 +32,8 @@ export const createSearchRedirect = (
 const OpenSearch: React.FC = (): null => null;
 
 export const getServerSideProps: GetServerSideProps<
-	Record<string, never>
+	Record<string, never>,
+	SearchParams
 > = async ({ params }) => createSearchRedirect(params?.query);
 
 export default OpenSearch;

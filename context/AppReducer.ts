@@ -1,6 +1,6 @@
-import { State, Actions } from "../interfaces";
+import type { AppAction, AppState } from "../interfaces";
 
-const Reducer = (state: State, action: Actions): State => {
+export const appReducer = (state: AppState, action: AppAction): AppState => {
 	switch (action.type) {
 		case "SET_PROJECTS":
 			return {
@@ -16,4 +16,4 @@ const Reducer = (state: State, action: Actions): State => {
 	}
 };
 
-export default Reducer;
+export default appReducer;

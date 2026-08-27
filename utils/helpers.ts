@@ -1,3 +1,5 @@
+import type { NameParams, Project } from "../interfaces";
+
 export const applyFilters = (tags: string[]): string[] => {
 	return tags.filter(
 		(i) =>
@@ -30,4 +32,29 @@ export const applyFilters = (tags: string[]): string[] => {
 			i !== "bot" &&
 			i !== "paystack"
 	);
+};
+
+export const getRequiredNameParam = (
+	params: NameParams | undefined
+): string => {
+	if (!params?.name) {
+		throw new Error("Missing required route name parameter.");
+	}
+
+	return params.name;
+};
+
+export const getRequiredProject = (
+	projects: Project[],
+	name: string
+): Project => {
+	const project = projects.find((candidate) => candidate.name === name);
+
+	if (!project) {
+		throw new Error(
+			`Missing required project for showcase route ${JSON.stringify(name)}.`
+		);
+	}
+
+	return project;
 };

@@ -1,13 +1,14 @@
 import StoryblokClient, { type ISbStoriesParams } from "storyblok-js-client";
+import type { GetServerSidePropsResult } from "next";
 
-import { Project, ProjectsHolderProps } from "../interfaces";
+import type { Project, ProjectsHolderProps } from "../interfaces";
 
 type UnknownRecord = Record<string, unknown>;
 type FetchProjectStories = () => Promise<unknown>;
 type ReadAccessToken = () => string | undefined;
-type ProjectsPagePropsLoader = () => Promise<{
-	props: ProjectsHolderProps;
-}>;
+type ProjectsPagePropsLoader = () => Promise<
+	GetServerSidePropsResult<ProjectsHolderProps>
+>;
 type ProjectRequestDiagnostic = {
 	type: "StoryblokError" | "Error" | "TypeError" | "UnknownError";
 	status?: number;
@@ -56,8 +57,9 @@ export const createStoryblokFetch =
 
 const safeRequestDiagnostic = (error: unknown): ProjectRequestDiagnostic => {
 	const errorRecord = isRecord(error) ? error : {};
-	const response = isRecord(errorRecord.response) ? errorRecord.response : {};
-	const statusValue = errorRecord.status ?? response.status;
+	const responseValue = errorRecord["response"];
+	const response: UnknownRecord = isRecord(responseValue) ? responseValue : {};
+	const statusValue = errorRecord["status"] ?? response["status"];
 	const status =
 		typeof statusValue === "number" &&
 		Number.isInteger(statusValue) &&
@@ -66,7 +68,7 @@ const safeRequestDiagnostic = (error: unknown): ProjectRequestDiagnostic => {
 			? statusValue
 			: undefined;
 	const type =
-		!(error instanceof Error) && typeof errorRecord.message === "string"
+		!(error instanceof Error) && typeof errorRecord["message"] === "string"
 			? "StoryblokError"
 			: error instanceof TypeError
 			? "TypeError"
@@ -76,12 +78,12 @@ const safeRequestDiagnostic = (error: unknown): ProjectRequestDiagnostic => {
 
 	return {
 		type,
-		...(status ? { status } : {}),
+		...(status !== undefined ? { status } : {}),
 	};
 };
 
 class ProjectRequestCause extends Error {
-	readonly status?: number;
+	readonly status: number | undefined;
 
 	constructor(diagnostic: ProjectRequestDiagnostic) {
 		super("Storyblok request failed.");
@@ -92,7 +94,7 @@ class ProjectRequestCause extends Error {
 }
 
 export class ProjectRequestError extends Error {
-	readonly cause: ProjectRequestCause;
+	override readonly cause: ProjectRequestCause;
 	readonly transient: boolean;
 
 	constructor(error: unknown) {
@@ -124,22 +126,36 @@ const requiredString = (
 	return value;
 };
 
+const requiredLines = (
+	content: UnknownRecord,
+	field: string,
+	projectNumber: number
+): [string, ...string[]] => {
+	const [firstLine = "", ...remainingLines] = requiredString(
+		content,
+		field,
+		projectNumber
+	).split("\n");
+
+	return [firstLine, ...remainingLines];
+};
+
 const parseProject = (story: unknown, index: number): Project => {
-	if (!isRecord(story) || !isRecord(story.content)) {
+	if (!isRecord(story) || !isRecord(story["content"])) {
 		throw new Error(`Storyblok project ${index + 1} has invalid content.`);
 	}
 
-	const { content } = story;
+	const content = story["content"];
 
 	return {
 		name: requiredString(content, "name", index + 1),
 		shortname: requiredString(content, "shortname", index + 1),
 		title: requiredString(content, "title", index + 1),
-		content: requiredString(content, "content", index + 1).split("\n"),
+		content: requiredLines(content, "content", index + 1),
 		link: requiredString(content, "link", index + 1),
 		github: requiredString(content, "github", index + 1),
-		keywords: requiredString(content, "keywords", index + 1).split("\n"),
-		featured: Boolean(content.featured),
+		keywords: requiredLines(content, "keywords", index + 1),
+		featured: Boolean(content["featured"]),
 	};
 };
 
@@ -248,7 +264,7 @@ const Storyblok = new StoryblokClient({
 
 const fetchProjectStories = createStoryblokProjectFetcher(
 	Storyblok,
-	() => process.env.REACT_APP_STORYBLOK_KEY
+	() => process.env["REACT_APP_STORYBLOK_KEY"]
 );
 
 export const getProjects = createGetProjects(fetchProjectStories);

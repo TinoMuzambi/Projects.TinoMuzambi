@@ -1,14 +1,14 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
 export default class MyDocument extends Document {
-	render() {
+	override render(): JSX.Element {
 		return (
 			<Html>
 				<Head>
 					{/* Global Site Tag (gtag.js) - Google Analytics */}
 					<script
 						async
-						src={`https://www.googletagmanager.com/gtag/js?id=${process.env.ANALYTICS_CODE}`}
+						src={`https://www.googletagmanager.com/gtag/js?id=${process.env["ANALYTICS_CODE"]}`}
 					/>
 					<script
 						dangerouslySetInnerHTML={{
@@ -16,7 +16,7 @@ export default class MyDocument extends Document {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${process.env.ANALYTICS_CODE}', {
+            gtag('config', '${process.env["ANALYTICS_CODE"]}', {
               page_path: window.location.pathname,
             });
           `,

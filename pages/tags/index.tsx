@@ -1,9 +1,9 @@
 import { useMemo } from "react";
-import { GetServerSideProps } from "next";
+import type { GetServerSideProps } from "next";
 import Link from "next/link";
 
 import Meta from "../../components/Meta";
-import { ProjectsHolderProps } from "../../interfaces";
+import type { ProjectsHolderProps } from "../../interfaces";
 import { loadProjectsPageProps } from "../../utils/fetch";
 import { applyFilters } from "../../utils/helpers";
 
@@ -36,6 +36,7 @@ const AllTags: React.FC<ProjectsHolderProps> = ({ projects }): JSX.Element => {
 	);
 };
 
-export const getServerSideProps: GetServerSideProps = loadProjectsPageProps;
+export const getServerSideProps: GetServerSideProps<ProjectsHolderProps> =
+	loadProjectsPageProps;
 
 export default AllTags;

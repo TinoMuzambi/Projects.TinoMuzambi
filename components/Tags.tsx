@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { HomeTagsProps } from "../interfaces";
+import type { HomeTagsProps } from "../interfaces";
 
 const Tags: React.FC<HomeTagsProps> = ({ links }): JSX.Element => {
 	return (

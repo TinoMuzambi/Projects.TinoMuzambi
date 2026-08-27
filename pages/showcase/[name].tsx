@@ -1,10 +1,14 @@
 import { useEffect } from "react";
 import Link from "next/link";
-import { GetStaticPaths, GetStaticProps } from "next";
+import type { GetStaticPaths, GetStaticProps } from "next";
 
-import { nameParam, Project, ShowcaseProps } from "../../interfaces";
+import type { NameParams, ShowcaseProps } from "../../interfaces";
 import Meta from "../../components/Meta";
 import { getProjects } from "../../utils/fetch";
+import {
+	getRequiredNameParam,
+	getRequiredProject,
+} from "../../utils/helpers";
 
 const ShowCase: React.FC<ShowcaseProps> = ({ project }): JSX.Element => {
 	useEffect(() => {
@@ -14,18 +18,18 @@ const ShowCase: React.FC<ShowcaseProps> = ({ project }): JSX.Element => {
 	return (
 		<>
 			<Meta
-				title={`${project?.title} | Projects.TinoMuzambi`}
-				description={project?.content[0]}
+				title={`${project.title} | Projects.TinoMuzambi`}
+				description={project.content[0]}
 			/>
 			<main className="showcase">
-				<h1 className="title">{project?.title}</h1>
+				<h1 className="title">{project.title}</h1>
 				<div className="project" data-aos="flip-up" data-aos-delay="200">
 					<div className="body">
 						<div className="image">
-							<p className="text">{project?.shortname}</p>
+							<p className="text">{project.shortname}</p>
 						</div>
 						<div className="description">
-							{project?.content.map((paragraph: string, key: number) => (
+							{project.content.map((paragraph, key) => (
 								<p key={key} className="text">
 									{paragraph}
 								</p>
@@ -33,26 +37,26 @@ const ShowCase: React.FC<ShowcaseProps> = ({ project }): JSX.Element => {
 						</div>
 					</div>
 					<div className="footer">
-						<p className={project?.link === "" ? "link-hide" : ""}>
+						<p className={project.link === "" ? "link-hide" : ""}>
 							Link:{" "}
-							<a target="_blank" rel="noopener noreferrer" href={project?.link}>
-								{project?.link.substring(0, 5) === "https"
-									? project?.link.substring(8)
-									: project?.link.substring(7)}
+							<a target="_blank" rel="noopener noreferrer" href={project.link}>
+								{project.link.substring(0, 5) === "https"
+									? project.link.substring(8)
+									: project.link.substring(7)}
 							</a>
 						</p>
-						<p className={project?.github === "" ? "link-hide" : ""}>
+						<p className={project.github === "" ? "link-hide" : ""}>
 							GitHub:{" "}
 							<a
 								target="_blank"
 								rel="noopener noreferrer"
-								href={project?.github}
+								href={project.github}
 							>
-								{project?.github.substring(19)}
+								{project.github.substring(19)}
 							</a>
 						</p>
 						<ul className="tags">
-							{project?.keywords.map((keyword: string, key: number) => (
+							{project.keywords.map((keyword, key) => (
 								<li className="tag" key={key}>
 									<Link href={`/tags/${keyword}`} className="text">
 										{keyword}
@@ -67,20 +71,20 @@ const ShowCase: React.FC<ShowcaseProps> = ({ project }): JSX.Element => {
 	);
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
-	const { name } = context.params as nameParam;
-	const projects: Project[] = await getProjects();
-	const project: Project = (await projects.find(
-		(project) => project.name === name
-	)) as Project;
+export const getStaticProps: GetStaticProps<ShowcaseProps, NameParams> = async (
+	context
+) => {
+	const name = getRequiredNameParam(context.params);
+	const projects = await getProjects();
+	const project = getRequiredProject(projects, name);
 
 	return {
 		props: { project },
 	};
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-	const projects: Project[] = await getProjects();
+export const getStaticPaths: GetStaticPaths<NameParams> = async () => {
+	const projects = await getProjects();
 
 	const paths = projects.map((el) => {
 		const name = el.name;

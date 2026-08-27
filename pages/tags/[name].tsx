@@ -1,14 +1,15 @@
 import { useRouter } from "next/router";
-import { GetStaticPaths, GetStaticProps } from "next";
+import type { GetStaticPaths, GetStaticProps } from "next";
 
 import Meta from "../../components/Meta";
 import Project from "../../components/Project";
-import { nameParam, Project as P, TagsProps } from "../../interfaces";
+import type { NameParams, TagsProps } from "../../interfaces";
 import { getProjects } from "../../utils/fetch";
+import { getRequiredNameParam } from "../../utils/helpers";
 
 const Tags: React.FC<TagsProps> = ({ filteredProjects }): JSX.Element => {
 	const router = useRouter();
-	const routeName = router.query.name;
+	const routeName = router.query["name"];
 	const name = Array.isArray(routeName) ? routeName[0] ?? "" : routeName ?? "";
 	const title = name ? name.charAt(0).toUpperCase() + name.slice(1) : "";
 
@@ -30,9 +31,11 @@ const Tags: React.FC<TagsProps> = ({ filteredProjects }): JSX.Element => {
 	);
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
-	const { name } = context.params as nameParam;
-	const projects: P[] = await getProjects();
+export const getStaticProps: GetStaticProps<TagsProps, NameParams> = async (
+	context
+) => {
+	const name = getRequiredNameParam(context.params);
+	const projects = await getProjects();
 	const filteredProjects = projects.filter((eachItem) => {
 		return eachItem.keywords.includes(name);
 	});
@@ -42,8 +45,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
 	};
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-	const projects: P[] = await getProjects();
+export const getStaticPaths: GetStaticPaths<NameParams> = async () => {
+	const projects = await getProjects();
 
 	const allKeywords = projects.flatMap((project) => project.keywords);
 	const paths = Array.from(new Set(allKeywords)).map((name) => {

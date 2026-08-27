@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-import { MetaProps } from "../interfaces";
+import type { MetaProps } from "../interfaces";
 import { BASE_URL } from "../utils";
 
 const Meta: React.FC<MetaProps> = ({

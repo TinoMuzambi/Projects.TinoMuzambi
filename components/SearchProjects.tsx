@@ -1,4 +1,4 @@
-import { SearchProjectsProps } from "../interfaces";
+import type { SearchProjectsProps } from "../interfaces";
 
 const SearchProjects: React.FC<SearchProjectsProps> = ({
 	query,
