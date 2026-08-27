@@ -1,4 +1,4 @@
-import StoryblokClient from "storyblok-js-client";
+import StoryblokClient, { type ISbStoriesParams } from "storyblok-js-client";
 
 import { Project, ProjectsHolderProps } from "../interfaces";
 
@@ -9,44 +9,21 @@ type ProjectsPagePropsLoader = () => Promise<{
 	props: ProjectsHolderProps;
 }>;
 type ProjectRequestDiagnostic = {
-	type: "AxiosError" | "Error" | "TypeError" | "UnknownError";
-	code?: string;
+	type: "StoryblokError" | "Error" | "TypeError" | "UnknownError";
 	status?: number;
 };
 type ReportStaleProjects = (error: ProjectRequestError) => void;
-const SAFE_REQUEST_CODES = [
-	"EAI_AGAIN",
-	"ECONNABORTED",
-	"ECONNRESET",
-	"ENOTFOUND",
-	"ERR_BAD_REQUEST",
-	"ERR_BAD_RESPONSE",
-	"ERR_CANCELED",
-	"ERR_INVALID_URL",
-	"ERR_NETWORK",
-	"ERR_NOT_SUPPORT",
-	"ETIMEDOUT",
-] as const;
-const TRANSIENT_REQUEST_CODES: readonly string[] = [
-	"EAI_AGAIN",
-	"ECONNABORTED",
-	"ECONNRESET",
-	"ENOTFOUND",
-	"ERR_NETWORK",
-	"ETIMEDOUT",
-];
+
+type StoryblokProjectParams = Required<
+	Pick<ISbStoriesParams, "per_page" | "sort_by" | "starts_with" | "token">
+>;
 
 type StoryblokProjectsClient = {
 	getAll: (
 		slug: string,
-		params: {
-			per_page: number;
-			sort_by: string;
-			starts_with: string;
-		},
+		params: StoryblokProjectParams,
 		entity: string
 	) => Promise<unknown[]>;
-	setToken: (accessToken: string) => void;
 };
 
 export class ProjectConfigurationError extends Error {
@@ -63,21 +40,17 @@ const isRecord = (value: unknown): value is UnknownRecord =>
 const safeRequestDiagnostic = (error: unknown): ProjectRequestDiagnostic => {
 	const errorRecord = isRecord(error) ? error : {};
 	const response = isRecord(errorRecord.response) ? errorRecord.response : {};
-	const code =
-		typeof errorRecord.code === "string" &&
-		SAFE_REQUEST_CODES.some((safeCode) => safeCode === errorRecord.code)
-			? errorRecord.code
-			: undefined;
+	const statusValue = errorRecord.status ?? response.status;
 	const status =
-		typeof response.status === "number" &&
-		Number.isInteger(response.status) &&
-		response.status >= 100 &&
-		response.status <= 599
-			? response.status
+		typeof statusValue === "number" &&
+		Number.isInteger(statusValue) &&
+		statusValue >= 100 &&
+		statusValue <= 599
+			? statusValue
 			: undefined;
 	const type =
-		errorRecord.isAxiosError === true
-			? "AxiosError"
+		!(error instanceof Error) && typeof errorRecord.message === "string"
+			? "StoryblokError"
 			: error instanceof TypeError
 			? "TypeError"
 			: error instanceof Error
@@ -86,19 +59,16 @@ const safeRequestDiagnostic = (error: unknown): ProjectRequestDiagnostic => {
 
 	return {
 		type,
-		...(code ? { code } : {}),
 		...(status ? { status } : {}),
 	};
 };
 
 class ProjectRequestCause extends Error {
-	readonly code?: string;
 	readonly status?: number;
 
 	constructor(diagnostic: ProjectRequestDiagnostic) {
 		super("Storyblok request failed.");
 		this.name = diagnostic.type;
-		this.code = diagnostic.code;
 		this.status = diagnostic.status;
 		Object.setPrototypeOf(this, new.target.prototype);
 	}
@@ -113,11 +83,10 @@ export class ProjectRequestError extends Error {
 		this.name = "ProjectRequestError";
 		this.cause = new ProjectRequestCause(safeRequestDiagnostic(error));
 		this.transient =
-			this.cause.name === "AxiosError" &&
-			(this.cause.status === 429 ||
-				(this.cause.status !== undefined && this.cause.status >= 500) ||
-				(this.cause.code !== undefined &&
-					TRANSIENT_REQUEST_CODES.includes(this.cause.code)));
+			this.cause.name === "StoryblokError" &&
+			(this.cause.status === undefined ||
+				this.cause.status === 429 ||
+				this.cause.status >= 500);
 		Object.setPrototypeOf(this, new.target.prototype);
 	}
 }
@@ -180,14 +149,13 @@ export const createStoryblokProjectFetcher =
 			);
 		}
 
-		client.setToken(accessToken);
-
 		return client.getAll(
 			"cdn/stories",
 			{
 				per_page: 100,
 				sort_by: "created_at:desc",
 				starts_with: "projects/",
+				token: accessToken,
 			},
 			"stories"
 		);

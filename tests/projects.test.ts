@@ -26,6 +26,24 @@ const projectContent = {
 
 const projectStory = (content: object = projectContent) => ({ content });
 
+const storyblokRequestError = (
+	status: number | undefined,
+	message: string
+): object => {
+	if (status === undefined) return { message };
+
+	return {
+		message,
+		status,
+		response: {
+			data: { error: message },
+			headers: {},
+			status,
+			statusText: "",
+		},
+	};
+};
+
 projects(
 	"maps the existing Storyblok project contract without changing content",
 	async () => {
@@ -95,16 +113,7 @@ projects("rejects malformed project fields at the CMS boundary", () => {
 
 projects("reports request failures without upstream error details", async () => {
 	const upstreamMessage = "request failed with private-token-value";
-	const upstreamError = Object.assign(new Error(upstreamMessage), {
-		code: "ECONNRESET",
-		config: {
-			token: "private-token-value",
-		},
-		isAxiosError: true,
-		response: {
-			status: 429,
-		},
-	});
+	const upstreamError = storyblokRequestError(429, upstreamMessage);
 	const getProjects = createGetProjects(async () => {
 		throw upstreamError;
 	});
@@ -113,9 +122,8 @@ projects("reports request failures without upstream error details", async () => 
 		assert.equal(error.name, "ProjectRequestError");
 		assert.equal(error.message, "Unable to load projects from Storyblok.");
 		assert.equal(error.message.includes(upstreamMessage), false);
-		assert.equal(error.cause.name, "AxiosError");
+		assert.equal(error.cause.name, "StoryblokError");
 		assert.equal(error.cause.message, "Storyblok request failed.");
-		assert.equal(error.cause.code, "ECONNRESET");
 		assert.equal(error.cause.status, 429);
 		assert.equal(error.transient, true);
 		assert.equal(JSON.stringify(error).includes("private-token-value"), false);
@@ -125,22 +133,59 @@ projects("reports request failures without upstream error details", async () => 
 
 projects("drops hostile values from request diagnostics", async () => {
 	const privateValue = "private-token-value";
-	const upstreamError = Object.assign(new Error(privateValue), {
-		code: privateValue,
-		config: { token: privateValue },
-		isAxiosError: true,
-		name: privateValue,
-		request: { url: `https://example.com?token=${privateValue}` },
-		response: { status: 401 },
-	});
+	const upstreamError = storyblokRequestError(401, privateValue);
 	const getProjects = createGetProjects(async () => {
 		throw upstreamError;
 	});
 
 	await assert.rejects(getProjects, (error: ProjectRequestError) => {
-		assert.equal(error.cause.name, "AxiosError");
-		assert.equal(error.cause.code, undefined);
+		assert.equal(error.cause.name, "StoryblokError");
 		assert.equal(error.cause.status, 401);
+		assert.equal(error.transient, false);
+		assert.equal(JSON.stringify(error).includes(privateValue), false);
+		return true;
+	});
+});
+
+projects("keeps message-only transport failures transient and private", async () => {
+	const privateValue = "private-token-value";
+	const client = new StoryblokClient({
+		cache: { clear: "manual", cv: "manual", type: "none" },
+		fetch: async () => {
+			throw new TypeError(privateValue);
+		},
+	});
+	const getProjects = createGetProjects(
+		createStoryblokProjectFetcher(client, () => "fixture-token")
+	);
+
+	await assert.rejects(getProjects, (error: ProjectRequestError) => {
+		assert.equal(error.cause.name, "StoryblokError");
+		assert.equal(error.cause.status, undefined);
+		assert.equal(error.transient, true);
+		assert.equal(JSON.stringify(error).includes(privateValue), false);
+		return true;
+	});
+});
+
+projects("adapts Storyblok v7 HTTP failures without leaking responses", async () => {
+	const privateValue = "private-token-value";
+	const client = new StoryblokClient({
+		cache: { clear: "manual", cv: "manual", type: "none" },
+		fetch: async () =>
+			new Response(JSON.stringify({ error: privateValue }), {
+				headers: { "content-type": "application/json" },
+				status: 503,
+			}),
+	});
+	const getProjects = createGetProjects(
+		createStoryblokProjectFetcher(client, () => "fixture-token")
+	);
+
+	await assert.rejects(getProjects, (error: ProjectRequestError) => {
+		assert.equal(error.cause.name, "StoryblokError");
+		assert.equal(error.cause.status, 503);
+		assert.equal(error.transient, true);
 		assert.equal(JSON.stringify(error).includes(privateValue), false);
 		return true;
 	});
@@ -154,32 +199,53 @@ projects("fetches every Storyblok page instead of stopping at 25 projects", asyn
 			title: `Project ${index + 1}`,
 		})
 	);
-	const requests: {
+	const requests: Array<{
 		page: number;
-		params: unknown;
 		perPage: number;
-		url: string;
-	}[] = [];
-	const client = new StoryblokClient({});
-	Object.defineProperty(client, "makeRequest", {
-		value: async (
-			url: string,
-			params: unknown,
-			perPage: number,
-			page: number
-		) => {
-			requests.push({ page, params, perPage, url });
-			const offset = (page - 1) * perPage;
+		sortBy: string | null;
+		startsWith: string | null;
+		token: string | null;
+	}> = [];
+	const fetchStub: typeof fetch = async (input) => {
+		const url = new URL(
+			typeof input === "string"
+				? input
+				: input instanceof URL
+					? input.href
+					: input.url
+		);
+		const page = Number(url.searchParams.get("page"));
+		const perPage = Number(url.searchParams.get("per_page"));
+		const offset = (page - 1) * perPage;
 
-			return {
-				data: {
-					stories: stories.slice(offset, offset + perPage),
+		requests.push({
+			page,
+			perPage,
+			sortBy: url.searchParams.get("sort_by"),
+			startsWith: url.searchParams.get("starts_with"),
+			token: url.searchParams.get("token"),
+		});
+
+		return new Response(
+			JSON.stringify({
+				cv: 1,
+				links: [],
+				rels: [],
+				stories: stories.slice(offset, offset + perPage),
+			}),
+			{
+				headers: {
+					"content-type": "application/json",
+					"per-page": String(perPage),
+					total: String(stories.length),
 				},
-				headers: {},
-				perPage,
-				total: stories.length,
-			};
-		},
+				status: 200,
+			}
+		);
+	};
+	const client = new StoryblokClient({
+		cache: { clear: "manual", cv: "manual", type: "none" },
+		fetch: fetchStub,
 	});
 	const fetchProjectStories = createStoryblokProjectFetcher(
 		client,
@@ -189,27 +255,20 @@ projects("fetches every Storyblok page instead of stopping at 25 projects", asyn
 	const result = await createGetProjects(fetchProjectStories)();
 
 	assert.equal(result.length, 150);
-	assert.equal(client.getToken(), "fixture-token");
 	assert.deepEqual(requests, [
 		{
 			page: 1,
-			params: {
-				per_page: 100,
-				sort_by: "created_at:desc",
-				starts_with: "projects/",
-			},
 			perPage: 100,
-			url: "/cdn/stories",
+			sortBy: "created_at:desc",
+			startsWith: "projects/",
+			token: "fixture-token",
 		},
 		{
 			page: 2,
-			params: {
-				per_page: 100,
-				sort_by: "created_at:desc",
-				starts_with: "projects/",
-			},
 			perPage: 100,
-			url: "/cdn/stories",
+			sortBy: "created_at:desc",
+			startsWith: "projects/",
+			token: "fixture-token",
 		},
 	]);
 	assert.deepEqual(
@@ -219,10 +278,13 @@ projects("fetches every Storyblok page instead of stopping at 25 projects", asyn
 });
 
 projects("names a missing Storyblok variable without exposing a value", async () => {
+	let clientCalled = false;
 	const fetchProjectStories = createStoryblokProjectFetcher(
 		{
-			setToken: () => undefined,
-			getAll: async () => [],
+			getAll: async () => {
+				clientCalled = true;
+				return [];
+			},
 		},
 		() => undefined
 	);
@@ -238,6 +300,7 @@ projects("names a missing Storyblok variable without exposing a value", async ()
 			return true;
 		}
 	);
+	assert.equal(clientCalled, false);
 });
 
 projects("propagates CMS failures through the page data-loader boundary", async () => {
@@ -255,20 +318,17 @@ projects("refreshes and isolates the last successful SSR payload", async () => {
 	let response: unknown = [projectStory()];
 	const reportedErrors: ProjectRequestError[] = [];
 	const getProjects = createGetProjects(async () => {
-		if (response instanceof Error) throw response;
-		return response;
+		if (Array.isArray(response)) return response;
+		throw response;
 	});
 	const loadProjectsPageProps = createProjectsPagePropsLoader(
 		getProjects,
 		(error) => reportedErrors.push(error)
 	);
 	const firstSuccessfulResponse = await loadProjectsPageProps();
-	response = Object.assign(
-		new Error("request failed with private-token-value"),
-		{
-			isAxiosError: true,
-			response: { status: 503 },
-		}
+	response = storyblokRequestError(
+		503,
+		"request failed with private-token-value"
 	);
 	assert.deepEqual(await loadProjectsPageProps(), firstSuccessfulResponse);
 
@@ -280,10 +340,7 @@ projects("refreshes and isolates the last successful SSR payload", async () => {
 		}),
 	];
 	const replacementResponse = await loadProjectsPageProps();
-	response = Object.assign(new Error("another private-token-value"), {
-		isAxiosError: true,
-		response: { status: 503 },
-	});
+	response = storyblokRequestError(undefined, "another private-token-value");
 	assert.deepEqual(await loadProjectsPageProps(), replacementResponse);
 	assert.deepEqual(
 		reportedErrors.map((error) => ({
@@ -291,8 +348,8 @@ projects("refreshes and isolates the last successful SSR payload", async () => {
 			status: error.cause.status,
 		})),
 		[
-			{ name: "AxiosError", status: 503 },
-			{ name: "AxiosError", status: 503 },
+			{ name: "StoryblokError", status: 503 },
+			{ name: "StoryblokError", status: undefined },
 		]
 	);
 	assert.equal(
@@ -302,7 +359,7 @@ projects("refreshes and isolates the last successful SSR payload", async () => {
 
 	const isolatedLoader = createProjectsPagePropsLoader(getProjects);
 	await assert.rejects(isolatedLoader, (error: ProjectRequestError) => {
-		assert.equal(error.cause.status, 503);
+		assert.equal(error.cause.status, undefined);
 		return true;
 	});
 });
