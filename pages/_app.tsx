@@ -4,15 +4,20 @@ import { useEffect } from "react";
 import Wrapper from "../components/Wrapper";
 import "../sass/App.scss";
 
-const MyApp: Function = ({ Component, pageProps }: AppProps) => {
+type ReactDevToolsWindow = Window & {
+	__REACT_DEVTOOLS_GLOBAL_HOOK__?: Record<string, unknown>;
+};
+
+const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
 	useEffect(() => {
 		const disableReactDevTools = (): void => {
 			const noop = (): void => undefined;
-			const DEV_TOOLS = (window as any).__REACT_DEVTOOLS_GLOBAL_HOOK__;
+			const devTools = (window as ReactDevToolsWindow)
+				.__REACT_DEVTOOLS_GLOBAL_HOOK__;
 
-			if (typeof DEV_TOOLS === "object") {
-				for (const [key, value] of Object.entries(DEV_TOOLS)) {
-					DEV_TOOLS[key] = typeof value === "function" ? noop : null;
+			if (devTools) {
+				for (const [key, value] of Object.entries(devTools)) {
+					devTools[key] = typeof value === "function" ? noop : null;
 				}
 			}
 		};

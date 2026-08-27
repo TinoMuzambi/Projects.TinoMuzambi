@@ -9,18 +9,17 @@ const NavBar: React.FC = (): JSX.Element => {
 	return (
 		<header>
 			<nav className="nav">
-				<Link href="/">
-					<a
-						onClick={() => {
-							if (setQueryText) setQueryText("");
-						}}
-					>
-						Projects.TinoMuzambi
-					</a>
+				<Link
+					href="/"
+					onClick={() => {
+						if (setQueryText) setQueryText("");
+					}}
+				>
+					Projects.TinoMuzambi
 				</Link>
 				<div className="secondary">
-					<Link href="/featured">
-						<a className="link">Featured Projects</a>
+					<Link href="/featured" className="link">
+						Featured Projects
 					</Link>
 				</div>
 			</nav>

@@ -2,37 +2,37 @@
 	"private": true,
 	"packageManager": "yarn@1.22.22",
 	"engines": {
-		"node": "22.x",
+		"node": "^22.13.0",
 		"yarn": "1.22.x"
 	},
 	"scripts": {
 		"dev": "next",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint",
+		"lint": "eslint . --max-warnings=0",
 		"test": "uvu tests -r ts-node/register",
-		"type-check": "tsc"
+		"type-check": "next typegen && tsc"
 	},
 	"dependencies": {
 		"aos": "^2.3.4",
 		"axios": "^0.26.1",
-		"framer-motion": "^6.2.8",
-		"next": "12.1.0",
-		"react": "17.0.2",
-		"react-dom": "17.0.2",
+		"framer-motion": "13.1.1",
+		"next": "16.3.3",
+		"react": "18.3.1",
+		"react-dom": "18.3.1",
 		"react-icons": "^4.3.1",
 		"storyblok-js-client": "^4.2.1"
 	},
 	"devDependencies": {
 		"@types/aos": "^3.0.4",
-		"@types/node": "17.0.21",
-		"@types/react": "17.0.41",
-		"@types/react-dom": "17.0.14",
-		"eslint": "8.11.0",
-		"eslint-config-next": "12.1.0",
-		"sass": "1.49.9",
+		"@types/node": "22.20.1",
+		"@types/react": "18.3.31",
+		"@types/react-dom": "18.3.7",
+		"eslint": "9.39.5",
+		"eslint-config-next": "16.3.3",
+		"sass": "1.103.1",
 		"ts-node": "10.9.2",
-		"typescript": "4.6.2",
+		"typescript": "5.9.3",
 		"uvu": "0.5.6"
 	},
 	"license": "MIT"

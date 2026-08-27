@@ -47,7 +47,10 @@ projects(
 );
 
 projects("preserves the existing false default for featured projects", () => {
-	const { featured: _featured, ...contentWithoutFeatured } = projectContent;
+	const contentWithoutFeatured: Partial<typeof projectContent> = {
+		...projectContent,
+	};
+	delete contentWithoutFeatured.featured;
 	const [project] = parseProjectStories([projectStory(contentWithoutFeatured)]);
 
 	assert.equal(project.name, "projects.tinomuzambi");

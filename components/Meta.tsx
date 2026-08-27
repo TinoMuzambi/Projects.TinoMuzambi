@@ -4,11 +4,12 @@ import { MetaProps } from "../interfaces";
 import { BASE_URL } from "../utils";
 
 const Meta: React.FC<MetaProps> = ({
-	title,
-	description,
-	keywords,
-	url,
-	image,
+	title = "Projects.TinoMuzambi",
+	description =
+		"A landing page for all the projects I've worked on. It provides an overview of each project as well as the stack used in each project and where possible, a link to see it in action.",
+	keywords = "next.js, react, typescript, projects, tino muzambi",
+	url = BASE_URL,
+	image = "https://a.storyblok.com/f/105639/512x512/03489159d5/logo512.png",
 }): JSX.Element => (
 	<Head>
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -46,14 +47,5 @@ const Meta: React.FC<MetaProps> = ({
 		<link rel="preconnect" href="https://www.google-analytics.com" />
 	</Head>
 );
-
-Meta.defaultProps = {
-	title: "Projects.TinoMuzambi",
-	keywords: "next.js, react, typescript, projects, tino muzambi",
-	description:
-		"A landing page for all the projects I've worked on. It provides an overview of each project as well as the stack used in each project and where possible, a link to see it in action.",
-	image: "https://a.storyblok.com/f/105639/512x512/03489159d5/logo512.png",
-	url: BASE_URL,
-};
 
 export default Meta;

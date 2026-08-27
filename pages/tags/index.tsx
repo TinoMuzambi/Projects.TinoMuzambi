@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 
@@ -8,18 +8,14 @@ import { loadProjectsPageProps } from "../../utils/fetch";
 import { applyFilters } from "../../utils/helpers";
 
 const AllTags: React.FC<ProjectsHolderProps> = ({ projects }): JSX.Element => {
-	const [links, setLinks] = useState<string[]>([]);
+	const links = useMemo(() => {
+		const uniqueTags = Array.from(
+			new Set(projects.flatMap((project) => project.keywords))
+		);
 
-	useEffect(() => {
-		let linkTags: string[] = [];
-		projects.forEach((project) => {
-			project.keywords.forEach((keyword: string) => linkTags.push(keyword));
-		});
-		linkTags = Array.from(new Set(linkTags));
-
-		linkTags = applyFilters(linkTags);
-		setLinks(linkTags);
+		return applyFilters(uniqueTags);
 	}, [projects]);
+
 	return (
 		<>
 			<Meta
@@ -30,8 +26,8 @@ const AllTags: React.FC<ProjectsHolderProps> = ({ projects }): JSX.Element => {
 				<h1>Tags</h1>
 				<div className="cards">
 					{links.map((link, key) => (
-						<Link key={key} href={`/tags/${link}`}>
-							<a className="card">{link}</a>
+						<Link key={key} href={`/tags/${link}`} className="card">
+							{link}
 						</Link>
 					))}
 				</div>
