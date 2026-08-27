@@ -1,9 +1,34 @@
 import StoryblokClient from "storyblok-js-client";
 
-import { Project } from "../interfaces";
+import { Project, ProjectsHolderProps } from "../interfaces";
 
 type UnknownRecord = Record<string, unknown>;
 type FetchProjectStories = () => Promise<unknown>;
+type ReadAccessToken = () => string | undefined;
+type ProjectsPagePropsLoader = () => Promise<{
+	props: ProjectsHolderProps;
+}>;
+
+type StoryblokProjectsClient = {
+	getAll: (
+		slug: string,
+		params: {
+			per_page: number;
+			sort_by: string;
+			starts_with: string;
+		},
+		entity: string
+	) => Promise<unknown[]>;
+	setToken: (accessToken: string) => void;
+};
+
+export class ProjectConfigurationError extends Error {
+	constructor(message: string) {
+		super(message);
+		this.name = "ProjectConfigurationError";
+		Object.setPrototypeOf(this, new.target.prototype);
+	}
+}
 
 const isRecord = (value: unknown): value is UnknownRecord =>
 	typeof value === "object" && value !== null && !Array.isArray(value);
@@ -50,46 +75,77 @@ const parseProject = (story: unknown, index: number): Project => {
 	};
 };
 
-export const parseProjectStories = (response: unknown): Project[] => {
-	if (
-		!isRecord(response) ||
-		!isRecord(response.data) ||
-		!Array.isArray(response.data.stories)
-	) {
+export const parseProjectStories = (stories: unknown): Project[] => {
+	if (!Array.isArray(stories)) {
 		throw new Error("Storyblok returned an invalid projects response.");
 	}
 
-	if (response.data.stories.length === 0) {
+	if (stories.length === 0) {
 		throw new Error("Storyblok returned no projects.");
 	}
 
-	return response.data.stories.map(parseProject);
+	return stories.map(parseProject);
 };
+
+export const createStoryblokProjectFetcher =
+	(client: StoryblokProjectsClient, readAccessToken: ReadAccessToken) =>
+	async (): Promise<unknown[]> => {
+		const accessToken = readAccessToken();
+
+		if (!accessToken) {
+			throw new ProjectConfigurationError(
+				"Missing required REACT_APP_STORYBLOK_KEY environment variable."
+			);
+		}
+
+		client.setToken(accessToken);
+
+		return client.getAll(
+			"cdn/stories",
+			{
+				per_page: 100,
+				sort_by: "created_at:desc",
+				starts_with: "projects/",
+			},
+			"stories"
+		);
+	};
 
 export const createGetProjects =
 	(fetchProjectStories: FetchProjectStories) => async (): Promise<Project[]> => {
-		let response: unknown;
+		let stories: unknown;
 
 		try {
-			response = await fetchProjectStories();
-		} catch {
+			stories = await fetchProjectStories();
+		} catch (error) {
+			if (error instanceof ProjectConfigurationError) {
+				throw error;
+			}
+
 			throw new Error("Unable to load projects from Storyblok.");
 		}
 
-		return parseProjectStories(response);
+		return parseProjectStories(stories);
 	};
 
+export const createProjectsPagePropsLoader =
+	(loadProjects: () => Promise<Project[]>): ProjectsPagePropsLoader => async () => ({
+		props: {
+			projects: await loadProjects(),
+		},
+	});
+
 const Storyblok = new StoryblokClient({
-	accessToken: process.env.REACT_APP_STORYBLOK_KEY,
 	cache: {
 		clear: "auto",
 		type: "memory",
 	},
 });
 
-export const getProjects = createGetProjects(() =>
-	Storyblok.get("cdn/stories", {
-		starts_with: "projects/",
-		sort_by: "created_at:desc",
-	})
+const fetchProjectStories = createStoryblokProjectFetcher(
+	Storyblok,
+	() => process.env.REACT_APP_STORYBLOK_KEY
 );
+
+export const getProjects = createGetProjects(fetchProjectStories);
+export const loadProjectsPageProps = createProjectsPagePropsLoader(getProjects);

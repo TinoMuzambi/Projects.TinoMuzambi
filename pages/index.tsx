@@ -5,7 +5,7 @@ import AOS from "aos";
 import Project from "../components/Project";
 import SearchProjects from "../components/SearchProjects";
 import { applyFilters } from "../utils/helpers";
-import { getProjects } from "../utils/fetch";
+import { loadProjectsPageProps } from "../utils/fetch";
 import { AppContext } from "../context/AppContext";
 import { Project as P, ProjectsHolderProps } from "../interfaces";
 import { useRouter } from "next/router";
@@ -80,14 +80,6 @@ const ProjectsHolder: React.FC<ProjectsHolderProps> = ({
 	);
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
-	const projects: P[] = await getProjects();
-
-	return {
-		props: {
-			projects,
-		},
-	};
-};
+export const getServerSideProps: GetServerSideProps = loadProjectsPageProps;
 
 export default ProjectsHolder;
