@@ -8,7 +8,7 @@ const NavBar: React.FC = (): JSX.Element => {
 
 	return (
 		<header>
-			<nav className="nav">
+			<nav className="nav" aria-label="Main">
 				<Link href="/" onClick={() => setQueryText("")}>
 					Projects.TinoMuzambi
 				</Link>
