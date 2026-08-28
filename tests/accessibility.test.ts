@@ -4,6 +4,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { suite } from "uvu";
 
 import Footer from "../components/Footer";
+import NavBar from "../components/NavBar";
 import SearchProjects, {
 	NoSearchResults,
 } from "../components/SearchProjects";
@@ -44,11 +45,21 @@ accessibility("gives the project search a persistent accessible name", () => {
 });
 
 accessibility("announces an empty project search", () => {
-	const markup = renderToStaticMarkup(createElement(NoSearchResults));
+	const waitingMarkup = renderToStaticMarkup(
+		createElement(NoSearchResults, { showMessage: false })
+	);
+	const emptyMarkup = renderToStaticMarkup(
+		createElement(NoSearchResults, { showMessage: true })
+	);
 
-	assert.equal(
-		markup,
-		'<p class="empty-results" role="status">There are no projects that match that search term.</p>'
+	assert.match(waitingMarkup, /role="status"/);
+	assert.match(waitingMarkup, /class="[^"]*empty-results/);
+	assert.doesNotMatch(waitingMarkup, /There are no projects/);
+	assert.match(emptyMarkup, /role="status"/);
+	assert.match(emptyMarkup, /class="[^"]*empty-results/);
+	assert.match(
+		emptyMarkup,
+		/There are no projects that match that search term\./
 	);
 });
 
@@ -69,7 +80,9 @@ accessibility("names project tag navigation", () => {
 	const indexMarkup = renderToStaticMarkup(
 		createElement(AllTags, { projects: [project] })
 	);
+	const mainNavigationMarkup = renderToStaticMarkup(createElement(NavBar));
 
+	assert.match(mainNavigationMarkup, /aria-label="Main"/);
 	assert.match(homeMarkup, /<nav aria-label="Project tags"/);
 	assert.match(indexMarkup, /<nav class="cards" aria-label="All project tags"/);
 });

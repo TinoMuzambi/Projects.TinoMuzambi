@@ -1,5 +1,9 @@
 import type { SearchProjectsProps } from "../interfaces";
 
+interface NoSearchResultsProps {
+	showMessage: boolean;
+}
+
 const SearchProjects: React.FC<SearchProjectsProps> = ({
 	query,
 	searchProj,
@@ -15,9 +19,13 @@ const SearchProjects: React.FC<SearchProjectsProps> = ({
 	);
 };
 
-export const NoSearchResults: React.FC = (): JSX.Element => (
+export const NoSearchResults: React.FC<NoSearchResultsProps> = ({
+	showMessage,
+}): JSX.Element => (
 	<p className="empty-results" role="status">
-		There are no projects that match that search term.
+		{showMessage
+			? "There are no projects that match that search term."
+			: ""}
 	</p>
 );
 
