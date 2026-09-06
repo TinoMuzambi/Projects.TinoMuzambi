@@ -15,9 +15,9 @@ concurrency:
 
 jobs:
   checks:
-    name: Lint, typecheck, and test
+    name: Lint, typecheck, test, and build
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     steps:
       - name: Check out repository
@@ -26,20 +26,20 @@ jobs:
       - name: Use project Node.js version
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          node-version-file: package.json
-          package-manager-cache: false
-
-      - name: Install Yarn Classic
-        run: npm install --global yarn@1.22.22
+          node-version: 22.13.0
+          cache: npm
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile --non-interactive
+        run: npm ci
 
       - name: Lint
-        run: yarn lint
+        run: npm run lint
 
       - name: Typecheck
-        run: yarn type-check
+        run: npm run typecheck
 
       - name: Test
-        run: yarn test
+        run: npm test
+
+      - name: Build
+        run: npm run build

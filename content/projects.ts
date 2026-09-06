@@ -1,0 +1,898 @@
+import type {
+	ProjectCategory,
+	ProjectLink,
+	ProjectRecord,
+	ProjectStatus,
+} from "@/types/projects"
+
+const checkedAt = "2026-09-06"
+
+const link = (
+	kind: ProjectLink["kind"],
+	label: string,
+	url: string,
+	availability: ProjectLink["availability"] = "live"
+): ProjectLink => ({ kind, label, url, availability, checkedAt })
+
+type LegacyProjectInput = {
+	slug: string
+	legacySlug?: string
+	title: string
+	shortDescription: string
+	category: ProjectCategory
+	status?: ProjectStatus
+	year: string
+	technologies: string[]
+	topics: string[]
+	sourceUrl?: string
+	role?: string[] | null
+	problem?: string | null
+	limitations?: string[] | null
+}
+
+const legacyProject = ({
+	slug,
+	legacySlug = slug,
+	title,
+	shortDescription,
+	category,
+	status = "archived",
+	year,
+	technologies,
+	topics,
+	sourceUrl,
+	role = null,
+	problem = shortDescription,
+	limitations = [
+		"This is older work retained as part of the learning record. No claim is made that its original deployment is maintained.",
+	],
+}: LegacyProjectInput): ProjectRecord => ({
+	id: `project:${slug}`,
+	slug,
+	legacySlugs: [legacySlug],
+	title,
+	shortDescription,
+	category,
+	status,
+	period: {
+		label: year,
+		start: year,
+		end: year,
+		precision: "year",
+	},
+	featured: { enabled: false, order: null, rationale: null },
+	technologies,
+	topics,
+	role,
+	problem,
+	contribution: null,
+	implementation: null,
+	decisions: [],
+	outcomes: null,
+	limitations,
+	links: sourceUrl ? [link("source", "Source repository", sourceUrl)] : [],
+	relatedExperience: [],
+	verification: {
+		publiclyVerifiable: Boolean(sourceUrl),
+		sources: sourceUrl ? [sourceUrl] : [],
+		checkedAt,
+		notes: sourceUrl
+			? "The public repository and legacy archive entry support this summary. Deeper claims are intentionally omitted."
+			: "Only the legacy public archive entry was available for review.",
+	},
+})
+
+export const projects: ProjectRecord[] = [
+	{
+		id: "project:music-rec-path-signatures",
+		slug: "music-rec-path-signatures",
+		legacySlugs: [],
+		title: "MusicRecPathSignatures",
+		shortDescription:
+			"A reproducible Python evaluation pipeline for testing path signatures as music-recommendation representations.",
+		category: "research",
+		status: "active",
+		period: {
+			label: "MSc research, 2024 to 2026",
+			start: "2024",
+			end: "2026",
+			precision: "year",
+		},
+		featured: {
+			enabled: true,
+			order: 1,
+			rationale: "The strongest current example of research engineering, evaluation design and reproducibility.",
+		},
+		technologies: [
+			"Python",
+			"librosa",
+			"esig",
+			"LightFM",
+			"Implicit",
+			"scikit-learn",
+			"pytest",
+		],
+		topics: ["Music recommendation", "Path signatures", "Evaluation", "Reproducibility"],
+		role: ["MSc researcher", "Pipeline author"],
+		problem:
+			"Test whether path signatures can represent temporal audio structure usefully for music recommendation, with a controlled comparison against established methods.",
+		contribution: [
+			"Built the audio-processing, representation, recommendation and evaluation pipeline.",
+			"Packaged the final workflow around validation, provenance checks and a sealed release process.",
+		],
+		implementation: [
+			"Extracts audio features and constructs multivariate paths before computing signature features.",
+			"Compares the signature method with content-based, collaborative-filtering and matrix-factorisation baselines.",
+			"Evaluates ranking, diversity, novelty, coverage and robustness through a scripted release pipeline.",
+		],
+		decisions: [
+			{
+				decision: "Separate validation-only model selection from final test evaluation.",
+				rationale: "This limits information leakage into dissertation-facing results.",
+			},
+			{
+				decision: "Fail closed when an input, stage or validation check is missing.",
+				rationale: "A partial run should not be mistaken for official evidence.",
+			},
+			{
+				decision: "Bind outputs to manifests and checksums.",
+				rationale: "The released figures and results should be traceable to their inputs and configuration.",
+			},
+		],
+		outcomes: [
+			"The public repository contains the tested evaluation pipeline, saved result artefacts and dissertation support files.",
+		],
+		limitations: [
+			"There is no live demo and the external FMA audio dataset is large.",
+			"The public repository contains the path-signature work but does not contain a transformer implementation.",
+			"The archive makes no recommendation-quality claim beyond the evidence published in the repository.",
+		],
+		links: [
+			link("source", "Source repository", "https://github.com/TinoMuzambi/MusicRecPathSignatures"),
+			link(
+				"documentation",
+				"Implementation evidence",
+				"https://github.com/TinoMuzambi/MusicRecPathSignatures/blob/main/V30_FEATURE_POPULATION_IMPLEMENTATION.md"
+			),
+		],
+		relatedExperience: [
+			{ label: "MSc Data Science", url: "https://tinomuzambi.com/#education" },
+		],
+		verification: {
+			publiclyVerifiable: true,
+			sources: [
+				"https://github.com/TinoMuzambi/MusicRecPathSignatures",
+				"https://github.com/TinoMuzambi/MusicRecPathSignatures/blob/main/V30_FEATURE_POPULATION_IMPLEMENTATION.md",
+			],
+			checkedAt,
+			notes: "Repository structure, documentation and tests were inspected. No live product claim is made.",
+		},
+	},
+	{
+		id: "project:advice",
+		slug: "advice",
+		legacySlugs: ["advice"],
+		title: "Advice",
+		shortDescription:
+			"A collaborative student-advising platform that collates UCT curriculum information and answers recurring questions.",
+		category: "product",
+		status: "completed",
+		period: {
+			label: "Honours project, 2021 to 2022",
+			start: "2021",
+			end: "2022",
+			precision: "year",
+		},
+		featured: {
+			enabled: true,
+			order: 2,
+			rationale: "A substantial collaborative product with public interface and API documentation.",
+		},
+		technologies: [
+			"Next.js",
+			"TypeScript",
+			"React",
+			"Sass",
+			"MongoDB",
+			"NextAuth",
+			"Cypress",
+		],
+		topics: ["Student advising", "Curriculum data", "Authentication", "Full-stack product"],
+		role: ["Honours project team member"],
+		problem:
+			"Students and advisors repeatedly had to assemble curriculum guidance from information spread across multiple university sources.",
+		contribution: [
+			"The public record describes the original build collectively, so individual ownership within the honours team is not separated here.",
+		],
+		implementation: [
+			"Provides course, programme, major, FAQ and glossary data through pages and API routes.",
+			"Includes handbook summaries, a credits calculator, student and advisor consultation history, authentication and email flows.",
+		],
+		decisions: [
+			{
+				decision: "Use one Next.js application for the interface and serverless API routes.",
+				rationale: "The public project notes cite shared TypeScript models, routing and server rendering as reasons for the choice.",
+			},
+			{
+				decision: "Model varied curriculum records in MongoDB.",
+				rationale: "The team expected course and programme information to arrive in several shapes.",
+			},
+		],
+		outcomes: ["The application and generated TypeDoc documentation remain publicly accessible."],
+		limitations: [
+			"The source repository is not public.",
+			"The documentation verifies the application surface but cannot independently establish adoption or usage figures.",
+		],
+		links: [
+			link("demo", "Open application", "https://advice-uct.vercel.app/"),
+			link("documentation", "Generated documentation", "https://advice-docs.netlify.app/"),
+		],
+		relatedExperience: [
+			{ label: "BSc Honours and UCT work", url: "https://tinomuzambi.com/#education" },
+		],
+		verification: {
+			publiclyVerifiable: true,
+			sources: [
+				"https://advice-uct.vercel.app/",
+				"https://advice-docs.netlify.app/",
+			],
+			checkedAt,
+			notes: "The demo and generated API documentation are public. Individual team ownership is not documented.",
+		},
+	},
+	{
+		id: "project:clock-in-out",
+		slug: "clock-in-out-analysis",
+		legacySlugs: ["clock-in-out"],
+		title: "Clock In/Out Analysis",
+		shortDescription:
+			"A published data story following how office hours, postgraduate study and ordinary commitments shaped a year.",
+		category: "data",
+		status: "published",
+		period: {
+			label: "2024 data, published 2025",
+			start: "2024",
+			end: "2025",
+			precision: "year",
+		},
+		featured: {
+			enabled: true,
+			order: 3,
+			rationale: "A complete, readable example of analysis moving from collection through narrative publication.",
+		},
+		technologies: ["R", "Quarto", "tidyverse", "lubridate", "Plotly", "DT"],
+		topics: ["Personal data", "Data cleaning", "Visualisation", "Storytelling"],
+		role: ["Author", "Analyst"],
+		problem:
+			"Explore how a new postgraduate schedule and other commitments changed office arrival and departure patterns across 2024.",
+		contribution: [
+			"Collected, cleaned and analysed 250 daily office records exported from Notion.",
+			"Wrote and published the analysis as a Quarto data story with interactive views.",
+		],
+		implementation: [
+			"Tidies clock-in and clock-out records in R, annotates events and computes summaries.",
+			"Combines static explanation with Plotly and DT outputs in a published Quarto document.",
+		],
+		decisions: [
+			{
+				decision: "Publish a narrated report instead of an isolated dashboard.",
+				rationale: "The chronology and personal context are necessary to interpret the patterns.",
+			},
+		],
+		outcomes: ["The report and its Quarto source are publicly inspectable."],
+		limitations: [
+			"The raw office-record CSV is not public, so the analysis cannot be reproduced from the repository alone.",
+			"The data represents one person's year and is not intended for broader inference.",
+		],
+		links: [
+			link("report", "Read the report", "https://tinomuzambi.github.io/ClockInOut/"),
+			link("source", "Source repository", "https://github.com/TinoMuzambi/ClockInOut"),
+		],
+		relatedExperience: [
+			{ label: "MSc Data Science", url: "https://tinomuzambi.com/#education" },
+		],
+		verification: {
+			publiclyVerifiable: true,
+			sources: [
+				"https://github.com/TinoMuzambi/ClockInOut/blob/main/Clock%20In%20Out%20Analysis.qmd",
+				"https://tinomuzambi.github.io/ClockInOut/",
+			],
+			checkedAt,
+			notes: "The narrative and analysis code are public. The underlying raw dataset is not.",
+		},
+	},
+	{
+		id: "project:recomments",
+		slug: "recomments",
+		legacySlugs: ["recomments"],
+		title: "ReComments",
+		shortDescription:
+			"A separate discussion layer for YouTube videos whose native comments have been disabled.",
+		category: "product",
+		status: "archived",
+		period: {
+			label: "Built 2021, last code update 2024",
+			start: "2021",
+			end: "2024",
+			precision: "year",
+		},
+		featured: {
+			enabled: true,
+			order: 4,
+			rationale: "A broad full-stack build with inspectable product, data and integration decisions.",
+		},
+		technologies: [
+			"Next.js",
+			"TypeScript",
+			"MongoDB",
+			"Mongoose",
+			"YouTube API",
+			"Google People API",
+			"Nodemailer",
+		],
+		topics: ["Discussion", "Third-party APIs", "Authentication", "Notifications", "PWA"],
+		role: ["Designer and full-stack developer"],
+		problem:
+			"Viewers lose the discussion surface when a YouTube uploader disables native comments.",
+		contribution: [
+			"Built the full-stack TypeScript application, API routes and MongoDB persistence layer.",
+			"Implemented video lookup, threaded discussion, reactions, notification preferences and account management.",
+		],
+		implementation: [
+			"Uses Google and YouTube APIs for identity and video context.",
+			"Stores users, comments, replies and preferences through Mongoose models and Next.js API routes.",
+			"Sends reply notifications and supports subscription controls through email flows.",
+		],
+		decisions: [
+			{
+				decision: "Keep the discussion independent from the original video platform.",
+				rationale: "The product exists specifically when the original comment surface is unavailable.",
+			},
+			{
+				decision: "Use one Next.js codebase for interface and serverless endpoints.",
+				rationale: "The data and notification workflows can stay close to the product interface.",
+			},
+		],
+		outcomes: ["The source and deployed application remain public."],
+		limitations: [
+			"This is a live legacy product, not a claim of active maintenance.",
+			"Its last public code update was in 2024 and it depends on third-party Google services.",
+		],
+		links: [
+			link("demo", "Open ReComments", "https://recomments.tinomuzambi.com/"),
+			link("source", "Source repository", "https://github.com/TinoMuzambi/ReComments"),
+		],
+		relatedExperience: [],
+		verification: {
+			publiclyVerifiable: true,
+			sources: [
+				"https://github.com/TinoMuzambi/ReComments",
+				"https://recomments.tinomuzambi.com/",
+			],
+			checkedAt,
+			notes: "The public source verifies the application surface and stack. The live site responded during review.",
+		},
+	},
+	{
+		id: "project:book-recommender-system",
+		slug: "book-recommender-system",
+		legacySlugs: [],
+		title: "Book Recommender System",
+		shortDescription:
+			"A published comparison of user-based, item-based and matrix-factorisation recommendation methods.",
+		category: "research",
+		status: "published",
+		period: { label: "2024", start: "2024", end: "2024", precision: "year" },
+		featured: {
+			enabled: true,
+			order: 5,
+			rationale: "A compact and inspectable recommendation study with methods, results and limitations in public.",
+		},
+		technologies: ["R", "Quarto", "tidyverse", "recosystem"],
+		topics: ["Collaborative filtering", "Matrix factorisation", "Model evaluation"],
+		role: ["Author", "Analyst"],
+		problem:
+			"Compare several collaborative-filtering approaches and test whether a simple averaged ensemble improves rating prediction.",
+		contribution: [
+			"Implemented user-based and item-based collaborative filtering, tuned matrix factorisation and an ensemble.",
+			"Published the data preparation, evaluation and interpretation as a Quarto report.",
+		],
+		implementation: [
+			"Uses the Book-Crossing dataset and evaluates rating predictions with RMSE.",
+			"Tunes a matrix-factorisation model and compares it with neighbourhood methods and a simple-average ensemble.",
+		],
+		decisions: [
+			{
+				decision: "Report the weaker ensemble result instead of selecting only the best-looking output.",
+				rationale: "The comparison remains useful when it records what did not improve the model.",
+			},
+		],
+		outcomes: [
+			"The report records RMSE 1.84 for matrix factorisation and 2.93 for the simple averaged ensemble.",
+		],
+		limitations: [
+			"The ensemble uses a simple average and the report identifies more sophisticated weighting as future work.",
+		],
+		links: [
+			link("report", "Read the report", "https://tinomuzambi.github.io/BookRecommenderSystem/"),
+			link("source", "Source repository", "https://github.com/TinoMuzambi/BookRecommenderSystem"),
+		],
+		relatedExperience: [{ label: "MSc Data Science", url: "https://tinomuzambi.com/#education" }],
+		verification: {
+			publiclyVerifiable: true,
+			sources: [
+				"https://github.com/TinoMuzambi/BookRecommenderSystem/blob/main/Book%20Recommender%20System.qmd",
+				"https://tinomuzambi.github.io/BookRecommenderSystem/",
+			],
+			checkedAt,
+			notes: "The source report exposes the method, results and stated limitations.",
+		},
+	},
+	{
+		id: "project:trailblazer",
+		slug: "trailblazer",
+		legacySlugs: [],
+		title: "TrailBlazer",
+		shortDescription:
+			"An R Shiny application for inspecting runs through route, pace, speed and elevation data.",
+		category: "data",
+		status: "published",
+		period: { label: "2024", start: "2024", end: "2024", precision: "year" },
+		featured: {
+			enabled: true,
+			order: 6,
+			rationale: "A strong interactive data application with publicly inspectable reactive and geospatial code.",
+		},
+		technologies: ["R", "Shiny", "Leaflet", "Plotly", "DT", "geosphere"],
+		topics: ["Running analytics", "Geospatial data", "Reactive interfaces"],
+		role: ["Author", "Developer"],
+		problem: "Bring route, pace, speed and elevation records into one navigable view of running activity.",
+		contribution: [
+			"Built the reactive Shiny interface, route maps, run summaries and bookmarkable state.",
+		],
+		implementation: [
+			"Computes Haversine distance and derived pace, speed and elevation summaries.",
+			"Links filtered run records to Leaflet maps, Plotly views and detailed tables.",
+		],
+		decisions: [
+			{
+				decision: "Keep the selected run in bookmarkable URL state.",
+				rationale: "A specific analysis view can be returned to or shared.",
+			},
+		],
+		outcomes: ["The application and source remain publicly accessible."],
+		limitations: [
+			"The underlying run CSV files are private, so the code is inspectable but not locally reproducible from the repository alone.",
+		],
+		links: [
+			link("demo", "Open TrailBlazer", "https://tinomuzambi.shinyapps.io/TrailBlazer/"),
+			link("source", "Source repository", "https://github.com/TinoMuzambi/TrailBlazer"),
+		],
+		relatedExperience: [{ label: "MSc Data Science", url: "https://tinomuzambi.com/#education" }],
+		verification: {
+			publiclyVerifiable: true,
+			sources: [
+				"https://github.com/TinoMuzambi/TrailBlazer/blob/main/MZMTIN002.R",
+				"https://tinomuzambi.shinyapps.io/TrailBlazer/",
+			],
+			checkedAt,
+			notes: "The source verifies the interface and calculations. The data files are not public.",
+		},
+	},
+	{
+		id: "project:ring-comparison",
+		slug: "ring-comparison",
+		legacySlugs: [],
+		title: "Ring Comparison",
+		shortDescription:
+			"A URL-backed search, filter and comparison tool for engagement rings and wedding bands.",
+		category: "product",
+		status: "maintained",
+		period: { label: "2023 to 2025", start: "2023", end: "2025", precision: "year" },
+		featured: { enabled: false, order: null, rationale: null },
+		technologies: ["Next.js", "TypeScript", "React", "Tailwind CSS"],
+		topics: ["Decision support", "Search", "Filtering", "URL state"],
+		role: ["Designer and developer"],
+		problem: "Make the attributes and prices of rings easier to compare across a small collected dataset.",
+		contribution: ["Built the data model, separate ring modes, search, filters, sorting and shareable URL state."],
+		implementation: [
+			"Uses local JSON datasets for 17 engagement-ring entries and 6 wedding-band entries.",
+			"Maintains search and filter state in URL parameters.",
+		],
+		decisions: [
+			{
+				decision: "Use tailored filters for engagement rings and wedding bands.",
+				rationale: "The two product types expose different useful comparison fields.",
+			},
+		],
+		outcomes: ["The source and application are public. The last public code update was in 2025."],
+		limitations: [
+			"The repository does not document the provenance or freshness of the product data.",
+			"The catalogue should not be treated as comprehensive market coverage.",
+		],
+		links: [
+			link("demo", "Open comparison", "https://comparison-psi.vercel.app/"),
+			link("source", "Source repository", "https://github.com/TinoMuzambi/RingComparison"),
+		],
+		relatedExperience: [],
+		verification: {
+			publiclyVerifiable: true,
+			sources: ["https://github.com/TinoMuzambi/RingComparison", "https://comparison-psi.vercel.app/"],
+			checkedAt,
+			notes: "Application behavior and local datasets are public. Data provenance is not documented.",
+		},
+	},
+	{
+		id: "project:optimising-compensation",
+		slug: "optimising-compensation",
+		legacySlugs: [],
+		title: "Optimising Compensation",
+		shortDescription:
+			"A NetLogo agent-based simulation with R analysis exploring how job changes and negotiation affect compensation.",
+		category: "research",
+		status: "experiment",
+		period: { label: "2024", start: "2024", end: "2024", precision: "year" },
+		featured: { enabled: false, order: null, rationale: null },
+		technologies: ["NetLogo", "R", "tidyverse"],
+		topics: ["Agent-based modelling", "Simulation", "Compensation"],
+		role: null,
+		problem: "Explore how negotiation, inflation, job-changing and employer availability can interact in a compensation system.",
+		contribution: null,
+		implementation: ["Combines a NetLogo model with R analysis and committed experiment outputs."],
+		decisions: [],
+		outcomes: null,
+		limitations: ["The repository has no README, live demo or published narrative, so interpretation remains limited."],
+		links: [
+			link("source", "Source repository", "https://github.com/TinoMuzambi/OptimisingCompensation"),
+		],
+		relatedExperience: [{ label: "MSc Data Science", url: "https://tinomuzambi.com/#education" }],
+		verification: {
+			publiclyVerifiable: true,
+			sources: [
+				"https://github.com/TinoMuzambi/OptimisingCompensation/blob/main/Optimising%20Compensation.nlogo",
+			],
+			checkedAt,
+			notes: "The model and analysis are public, but there is no explanatory README.",
+		},
+	},
+	{
+		id: "project:thirty-seconds",
+		slug: "thirty-seconds",
+		legacySlugs: [],
+		title: "30 Seconds companion projects",
+		shortDescription: "A digital game board and a separate card API for a 30 Seconds-style party game.",
+		category: "product",
+		status: "experiment",
+		period: { label: "2021 to 2024", start: "2021", end: "2024", precision: "year" },
+		featured: { enabled: false, order: null, rationale: null },
+		technologies: ["Next.js", "TypeScript", "localStorage", "API routes"],
+		topics: ["Game utility", "State persistence", "API design"],
+		role: ["Designer and developer"],
+		problem: "Replace the physical score board and explore a reusable source of game cards.",
+		contribution: ["Built the board and card API as separate companion projects."],
+		implementation: [
+			"The board supports multiple teams, local persistence, a 35-position track and a leaderboard.",
+			"The separate API exposes card data and category-oriented roadmap work.",
+		],
+		decisions: [],
+		outcomes: ["The board remains publicly accessible."],
+		limitations: [
+			"The board does not currently call the separate API.",
+			"The card endpoint returned an error during the 2026-09-06 audit.",
+		],
+		links: [
+			link("demo", "Open the board", "https://30-seconds-board.vercel.app/"),
+			link("source", "Board repository", "https://github.com/TinoMuzambi/30SecondsBoard"),
+			link("source", "API repository", "https://github.com/TinoMuzambi/30SecondsAPI"),
+		],
+		relatedExperience: [],
+		verification: {
+			publiclyVerifiable: true,
+			sources: [
+				"https://github.com/TinoMuzambi/30SecondsBoard",
+				"https://github.com/TinoMuzambi/30SecondsAPI",
+			],
+			checkedAt,
+			notes: "The projects are companions, not a verified integrated system.",
+		},
+	},
+	legacyProject({
+		slug: "paystack",
+		title: "Paystack payment flow",
+		shortDescription: "A focused Next.js demonstration of initialising and verifying a Paystack payment.",
+		category: "developer-tool",
+		status: "experiment",
+		year: "2021",
+		technologies: ["Next.js", "TypeScript", "Paystack", "Serverless functions"],
+		topics: ["Payments", "Integration"],
+		sourceUrl: "https://github.com/TinoMuzambi/Paystack",
+	}),
+	legacyProject({
+		slug: "trainerr",
+		title: "Trainerr",
+		shortDescription: "A Flutter timetable viewer backed by a separate Next.js scraping and data API.",
+		category: "product",
+		year: "2022",
+		technologies: ["Flutter", "Dart", "Next.js", "TypeScript", "MongoDB", "Puppeteer"],
+		topics: ["Cape Town trains", "Timetables", "Mobile"],
+		sourceUrl: "https://github.com/TinoMuzambi/trainerr",
+	}),
+	legacyProject({
+		slug: "table-time",
+		title: "Table Time",
+		shortDescription: "A full-stack table-tennis scorekeeper with stored matches and real-time scoreboard updates.",
+		category: "product",
+		year: "2020",
+		technologies: ["React", "Node.js", "Express", "MongoDB", "Pusher", "PWA"],
+		topics: ["Table tennis", "Real-time updates", "Scorekeeping"],
+		sourceUrl: "https://github.com/TinoMuzambi/TableTime",
+	}),
+	legacyProject({
+		slug: "ml-video-annotations",
+		title: "ML Video Annotations",
+		shortDescription: "A browser experiment that maps classified hand and facial gestures to overlays on live video.",
+		category: "experiment",
+		status: "experiment",
+		year: "2020",
+		technologies: ["JavaScript", "ml5.js", "p5.js", "Teachable Machine"],
+		topics: ["Computer vision", "Browser ML", "Video"],
+		sourceUrl: "https://github.com/TinoMuzambi/MLVideoAnnotations",
+	}),
+	legacyProject({
+		slug: "landon-hotel",
+		title: "Landon Hotel",
+		shortDescription: "A course project demonstrating a serverless React application across AWS services.",
+		category: "experiment",
+		year: "2022",
+		technologies: ["React", "AWS Amplify", "Lambda", "DynamoDB", "API Gateway"],
+		topics: ["Serverless", "Coursework"],
+		sourceUrl: "https://github.com/TinoMuzambi/ReactServerlessAWS",
+		role: ["Course participant"],
+	}),
+	legacyProject({
+		slug: "colour-schemes",
+		title: "Colour Schemes",
+		shortDescription: "A React Native colour-scheme generator using The Color API.",
+		category: "experiment",
+		status: "experiment",
+		year: "2022",
+		technologies: ["React Native", "Expo", "TypeScript"],
+		topics: ["Mobile", "Colour"],
+		sourceUrl: "https://github.com/TinoMuzambi/RNColourScheme",
+	}),
+	legacyProject({
+		slug: "tailwind-expo",
+		title: "Tailwind Expo",
+		shortDescription: "An early responsive landing-page exercise built while learning Tailwind CSS.",
+		category: "experiment",
+		status: "experiment",
+		year: "2021",
+		technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
+		topics: ["Interface", "Learning"],
+		sourceUrl: "https://github.com/TinoMuzambi/TailwindExpo",
+	}),
+	legacyProject({
+		slug: "marvel-characters",
+		title: "Marvel Characters",
+		shortDescription: "A React interface for browsing and searching characters from the Marvel API.",
+		category: "experiment",
+		status: "experiment",
+		year: "2021",
+		technologies: ["React", "JavaScript", "Marvel API"],
+		topics: ["Search", "Third-party API"],
+		sourceUrl: "https://github.com/TinoMuzambi/MarvelCharacters",
+	}),
+	legacyProject({
+		slug: "clash-ratios",
+		title: "Clash Ratios",
+		shortDescription: "A side-by-side comparison of Clash of Clans player donation ratios.",
+		category: "experiment",
+		status: "experiment",
+		year: "2021",
+		technologies: ["Next.js", "TypeScript", "Express", "REST API"],
+		topics: ["Game data", "Comparison"],
+		sourceUrl: "https://github.com/TinoMuzambi/ClashRatios",
+	}),
+	legacyProject({
+		slug: "tweet-streams",
+		title: "Tweet Streams",
+		shortDescription: "A React application that streamed tweets in real time for a supplied search query.",
+		category: "experiment",
+		status: "archived",
+		year: "2020",
+		technologies: ["React", "Express", "Socket.IO", "Twitter API"],
+		topics: ["Real-time data", "Social media"],
+		sourceUrl: "https://github.com/TinoMuzambi/TweetStreams",
+	}),
+	legacyProject({
+		slug: "next-blog",
+		title: "Next Blog",
+		shortDescription: "A server-rendered Next.js port of an earlier React blog.",
+		category: "experiment",
+		year: "2021",
+		technologies: ["Next.js", "React", "JavaScript", "Storyblok"],
+		topics: ["Blogging", "Server rendering"],
+		sourceUrl: "https://github.com/TinoMuzambi/NextBlog",
+	}),
+	legacyProject({
+		slug: "cubing-algos",
+		legacySlug: "cubingalgos",
+		title: "Cubing Algos",
+		shortDescription: "A compact reference for two-look OLL and PLL Rubik's Cube algorithms.",
+		category: "developer-tool",
+		year: "2021",
+		technologies: ["HTML", "CSS", "JavaScript", "Firebase"],
+		topics: ["Reference tool", "Rubik's Cube"],
+		sourceUrl: "https://github.com/TinoMuzambi/CubingAlgos",
+	}),
+	legacyProject({
+		slug: "tino-muzambi-portfolio",
+		legacySlug: "tinomuzambi",
+		title: "TinoMuzambi.com",
+		shortDescription: "The main professional portfolio that this project archive complements.",
+		category: "product",
+		status: "active",
+		year: "2021",
+		technologies: ["Next.js", "TypeScript", "React", "Tailwind CSS"],
+		topics: ["Portfolio", "Machine-readable profile"],
+		sourceUrl: "https://github.com/TinoMuzambi/ReactPortfolio",
+		limitations: null,
+	}),
+	legacyProject({
+		slug: "working-with-clash",
+		title: "Working With Clash",
+		shortDescription: "A React interface for looking up Clash of Clans player and clan information.",
+		category: "experiment",
+		year: "2020",
+		technologies: ["React", "Express", "JavaScript", "Clash of Clans API"],
+		topics: ["Game data", "Third-party API"],
+		sourceUrl: "https://github.com/TinoMuzambi/WorkingWithClash",
+	}),
+	legacyProject({
+		slug: "projects-tinomuzambi",
+		legacySlug: "projects.tinomuzambi",
+		title: "Projects.TinoMuzambi",
+		shortDescription: "The project archive itself, rebuilt around local typed content and evidence-led project records.",
+		category: "product",
+		status: "active",
+		year: "2020",
+		technologies: ["Next.js", "TypeScript", "React", "Tailwind CSS"],
+		topics: ["Project archive", "Accessibility", "Structured data"],
+		sourceUrl: "https://github.com/TinoMuzambi/Projects.TinoMuzambi",
+		limitations: null,
+	}),
+	legacyProject({
+		slug: "whatsapp-chat-analyser",
+		legacySlug: "whatsapp-analyser",
+		title: "WhatsApp Chat Analyser",
+		shortDescription: "A Python tool for deriving summary statistics from exported WhatsApp chats.",
+		category: "data",
+		year: "2019",
+		technologies: ["Python", "Flask", "Bootstrap"],
+		topics: ["Text analysis", "Learning"],
+		sourceUrl: "https://github.com/TinoMuzambi/WhatsAppAnalyser",
+	}),
+	legacyProject({
+		slug: "remove-contractions",
+		title: "Remove Contractions",
+		shortDescription: "A Python and Flask utility that expands contractions in supplied text.",
+		category: "developer-tool",
+		status: "experiment",
+		year: "2019",
+		technologies: ["Python", "Flask", "WTForms", "Bootstrap"],
+		topics: ["Text processing", "Learning"],
+		sourceUrl: "https://github.com/TinoMuzambi/RemoveContractions",
+	}),
+	legacyProject({
+		slug: "amount-divider",
+		title: "Amount Divider",
+		shortDescription: "A small Python utility for dividing an amount into uneven partitions.",
+		category: "developer-tool",
+		status: "experiment",
+		year: "2020",
+		technologies: ["Python", "Flask", "WTForms", "Bootstrap"],
+		topics: ["Utility", "Learning"],
+		sourceUrl: "https://github.com/TinoMuzambi/AmountDivider",
+	}),
+	legacyProject({
+		slug: "react-blog",
+		legacySlug: "blog.tinomuzambi",
+		title: "Blog.TinoMuzambi",
+		shortDescription: "A React blog with Storyblok content, Firebase comments and dark mode.",
+		category: "product",
+		year: "2020",
+		technologies: ["React", "TypeScript", "Storyblok", "Firebase", "Firestore"],
+		topics: ["Publishing", "Comments", "CMS"],
+		sourceUrl: "https://github.com/TinoMuzambi/ReactBlog",
+	}),
+	legacyProject({
+		slug: "twibot",
+		title: "TwiBot",
+		shortDescription: "An early Python experiment with the former Twitter developer API.",
+		category: "experiment",
+		status: "experiment",
+		year: "2020",
+		technologies: ["Python", "Twitter API"],
+		topics: ["Bots", "Learning"],
+		sourceUrl: "https://github.com/TinoMuzambi/TwiBot",
+	}),
+	legacyProject({
+		slug: "go-conversion-tool",
+		title: "Go Conversion Tool",
+		shortDescription: "A command-line unit conversion exercise written while learning Go.",
+		category: "developer-tool",
+		status: "experiment",
+		year: "2020",
+		technologies: ["Go"],
+		topics: ["Unit conversion", "Learning"],
+		sourceUrl: "https://github.com/TinoMuzambi/GoConversionTool",
+	}),
+	legacyProject({
+		slug: "automate-mail",
+		title: "Automate Mail",
+		shortDescription: "An early Python script for sending email on a configurable interval.",
+		category: "developer-tool",
+		status: "experiment",
+		year: "2019",
+		technologies: ["Python", "smtplib"],
+		topics: ["Email", "Automation", "Learning"],
+		sourceUrl: "https://github.com/TinoMuzambi/AutomateMail",
+	}),
+	legacyProject({
+		slug: "android-calculator",
+		title: "Android Calculator",
+		shortDescription: "An early Android calculator capable of basic arithmetic.",
+		category: "experiment",
+		status: "experiment",
+		year: "2019",
+		technologies: ["Kotlin", "Android", "XML"],
+		topics: ["Mobile", "Learning"],
+		sourceUrl: "https://github.com/TinoMuzambi/Calculator",
+	}),
+	legacyProject({
+		slug: "student-number-generator",
+		title: "Student Number Generator",
+		shortDescription: "An early Java exercise that generates a sample student-number format from a name.",
+		category: "experiment",
+		status: "experiment",
+		year: "2018",
+		technologies: ["Java"],
+		topics: ["String processing", "Learning"],
+		sourceUrl: "https://github.com/TinoMuzambi/StudentNumberGenerator",
+	}),
+	legacyProject({
+		slug: "flip-it",
+		legacySlug: "flip-it",
+		title: "Flip It",
+		shortDescription: "A minimal flash-card interface for revising development concepts.",
+		category: "experiment",
+		status: "experiment",
+		year: "2023",
+		technologies: ["Next.js", "TypeScript", "React"],
+		topics: ["Learning tool", "Interaction"],
+		sourceUrl: "https://github.com/TinoMuzambi/Flip-It",
+	}),
+]
+
+export const featuredProjects = projects
+	.filter((project) => project.featured.enabled)
+	.sort((a, b) => (a.featured.order ?? 99) - (b.featured.order ?? 99))
+
+export const projectCategories: ProjectCategory[] = [
+	"research",
+	"data",
+	"product",
+	"developer-tool",
+	"experiment",
+]
+
+export const projectStatuses: ProjectStatus[] = [
+	"active",
+	"maintained",
+	"completed",
+	"published",
+	"archived",
+	"experiment",
+]
+
+export const getProject = (slug: string) => projects.find((project) => project.slug === slug)

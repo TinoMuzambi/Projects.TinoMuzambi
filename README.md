@@ -1,44 +1,38 @@
-# Projects.TinoMuzambi
+# Tino Muzambi engineering archive
 
-This Next.js application is a landing page for projects by Tino Muzambi. Storyblok remains the source of truth for project content, tags, featured status, and external links.
+The dedicated project archive for [tinomuzambi.com](https://tinomuzambi.com). It presents selected research, data and software work alongside a complete, honestly labelled catalogue of earlier projects.
 
-## Prerequisites
+## Local development
 
-- Node.js 22.13 or newer within the 22.x release line
-- Yarn Classic 1.22.22
-
-The Node requirement and Yarn version are declared in `package.json`. Yarn enforces the Node requirement during installation, while GitHub Actions and Vercel read the same manifest, keeping the runtime contract aligned. Keep `yarn.lock` when changing dependencies.
-
-## Local setup
-
-Install the locked dependencies:
-
-```sh
-yarn install --frozen-lockfile
+```bash
+npm ci
+npm run dev
 ```
 
-Local development needs these variable names:
+The site runs at `http://localhost:3000`.
 
-- `REACT_APP_STORYBLOK_KEY`: server-only Storyblok delivery credential
-- `ANALYTICS_CODE`: public analytics tracking identifier
+## Quality checks
 
-Values are managed in Vercel and pulled into ignored local environment files. From an authenticated, linked checkout:
-
-```sh
-vercel env pull .env.development.local --environment=development
+```bash
+npm run lint
+npm run typecheck
+npm test
+npm run build
 ```
 
-Never commit environment files, `.vercel` metadata, or credential values.
+## Content model
 
-## Commands
+Canonical project records live in `content/projects.ts` and follow the strict types in `types/projects.ts`. Human pages, search and filters, project JSON-LD, `/projects.json`, `/llms.txt`, sitemap entries and legacy redirects all derive from those records.
 
-| Command | Purpose |
-| --- | --- |
-| `yarn dev` | Start the local development server |
-| `yarn lint` | Run Next.js ESLint checks |
-| `yarn type-check` | Run strict TypeScript checking |
-| `yarn test` | Run all TypeScript regression tests |
-| `yarn build` | Create the production build using Storyblok |
-| `yarn start` | Serve a completed production build |
+Each public claim should remain attributable to an inspectable repository, report, application or documentation page. Unknown details should use `null` instead of an inferred date, metric, role or outcome.
 
-GitHub Actions runs a frozen install, lint, strict typechecking, and tests on pull requests and pushes to `master`, the repository's default branch. Vercel performs the environment-backed production build and preview deployment.
+## Architecture
+
+- Next.js App Router
+- React and strict TypeScript
+- Tailwind CSS 4
+- Local variable fonts shared with the main portfolio
+- Static project routes and machine-readable endpoints
+- No CMS or runtime content dependency
+
+The visual rationale and responsive wireframes are recorded in `docs/design-plan.md`.
