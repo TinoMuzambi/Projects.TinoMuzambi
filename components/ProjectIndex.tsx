@@ -1,11 +1,10 @@
 "use client"
 
-import Link from "next/link"
-import { useSearchParams } from "next/navigation"
 import { useEffect, useMemo, useState } from "react"
 
+import { ProjectActions } from "@/components/ProjectActions"
 import { categoryLabel, statusLabel } from "@/lib/projects"
-import type { ProjectCategory, ProjectRecord, ProjectStatus } from "@/types/projects"
+import type { ProjectRecord } from "@/types/projects"
 
 import { ProjectDrawer } from "./ProjectDrawer"
 
@@ -13,83 +12,188 @@ type ProjectIndexProps = {
 	projects: ProjectRecord[]
 }
 
-type CategoryFilter = "all" | ProjectCategory
-type StatusFilter = "all" | ProjectStatus
+type ProjectArea = "all" | "web" | "mobile" | "data-ml" | "systems-automation" | "experiments"
+type AvailabilityFilter = "all" | "live" | "source" | "archived" | "case-study"
 
-const categoryFilters: CategoryFilter[] = [
-	"all",
-	"research",
-	"data",
-	"product",
-	"developer-tool",
-	"experiment",
+const areaFilters: Array<{ value: ProjectArea; label: string }> = [
+	{ value: "all", label: "All areas" },
+	{ value: "web", label: "Web" },
+	{ value: "mobile", label: "Mobile" },
+	{ value: "data-ml", label: "Data and ML" },
+	{ value: "systems-automation", label: "Systems and automation" },
+	{ value: "experiments", label: "Experiments" },
 ]
 
-const statusFilters: StatusFilter[] = ["all", "active", "maintained", "completed", "published", "archived", "experiment"]
+const availabilityFilters: Array<{ value: AvailabilityFilter; label: string }> = [
+	{ value: "all", label: "All availability" },
+	{ value: "live", label: "Live" },
+	{ value: "source", label: "Source available" },
+	{ value: "archived", label: "Archived" },
+	{ value: "case-study", label: "Case study" },
+]
 
-const matchesQuery = (project: ProjectRecord, query: string) => {
-	const searchable = [
+const webTerms = ["next.js", "react", "html", "css", "flask", "firebase", "storyblok", "web"]
+const mobileTerms = ["mobile", "react native", "flutter", "dart", "android", "ios", "kotlin", "expo"]
+const dataTerms = [
+	"data",
+	"machine learning",
+	"recommendation",
+	"python",
+	"quarto",
+	"tidyverse",
+	"shiny",
+	"netlogo",
+	"ml5.js",
+	"scikit-learn",
+	"librosa",
+]
+const systemTerms = [
+	"automation",
+	"docker",
+	"traefik",
+	"server",
+	"api",
+	"cli",
+	"email",
+	"networking",
+	"monitoring",
+	"developer tool",
+]
+
+const projectTerms = (project: ProjectRecord) =>
+	[
 		project.title,
 		project.shortDescription,
 		project.category,
-		project.status,
 		...project.technologies,
 		...project.topics,
-		...(project.role ?? []),
 	]
 		.join(" ")
 		.toLocaleLowerCase()
 
-	return searchable.includes(query)
+const includesTerm = (haystack: string, terms: string[]) => terms.some((term) => haystack.includes(term))
+
+const projectAreas = (project: ProjectRecord): Exclude<ProjectArea, "all">[] => {
+	const searchable = projectTerms(project)
+	const areas: Exclude<ProjectArea, "all">[] = []
+
+	if (project.category === "product" || includesTerm(searchable, webTerms)) areas.push("web")
+	if (includesTerm(searchable, mobileTerms)) areas.push("mobile")
+	if (["research", "data"].includes(project.category) || includesTerm(searchable, dataTerms)) areas.push("data-ml")
+	if (project.category === "systems" || project.category === "developer-tool" || includesTerm(searchable, systemTerms)) {
+		areas.push("systems-automation")
+	}
+	if (project.category === "experiment" || project.status === "experiment") areas.push("experiments")
+
+	return [...new Set(areas)]
 }
 
+const areaLabel = (area: Exclude<ProjectArea, "all">) =>
+	areaFilters.find((item) => item.value === area)?.label ?? area
+
+const matchesAvailability = (project: ProjectRecord, filter: AvailabilityFilter) => {
+	if (filter === "all") return true
+	if (filter === "live") {
+		return project.links.some(
+			(item) => ["demo", "report"].includes(item.kind) && item.availability === "live"
+		)
+	}
+	if (filter === "source") {
+		return project.links.some((item) => item.kind === "source" && item.availability !== "unavailable")
+	}
+	if (filter === "archived") return project.status === "archived"
+
+	return Boolean(
+		project.problem &&
+		(project.contribution?.length || project.implementation?.length || project.decisions.length)
+	)
+}
+
+const isArea = (value: string | null): value is ProjectArea =>
+	areaFilters.some((item) => item.value === value)
+
+const isAvailability = (value: string | null): value is AvailabilityFilter =>
+	availabilityFilters.some((item) => item.value === value)
+
 export function ProjectIndex({ projects }: ProjectIndexProps) {
-	const searchParams = useSearchParams()
-	const [query, setQuery] = useState(() => searchParams?.get("q") ?? "")
-	const [category, setCategory] = useState<CategoryFilter>("all")
-	const [status, setStatus] = useState<StatusFilter>("all")
-	const [activeId, setActiveId] = useState(projects[0]?.id ?? "")
+	const [query, setQuery] = useState("")
+	const [area, setArea] = useState<ProjectArea>("all")
+	const [availability, setAvailability] = useState<AvailabilityFilter>("all")
+	const [technology, setTechnology] = useState("all")
+	const [activeId, setActiveId] = useState("")
+	const [hasReadUrl, setHasReadUrl] = useState(false)
+
+	const technologies = useMemo(
+		() => [...new Set(projects.flatMap((project) => project.technologies))].sort((a, b) => a.localeCompare(b)),
+		[projects]
+	)
+
+	useEffect(() => {
+		const params = new URLSearchParams(window.location.search)
+		const initialArea = params.get("area")
+		const initialAvailability = params.get("view")
+		const initialTechnology = params.get("technology")
+
+		const frame = requestAnimationFrame(() => {
+			setQuery(params.get("q") ?? "")
+			if (isArea(initialArea)) setArea(initialArea)
+			if (isAvailability(initialAvailability)) setAvailability(initialAvailability)
+			if (initialTechnology && technologies.includes(initialTechnology)) setTechnology(initialTechnology)
+			setHasReadUrl(true)
+		})
+
+		return () => cancelAnimationFrame(frame)
+	}, [technologies])
+
+	useEffect(() => {
+		if (!hasReadUrl) return
+
+		const url = new URL(window.location.href)
+		if (query.trim()) url.searchParams.set("q", query.trim())
+		else url.searchParams.delete("q")
+		if (area !== "all") url.searchParams.set("area", area)
+		else url.searchParams.delete("area")
+		if (availability !== "all") url.searchParams.set("view", availability)
+		else url.searchParams.delete("view")
+		if (technology !== "all") url.searchParams.set("technology", technology)
+		else url.searchParams.delete("technology")
+
+		window.history.replaceState({}, "", `${url.pathname}${url.search}#index`)
+	}, [area, availability, hasReadUrl, query, technology])
 
 	const filteredProjects = useMemo(() => {
 		const normalizedQuery = query.trim().toLocaleLowerCase()
 
 		return projects.filter((project) => {
-			const queryMatches = !normalizedQuery || matchesQuery(project, normalizedQuery)
-			const categoryMatches = category === "all" || project.category === category
-			const statusMatches = status === "all" || project.status === status
+			const queryMatches = !normalizedQuery || [
+				projectTerms(project),
+				...(project.role ?? []).map((item) => item.toLocaleLowerCase()),
+			].some((item) => item.includes(normalizedQuery))
+			const areaMatches = area === "all" || projectAreas(project).includes(area)
+			const availabilityMatches = matchesAvailability(project, availability)
+			const technologyMatches = technology === "all" || project.technologies.includes(technology)
 
-			return queryMatches && categoryMatches && statusMatches
+			return queryMatches && areaMatches && availabilityMatches && technologyMatches
 		})
-	}, [category, projects, query, status])
-
-	const activeProject =
-		filteredProjects.find((project) => project.id === activeId) ?? filteredProjects[0]
-
-	useEffect(() => {
-		const url = new URL(window.location.href)
-		if (query.trim()) url.searchParams.set("q", query.trim())
-		else url.searchParams.delete("q")
-		window.history.replaceState({}, "", `${url.pathname}${url.search}#index`)
-	}, [query])
+	}, [area, availability, projects, query, technology])
 
 	const clearFilters = () => {
 		setQuery("")
-		setCategory("all")
-		setStatus("all")
+		setArea("all")
+		setAvailability("all")
+		setTechnology("all")
+		setActiveId("")
 	}
+
+	const hasFilters = query || area !== "all" || availability !== "all" || technology !== "all"
 
 	return (
 		<section id="index" aria-labelledby="index-title">
-			<div className="archive-shell py-12 md:py-16">
-				<div className="section-intro">
-					<div>
-						<p className="section-label">Complete project index</p>
-						<h2 id="index-title">Search the whole working record.</h2>
-					</div>
-					<p>
-						Current work, published studies and early learning projects share one index. Open a row to inspect what is known.
-					</p>
-				</div>
+			<div className="archive-shell index-shell">
+				<header className="section-heading index-heading">
+					<p className="section-label">Complete project index</p>
+					<h2 id="index-title">The whole working record.</h2>
+				</header>
 
 				<div className="index-controls">
 					<label className="search-field">
@@ -100,103 +204,94 @@ export function ProjectIndex({ projects }: ProjectIndexProps) {
 								type="search"
 								value={query}
 								onChange={(event) => setQuery(event.target.value)}
-								placeholder="Try Python, research or Next.js"
+								placeholder="Try Python, mobile or R"
 							/>
 							{query ? <button type="button" onClick={() => setQuery("")}>Clear</button> : null}
 						</div>
 					</label>
 
-					<div className="filter-block">
-						<p>Category</p>
-						<div className="filter-options" role="group" aria-label="Filter by category">
-							{categoryFilters.map((item) => (
-								<button
-									type="button"
-									key={item}
-									aria-pressed={category === item}
-									onClick={() => setCategory(item)}
-								>
-									{item === "all" ? "All" : categoryLabel[item]}
-								</button>
-							))}
-						</div>
-					</div>
+					<label className="filter-select">
+						<span>Area</span>
+						<select name="area" value={area} onChange={(event) => setArea(event.target.value as ProjectArea)}>
+							{areaFilters.map((item) => <option value={item.value} key={item.value}>{item.label}</option>)}
+						</select>
+					</label>
 
-					<div className="filter-block">
-						<p>Status</p>
-						<div className="filter-options" role="group" aria-label="Filter by status">
-							{statusFilters.map((item) => (
-								<button
-									type="button"
-									key={item}
-									aria-pressed={status === item}
-									onClick={() => setStatus(item)}
-								>
-									{item === "all" ? "All" : statusLabel[item]}
-								</button>
-							))}
-						</div>
-					</div>
+					<label className="filter-select">
+						<span>Availability</span>
+						<select
+							name="view"
+							value={availability}
+							onChange={(event) => setAvailability(event.target.value as AvailabilityFilter)}
+						>
+							{availabilityFilters.map((item) => <option value={item.value} key={item.value}>{item.label}</option>)}
+						</select>
+					</label>
+
+					<details className="more-filters">
+						<summary>More filters</summary>
+						<label>
+							<span>Technology</span>
+							<select name="technology" value={technology} onChange={(event) => setTechnology(event.target.value)}>
+								<option value="all">All technologies</option>
+								{technologies.map((item) => <option value={item} key={item}>{item}</option>)}
+							</select>
+						</label>
+					</details>
 				</div>
 
 				<div className="index-result-bar">
-					<p aria-live="polite">
+					<p className="index-count" aria-live="polite">
 						Showing <strong>{filteredProjects.length}</strong> of <strong>{projects.length}</strong> projects
 					</p>
-					{query || category !== "all" || status !== "all" ? (
-						<button type="button" onClick={clearFilters}>Reset index</button>
-					) : null}
+					{hasFilters ? <button type="button" onClick={clearFilters}>Clear filters</button> : null}
 				</div>
 
 				{filteredProjects.length ? (
-					<div className="inspection-desk">
-						<div className="project-registry" role="list">
-							<div className="registry-head" aria-hidden="true">
-								<span>Project</span><span>Category</span><span>State</span><span>Period</span><span />
-							</div>
-							{filteredProjects.map((project) => {
-								const isActive = activeProject?.id === project.id
-
-								return (
-									<div className="registry-record" data-selected={isActive ? "true" : "false"} key={project.id} role="listitem">
-										<div className="registry-row">
-											<button
-												type="button"
-												aria-expanded={isActive}
-												aria-controls={`drawer-${project.slug}`}
-												onClick={() => setActiveId(project.id)}
-											>
-												<span className="registry-title">{project.title}</span>
-												<span>{categoryLabel[project.category]}</span>
-												<span>{statusLabel[project.status]}</span>
-												<time>{project.period.label}</time>
-												<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" /></svg>
-											</button>
-											<Link href={`/projects/${project.slug}`} aria-label={`Open ${project.title} project page`}>Open</Link>
-										</div>
-										{isActive ? (
-											<div className="mobile-project-drawer" id={`drawer-${project.slug}`}>
-												<ProjectDrawer project={project} compact />
-											</div>
-										) : null}
-									</div>
-								)
-							})}
+					<div className="project-registry" role="list">
+						<div className="registry-head" aria-hidden="true">
+							<span>Year</span><span>Project and summary</span><span>Area</span><span>Status</span><span>Key technologies</span><span>Links</span>
 						</div>
+						{filteredProjects.map((project) => {
+							const isActive = activeId === project.id
+							const primaryArea = projectAreas(project)[0]
 
-						{activeProject ? (
-							<aside className="desktop-project-drawer" aria-label="Selected project details">
-								<div key={activeProject.id} id={`drawer-desktop-${activeProject.slug}`}>
-									<ProjectDrawer project={activeProject} />
+							return (
+								<div className="registry-record" data-project-row data-selected={isActive ? "true" : "false"} key={project.id} role="listitem">
+									<div className="registry-row">
+										<button
+											className="registry-disclosure"
+											type="button"
+											aria-expanded={isActive}
+											aria-controls={`drawer-${project.slug}`}
+											onClick={() => setActiveId(isActive ? "" : project.id)}
+										>
+											<time>{project.period.end ?? project.period.start ?? project.period.label}</time>
+											<span className="registry-project">
+												<span className="registry-title">{project.title}</span>
+												<span className="registry-summary">{project.shortDescription}</span>
+											</span>
+											<span>{primaryArea ? areaLabel(primaryArea) : categoryLabel[project.category]}</span>
+											<span>{statusLabel[project.status]}</span>
+											<span className="registry-stack">{project.technologies.slice(0, 3).join(", ")}</span>
+											<svg aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6" /></svg>
+										</button>
+										<ProjectActions project={project} compact />
+									</div>
+									{isActive ? (
+										<div className="inline-project-drawer" id={`drawer-${project.slug}`}>
+											<ProjectDrawer project={project} compact />
+										</div>
+									) : null}
 								</div>
-							</aside>
-						) : null}
+							)
+						})}
 					</div>
 				) : (
 					<div className="empty-index">
 						<h3>No project matches those filters.</h3>
-						<p>Try a broader technology or reset the index to see every record.</p>
-						<button className="primary-action" type="button" onClick={clearFilters}>Reset index</button>
+						<p>Try another term or clear the filters to restore the full archive.</p>
+						<button className="primary-action" type="button" onClick={clearFilters}>Clear filters</button>
 					</div>
 				)}
 			</div>

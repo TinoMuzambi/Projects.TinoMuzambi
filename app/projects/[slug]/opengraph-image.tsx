@@ -22,8 +22,8 @@ export default async function ProjectOpenGraphImage({ params }: { params: Promis
 					display: "flex",
 					width: "100%",
 					height: "100%",
-					background: "#dcd6f7",
-					color: "#000000",
+					background: "#e5eee7",
+					color: "#142018",
 					fontFamily: "Arial, sans-serif",
 				}}
 			>
@@ -33,9 +33,9 @@ export default async function ProjectOpenGraphImage({ params }: { params: Promis
 						width: 150,
 						alignItems: "center",
 						justifyContent: "center",
-						borderRight: "4px solid #000000",
-						background: "#6437b6",
-						color: "#ffffff",
+						borderRight: "4px solid #142018",
+						background: "#236b4a",
+						color: "#f8fbf7",
 						fontSize: 34,
 						fontWeight: 700,
 					}}
@@ -51,7 +51,7 @@ export default async function ProjectOpenGraphImage({ params }: { params: Promis
 						padding: "64px 74px",
 					}}
 				>
-					<div style={{ color: "#6437b6", fontSize: 23, fontWeight: 700 }}>
+					<div style={{ color: "#236b4a", fontSize: 23, fontWeight: 700 }}>
 						Tino Muzambi / Engineering archive
 					</div>
 					<div style={{ marginTop: 22, fontSize: 68, fontWeight: 800, letterSpacing: -3, lineHeight: 0.95 }}>
@@ -65,7 +65,7 @@ export default async function ProjectOpenGraphImage({ params }: { params: Promis
 						<span>{project.period.label}</span>
 					</div>
 				</div>
-				<div style={{ width: 50, borderLeft: "4px solid #000000", background: "#58cdb7" }} />
+				<div style={{ width: 50, borderLeft: "4px solid #142018", background: "#c77d13" }} />
 			</div>
 		),
 		size

@@ -10,6 +10,7 @@ export type ProjectCategory =
 	| "research"
 	| "data"
 	| "product"
+	| "systems"
 	| "developer-tool"
 	| "experiment"
 
@@ -24,8 +25,15 @@ export type ProjectLink = {
 	kind: ProjectLinkKind
 	label: string
 	url: string
-	availability: "live" | "archived" | "unverified"
+	availability: "live" | "archived" | "unverified" | "unavailable"
 	checkedAt: string | null
+}
+
+export type ProjectScreenshot = {
+	src: string
+	alt: string
+	width: number
+	height: number
 }
 
 export type ProjectPeriod = {
@@ -69,6 +77,7 @@ export type ProjectRecord = {
 	outcomes: string[] | null
 	limitations: string[] | null
 	links: ProjectLink[]
+	screenshots?: ProjectScreenshot[]
 	relatedExperience: Array<{
 		label: string
 		url: string

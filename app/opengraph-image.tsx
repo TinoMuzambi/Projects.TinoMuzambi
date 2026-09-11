@@ -12,8 +12,8 @@ export default function OpenGraphImage() {
 					display: "flex",
 					width: "100%",
 					height: "100%",
-					background: "#ffffff",
-					color: "#000000",
+					background: "#f8fbf7",
+					color: "#142018",
 					fontFamily: "Arial, sans-serif",
 				}}
 			>
@@ -23,9 +23,9 @@ export default function OpenGraphImage() {
 						width: 180,
 						alignItems: "center",
 						justifyContent: "center",
-						borderRight: "4px solid #000000",
-						background: "#6437b6",
-						color: "#ffffff",
+						borderRight: "4px solid #142018",
+						background: "#236b4a",
+						color: "#f8fbf7",
 						fontSize: 36,
 						fontWeight: 700,
 					}}
@@ -41,17 +41,17 @@ export default function OpenGraphImage() {
 						padding: "70px 82px",
 					}}
 				>
-					<div style={{ color: "#6437b6", fontSize: 25, fontWeight: 700 }}>
+					<div style={{ color: "#236b4a", fontSize: 25, fontWeight: 700 }}>
 						Tino Muzambi
 					</div>
 					<div style={{ marginTop: 22, fontSize: 78, fontWeight: 800, letterSpacing: -4, lineHeight: 0.95 }}>
 						Engineering archive
 					</div>
 					<div style={{ marginTop: 34, fontSize: 26 }}>
-						Research, data and software projects with the working notes attached.
+						Things I have built, tested and learned from.
 					</div>
 				</div>
-				<div style={{ width: 55, borderLeft: "4px solid #000000", background: "#58cdb7" }} />
+				<div style={{ width: 55, borderLeft: "4px solid #142018", background: "#c77d13" }} />
 			</div>
 		),
 		size

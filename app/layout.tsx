@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next"
 import type { ReactNode } from "react"
-import "@fontsource-variable/bricolage-grotesque"
+import "@fontsource-variable/instrument-sans"
 import "@fontsource-variable/noto-sans"
 
 import { SiteFooter } from "@/components/SiteFooter"
@@ -76,7 +76,7 @@ export const viewport: Viewport = {
 	width: "device-width",
 	initialScale: 1,
 	colorScheme: "light",
-	themeColor: "#ffffff",
+	themeColor: "#f8fbf7",
 }
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {

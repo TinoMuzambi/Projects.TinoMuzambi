@@ -43,7 +43,7 @@ test("project IDs, slugs and legacy routes are unique", () => {
 	for (const slug of legacySlugs) assert.ok(migratedSlugs.includes(slug), `Missing ${slug}`)
 })
 
-test("the four required projects are featured", () => {
+test("only the four required projects are featured", () => {
 	const required = [
 		"music-rec-path-signatures",
 		"advice",
@@ -52,7 +52,8 @@ test("the four required projects are featured", () => {
 	]
 	const featuredSlugs = featuredProjects.map((project) => project.slug)
 
-	for (const slug of required) assert.ok(featuredSlugs.includes(slug), `Missing ${slug}`)
+	assert.deepEqual(featuredSlugs, required)
+	assert.equal(featuredProjects[0]?.title, "Music Recommendation Evaluation")
 })
 
 test("machine-readable outputs use the canonical project records", () => {
@@ -75,7 +76,19 @@ test("every external project link records its audit date", () => {
 	for (const project of projects) {
 		for (const item of project.links) {
 			assert.match(item.url, /^https:\/\//)
-			assert.equal(item.checkedAt, "2026-09-06")
+			assert.equal(item.checkedAt, "2026-09-11")
 		}
+	}
+})
+
+test("known retired deployments are never exposed as live actions", () => {
+	for (const slug of ["advice", "recomments"]) {
+		const project = projects.find((item) => item.slug === slug)
+		assert.ok(project)
+		assert.ok(project.links.some((item) => item.kind === "demo" && item.availability === "unavailable"))
+		assert.equal(
+			project.links.some((item) => item.kind === "demo" && item.availability === "live"),
+			false
+		)
 	}
 })

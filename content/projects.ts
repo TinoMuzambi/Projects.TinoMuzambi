@@ -5,7 +5,7 @@ import type {
 	ProjectStatus,
 } from "@/types/projects"
 
-const checkedAt = "2026-09-06"
+const checkedAt = "2026-09-11"
 
 const link = (
 	kind: ProjectLink["kind"],
@@ -25,6 +25,7 @@ type LegacyProjectInput = {
 	technologies: string[]
 	topics: string[]
 	sourceUrl?: string
+	liveUrl?: string
 	role?: string[] | null
 	problem?: string | null
 	limitations?: string[] | null
@@ -41,6 +42,7 @@ const legacyProject = ({
 	technologies,
 	topics,
 	sourceUrl,
+	liveUrl,
 	role = null,
 	problem = shortDescription,
 	limitations = [
@@ -70,15 +72,18 @@ const legacyProject = ({
 	decisions: [],
 	outcomes: null,
 	limitations,
-	links: sourceUrl ? [link("source", "Source repository", sourceUrl)] : [],
+	links: [
+		...(liveUrl ? [link("demo", "Open live project", liveUrl)] : []),
+		...(sourceUrl ? [link("source", "Source repository", sourceUrl)] : []),
+	],
 	relatedExperience: [],
 	verification: {
-		publiclyVerifiable: Boolean(sourceUrl),
-		sources: sourceUrl ? [sourceUrl] : [],
+		publiclyVerifiable: Boolean(sourceUrl || liveUrl),
+		sources: [sourceUrl, liveUrl].filter((url): url is string => Boolean(url)),
 		checkedAt,
-		notes: sourceUrl
-			? "The public repository and legacy archive entry support this summary. Deeper claims are intentionally omitted."
-			: "Only the legacy public archive entry was available for review.",
+		notes: sourceUrl || liveUrl
+			? "The public repository or deployment supports this summary. Deeper claims are intentionally omitted."
+			: "Only historical archive content was available for review.",
 	},
 })
 
@@ -87,13 +92,13 @@ export const projects: ProjectRecord[] = [
 		id: "project:music-rec-path-signatures",
 		slug: "music-rec-path-signatures",
 		legacySlugs: [],
-		title: "MusicRecPathSignatures",
+		title: "Music Recommendation Evaluation",
 		shortDescription:
 			"A reproducible Python evaluation pipeline for testing path signatures as music-recommendation representations.",
 		category: "research",
-		status: "active",
+		status: "completed",
 		period: {
-			label: "MSc research, 2024 to 2026",
+			label: "MSc dissertation research, 2024 to 2026",
 			start: "2024",
 			end: "2026",
 			precision: "year",
@@ -101,7 +106,7 @@ export const projects: ProjectRecord[] = [
 		featured: {
 			enabled: true,
 			order: 1,
-			rationale: "The strongest current example of research engineering, evaluation design and reproducibility.",
+			rationale: "The strongest example of research engineering, evaluation design and reproducibility.",
 		},
 		technologies: [
 			"Python",
@@ -141,6 +146,7 @@ export const projects: ProjectRecord[] = [
 		],
 		outcomes: [
 			"The public repository contains the tested evaluation pipeline, saved result artefacts and dissertation support files.",
+			"The work formed part of MSc research completed in 2026.",
 		],
 		limitations: [
 			"There is no live demo and the external FMA audio dataset is large.",
@@ -218,13 +224,14 @@ export const projects: ProjectRecord[] = [
 				rationale: "The team expected course and programme information to arrive in several shapes.",
 			},
 		],
-		outcomes: ["The application and generated TypeDoc documentation remain publicly accessible."],
+		outcomes: ["The generated TypeDoc documentation remains publicly accessible."],
 		limitations: [
 			"The source repository is not public.",
+			"The original public deployment is no longer available.",
 			"The documentation verifies the application surface but cannot independently establish adoption or usage figures.",
 		],
 		links: [
-			link("demo", "Open application", "https://advice-uct.vercel.app/"),
+			link("demo", "Original application", "https://advice-uct.vercel.app/", "unavailable"),
 			link("documentation", "Generated documentation", "https://advice-docs.netlify.app/"),
 		],
 		relatedExperience: [
@@ -232,12 +239,9 @@ export const projects: ProjectRecord[] = [
 		],
 		verification: {
 			publiclyVerifiable: true,
-			sources: [
-				"https://advice-uct.vercel.app/",
-				"https://advice-docs.netlify.app/",
-			],
+			sources: ["https://advice-docs.netlify.app/"],
 			checkedAt,
-			notes: "The demo and generated API documentation are public. Individual team ownership is not documented.",
+			notes: "The generated API documentation is public. The original deployment now returns an unavailable response. Individual team ownership is not documented.",
 		},
 	},
 	{
@@ -264,7 +268,7 @@ export const projects: ProjectRecord[] = [
 		topics: ["Personal data", "Data cleaning", "Visualisation", "Storytelling"],
 		role: ["Author", "Analyst"],
 		problem:
-			"Explore how a new postgraduate schedule and other commitments changed office arrival and departure patterns across 2024.",
+			"Explore how starting an MSc in Data Science and other commitments changed office arrival and departure patterns across 2024.",
 		contribution: [
 			"Collected, cleaned and analysed 250 daily office records exported from Notion.",
 			"Wrote and published the analysis as a Quarto data story with interactive views.",
@@ -279,7 +283,10 @@ export const projects: ProjectRecord[] = [
 				rationale: "The chronology and personal context are necessary to interpret the patterns.",
 			},
 		],
-		outcomes: ["The report and its Quarto source are publicly inspectable."],
+		outcomes: [
+			"The report and its Quarto source are publicly inspectable.",
+			"The MSc referenced in the original 2024 narrative was completed in 2026.",
+		],
 		limitations: [
 			"The raw office-record CSV is not public, so the analysis cannot be reproduced from the repository alone.",
 			"The data represents one person's year and is not intended for broader inference.",
@@ -311,9 +318,9 @@ export const projects: ProjectRecord[] = [
 		category: "product",
 		status: "archived",
 		period: {
-			label: "Built 2021, last code update 2024",
+			label: "Built 2021, security work 2026",
 			start: "2021",
-			end: "2024",
+			end: "2026",
 			precision: "year",
 		},
 		featured: {
@@ -353,24 +360,21 @@ export const projects: ProjectRecord[] = [
 				rationale: "The data and notification workflows can stay close to the product interface.",
 			},
 		],
-		outcomes: ["The source and deployed application remain public."],
+		outcomes: ["The source repository remains public."],
 		limitations: [
-			"This is a live legacy product, not a claim of active maintenance.",
-			"Its last public code update was in 2024 and it depends on third-party Google services.",
+			"The original public deployment is no longer available.",
+			"The application depends on third-party Google services.",
 		],
 		links: [
-			link("demo", "Open ReComments", "https://recomments.tinomuzambi.com/"),
+			link("demo", "Original ReComments deployment", "https://recomments.tinomuzambi.com/", "unavailable"),
 			link("source", "Source repository", "https://github.com/TinoMuzambi/ReComments"),
 		],
 		relatedExperience: [],
 		verification: {
 			publiclyVerifiable: true,
-			sources: [
-				"https://github.com/TinoMuzambi/ReComments",
-				"https://recomments.tinomuzambi.com/",
-			],
+			sources: ["https://github.com/TinoMuzambi/ReComments"],
 			checkedAt,
-			notes: "The public source verifies the application surface and stack. The live site responded during review.",
+			notes: "The public source verifies the application surface and stack. The original deployment returned an unavailable response during review.",
 		},
 	},
 	{
@@ -383,11 +387,7 @@ export const projects: ProjectRecord[] = [
 		category: "research",
 		status: "published",
 		period: { label: "2024", start: "2024", end: "2024", precision: "year" },
-		featured: {
-			enabled: true,
-			order: 5,
-			rationale: "A compact and inspectable recommendation study with methods, results and limitations in public.",
-		},
+		featured: { enabled: false, order: null, rationale: null },
 		technologies: ["R", "Quarto", "tidyverse", "recosystem"],
 		topics: ["Collaborative filtering", "Matrix factorisation", "Model evaluation"],
 		role: ["Author", "Analyst"],
@@ -438,11 +438,7 @@ export const projects: ProjectRecord[] = [
 		category: "data",
 		status: "published",
 		period: { label: "2024", start: "2024", end: "2024", precision: "year" },
-		featured: {
-			enabled: true,
-			order: 6,
-			rationale: "A strong interactive data application with publicly inspectable reactive and geospatial code.",
-		},
+		featured: { enabled: false, order: null, rationale: null },
 		technologies: ["R", "Shiny", "Leaflet", "Plotly", "DT", "geosphere"],
 		topics: ["Running analytics", "Geospatial data", "Reactive interfaces"],
 		role: ["Author", "Developer"],
@@ -462,7 +458,7 @@ export const projects: ProjectRecord[] = [
 		],
 		outcomes: ["The application and source remain publicly accessible."],
 		limitations: [
-			"The underlying run CSV files are private, so the code is inspectable but not locally reproducible from the repository alone.",
+			"Personal activity exports remain private, but the repository includes synthetic example run data for local exploration.",
 		],
 		links: [
 			link("demo", "Open TrailBlazer", "https://tinomuzambi.shinyapps.io/TrailBlazer/"),
@@ -476,19 +472,19 @@ export const projects: ProjectRecord[] = [
 				"https://tinomuzambi.shinyapps.io/TrailBlazer/",
 			],
 			checkedAt,
-			notes: "The source verifies the interface and calculations. The data files are not public.",
+			notes: "The source verifies the interface and calculations. Synthetic example data is public while personal activity exports remain private.",
 		},
 	},
 	{
 		id: "project:ring-comparison",
 		slug: "ring-comparison",
 		legacySlugs: [],
-		title: "Ring Comparison",
+		title: "Ring Ledger",
 		shortDescription:
 			"A URL-backed search, filter and comparison tool for engagement rings and wedding bands.",
 		category: "product",
 		status: "maintained",
-		period: { label: "2023 to 2025", start: "2023", end: "2025", precision: "year" },
+		period: { label: "2023 to 2026", start: "2023", end: "2026", precision: "year" },
 		featured: { enabled: false, order: null, rationale: null },
 		technologies: ["Next.js", "TypeScript", "React", "Tailwind CSS"],
 		topics: ["Decision support", "Search", "Filtering", "URL state"],
@@ -505,21 +501,29 @@ export const projects: ProjectRecord[] = [
 				rationale: "The two product types expose different useful comparison fields.",
 			},
 		],
-		outcomes: ["The source and application are public. The last public code update was in 2025."],
+		outcomes: ["The source and maintained application are public."],
 		limitations: [
-			"The repository does not document the provenance or freshness of the product data.",
-			"The catalogue should not be treated as comprehensive market coverage.",
+			"The dataset is a personal research snapshot last updated in December 2025.",
+			"The catalogue is not comprehensive current market coverage.",
 		],
 		links: [
 			link("demo", "Open comparison", "https://comparison-psi.vercel.app/"),
 			link("source", "Source repository", "https://github.com/TinoMuzambi/RingComparison"),
+		],
+		screenshots: [
+			{
+				src: "/project-media/ring-comparison.png",
+				alt: "Ring Ledger interface showing searchable engagement ring records and comparison controls",
+				width: 1800,
+				height: 1000,
+			},
 		],
 		relatedExperience: [],
 		verification: {
 			publiclyVerifiable: true,
 			sources: ["https://github.com/TinoMuzambi/RingComparison", "https://comparison-psi.vercel.app/"],
 			checkedAt,
-			notes: "Application behavior and local datasets are public. Data provenance is not documented.",
+			notes: "Application behavior and local datasets are public. The repository describes the data as a personal research snapshot.",
 		},
 	},
 	{
@@ -541,71 +545,134 @@ export const projects: ProjectRecord[] = [
 		implementation: ["Combines a NetLogo model with R analysis and committed experiment outputs."],
 		decisions: [],
 		outcomes: null,
-		limitations: ["The repository has no README, live demo or published narrative, so interpretation remains limited."],
+		limitations: ["There is no deployed interactive model, but the repository includes a README, process diagram, tests and committed experiment results."],
 		links: [
 			link("source", "Source repository", "https://github.com/TinoMuzambi/OptimisingCompensation"),
 		],
 		relatedExperience: [{ label: "MSc Data Science", url: "https://tinomuzambi.com/#education" }],
 		verification: {
 			publiclyVerifiable: true,
-			sources: [
-				"https://github.com/TinoMuzambi/OptimisingCompensation/blob/main/Optimising%20Compensation.nlogo",
-			],
+			sources: ["https://github.com/TinoMuzambi/OptimisingCompensation"],
 			checkedAt,
-			notes: "The model and analysis are public, but there is no explanatory README.",
+			notes: "The README, process diagram, model, analysis, tests and BehaviourSpace results are public.",
 		},
 	},
 	{
 		id: "project:thirty-seconds",
 		slug: "thirty-seconds",
 		legacySlugs: [],
-		title: "30 Seconds companion projects",
-		shortDescription: "A digital game board and a separate card API for a 30 Seconds-style party game.",
+		title: "30 Seconds Board",
+		shortDescription: "A digital score board for running a multi-team 30 Seconds-style party game.",
 		category: "product",
-		status: "experiment",
-		period: { label: "2021 to 2024", start: "2021", end: "2024", precision: "year" },
+		status: "maintained",
+		period: { label: "2021 to 2026", start: "2021", end: "2026", precision: "year" },
 		featured: { enabled: false, order: null, rationale: null },
-		technologies: ["Next.js", "TypeScript", "localStorage", "API routes"],
-		topics: ["Game utility", "State persistence", "API design"],
+		technologies: ["Next.js", "TypeScript", "React", "localStorage"],
+		topics: ["Game utility", "State persistence", "Scorekeeping"],
 		role: ["Designer and developer"],
-		problem: "Replace the physical score board and explore a reusable source of game cards.",
-		contribution: ["Built the board and card API as separate companion projects."],
+		problem: "Replace the physical score board with a persistent browser interface for several teams.",
+		contribution: ["Built the board, team management, score track and local persistence."],
 		implementation: [
 			"The board supports multiple teams, local persistence, a 35-position track and a leaderboard.",
-			"The separate API exposes card data and category-oriented roadmap work.",
 		],
 		decisions: [],
-		outcomes: ["The board remains publicly accessible."],
-		limitations: [
-			"The board does not currently call the separate API.",
-			"The card endpoint returned an error during the 2026-09-06 audit.",
-		],
+		outcomes: ["The maintained board and source remain publicly accessible."],
+		limitations: ["The board does not consume the separate 30 Seconds API."],
 		links: [
 			link("demo", "Open the board", "https://30-seconds-board.vercel.app/"),
 			link("source", "Board repository", "https://github.com/TinoMuzambi/30SecondsBoard"),
+		],
+		relatedExperience: [],
+		verification: {
+			publiclyVerifiable: true,
+			sources: ["https://github.com/TinoMuzambi/30SecondsBoard", "https://30-seconds-board.vercel.app/"],
+			checkedAt,
+			notes: "The board is public and maintained. It is separate from the card API.",
+		},
+	},
+	{
+		id: "project:thirty-seconds-api",
+		slug: "thirty-seconds-api",
+		legacySlugs: [],
+		title: "30 Seconds API",
+		shortDescription: "A separate public API for retrieving card data for a 30 Seconds-style party game.",
+		category: "developer-tool",
+		status: "maintained",
+		period: { label: "2021 to 2026", start: "2021", end: "2026", precision: "year" },
+		featured: { enabled: false, order: null, rationale: null },
+		technologies: ["Next.js", "TypeScript", "API routes", "Vercel"],
+		topics: ["Game data", "API design", "Serverless functions"],
+		role: ["Designer and developer"],
+		problem: "Expose game-card data independently from any one board interface.",
+		contribution: ["Built and repaired the separate serverless card API."],
+		implementation: ["Serves card records through Next.js API routes."],
+		decisions: [],
+		outcomes: ["The API deployment and source repository are public."],
+		limitations: ["The 30 Seconds Board does not consume this API."],
+		links: [
+			link("demo", "Open the API", "https://30-seconds-api.vercel.app/"),
 			link("source", "API repository", "https://github.com/TinoMuzambi/30SecondsAPI"),
 		],
 		relatedExperience: [],
 		verification: {
 			publiclyVerifiable: true,
-			sources: [
-				"https://github.com/TinoMuzambi/30SecondsBoard",
-				"https://github.com/TinoMuzambi/30SecondsAPI",
-			],
+			sources: ["https://github.com/TinoMuzambi/30SecondsAPI", "https://30-seconds-api.vercel.app/"],
 			checkedAt,
-			notes: "The projects are companions, not a verified integrated system.",
+			notes: "The API deployment and source responded during the 2026-09-11 audit.",
+		},
+	},
+	{
+		id: "project:self-hosted-application-platform",
+		slug: "self-hosted-application-platform",
+		legacySlugs: [],
+		title: "Self-Hosted Application Platform",
+		shortDescription: "A home-server systems lab for deploying, routing, protecting and monitoring containerised applications.",
+		category: "systems",
+		status: "active",
+		period: { label: "2026 to present", start: "2026", end: null, precision: "year" },
+		featured: { enabled: false, order: null, rationale: null },
+		technologies: ["Node.js", "Docker Compose", "Traefik", "HTTPS", "SSO"],
+		topics: ["Home server", "Networking", "Persistent storage", "Backups", "Health checks", "Monitoring"],
+		role: ["Builder and operator"],
+		problem: "Create a practical environment for operating application services beyond a managed hosting platform.",
+		contribution: [
+			"Deployed a containerised Node.js application with persistent state, API endpoints and a browser interface.",
+			"Integrated services into a registry-driven platform with routing, identity middleware, health checks and monitoring.",
+		],
+		implementation: [
+			"Runs containerised services with Docker Compose and routes them through Traefik with HTTPS and SSO.",
+			"Covers networking, remote access, storage, backups, recovery, updates and health monitoring.",
+		],
+		decisions: [
+			{
+				decision: "Treat the server as an operational systems lab.",
+				rationale: "Deployment, identity, storage and recovery decisions can be exercised together in one maintained environment.",
+			},
+		],
+		outcomes: ["The platform remains an active environment for operating and troubleshooting containerised services."],
+		limitations: [
+			"There is no public repository, infrastructure diagram, endpoint, hardware specification, uptime evidence or public screenshot.",
+		],
+		links: [link("portfolio", "Portfolio context", "https://tinomuzambi.com")],
+		relatedExperience: [{ label: "Working methods", url: "https://tinomuzambi.com" }],
+		verification: {
+			publiclyVerifiable: false,
+			sources: ["https://tinomuzambi.com"],
+			checkedAt,
+			notes: "The approved portfolio and public CV support the operating scope. Infrastructure artifacts are not public.",
 		},
 	},
 	legacyProject({
 		slug: "paystack",
-		title: "Paystack payment flow",
+		title: "Paystack",
 		shortDescription: "A focused Next.js demonstration of initialising and verifying a Paystack payment.",
 		category: "developer-tool",
-		status: "experiment",
+		status: "maintained",
 		year: "2021",
 		technologies: ["Next.js", "TypeScript", "Paystack", "Serverless functions"],
 		topics: ["Payments", "Integration"],
 		sourceUrl: "https://github.com/TinoMuzambi/Paystack",
+		liveUrl: "https://paystack-blue.vercel.app/",
 	}),
 	legacyProject({
 		slug: "trainerr",
@@ -632,7 +699,7 @@ export const projects: ProjectRecord[] = [
 		title: "ML Video Annotations",
 		shortDescription: "A browser experiment that maps classified hand and facial gestures to overlays on live video.",
 		category: "experiment",
-		status: "experiment",
+		status: "archived",
 		year: "2020",
 		technologies: ["JavaScript", "ml5.js", "p5.js", "Teachable Machine"],
 		topics: ["Computer vision", "Browser ML", "Video"],
@@ -654,7 +721,7 @@ export const projects: ProjectRecord[] = [
 		title: "Colour Schemes",
 		shortDescription: "A React Native colour-scheme generator using The Color API.",
 		category: "experiment",
-		status: "experiment",
+		status: "archived",
 		year: "2022",
 		technologies: ["React Native", "Expo", "TypeScript"],
 		topics: ["Mobile", "Colour"],
@@ -665,7 +732,7 @@ export const projects: ProjectRecord[] = [
 		title: "Tailwind Expo",
 		shortDescription: "An early responsive landing-page exercise built while learning Tailwind CSS.",
 		category: "experiment",
-		status: "experiment",
+		status: "archived",
 		year: "2021",
 		technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
 		topics: ["Interface", "Learning"],
@@ -676,7 +743,7 @@ export const projects: ProjectRecord[] = [
 		title: "Marvel Characters",
 		shortDescription: "A React interface for browsing and searching characters from the Marvel API.",
 		category: "experiment",
-		status: "experiment",
+		status: "completed",
 		year: "2021",
 		technologies: ["React", "JavaScript", "Marvel API"],
 		topics: ["Search", "Third-party API"],
@@ -687,7 +754,7 @@ export const projects: ProjectRecord[] = [
 		title: "Clash Ratios",
 		shortDescription: "A side-by-side comparison of Clash of Clans player donation ratios.",
 		category: "experiment",
-		status: "experiment",
+		status: "archived",
 		year: "2021",
 		technologies: ["Next.js", "TypeScript", "Express", "REST API"],
 		topics: ["Game data", "Comparison"],
@@ -720,10 +787,12 @@ export const projects: ProjectRecord[] = [
 		title: "Cubing Algos",
 		shortDescription: "A compact reference for two-look OLL and PLL Rubik's Cube algorithms.",
 		category: "developer-tool",
+		status: "maintained",
 		year: "2021",
 		technologies: ["HTML", "CSS", "JavaScript", "Firebase"],
 		topics: ["Reference tool", "Rubik's Cube"],
 		sourceUrl: "https://github.com/TinoMuzambi/CubingAlgos",
+		liveUrl: "https://cubingalgos.netlify.app/",
 	}),
 	legacyProject({
 		slug: "tino-muzambi-portfolio",
@@ -765,34 +834,38 @@ export const projects: ProjectRecord[] = [
 		slug: "whatsapp-chat-analyser",
 		legacySlug: "whatsapp-analyser",
 		title: "WhatsApp Chat Analyser",
-		shortDescription: "A Python tool for deriving summary statistics from exported WhatsApp chats.",
+		shortDescription: "A privacy-first browser application for deriving summary statistics from exported WhatsApp chats.",
 		category: "data",
+		status: "maintained",
 		year: "2019",
-		technologies: ["Python", "Flask", "Bootstrap"],
-		topics: ["Text analysis", "Learning"],
+		technologies: ["JavaScript", "HTML", "CSS"],
+		topics: ["Text analysis", "Privacy", "Browser application"],
 		sourceUrl: "https://github.com/TinoMuzambi/WhatsAppAnalyser",
+		liveUrl: "https://chatfold.vercel.app/",
 	}),
 	legacyProject({
 		slug: "remove-contractions",
 		title: "Remove Contractions",
 		shortDescription: "A Python and Flask utility that expands contractions in supplied text.",
 		category: "developer-tool",
-		status: "experiment",
+		status: "maintained",
 		year: "2019",
 		technologies: ["Python", "Flask", "WTForms", "Bootstrap"],
 		topics: ["Text processing", "Learning"],
 		sourceUrl: "https://github.com/TinoMuzambi/RemoveContractions",
+		liveUrl: "https://remove-contractions.vercel.app/",
 	}),
 	legacyProject({
 		slug: "amount-divider",
 		title: "Amount Divider",
 		shortDescription: "A small Python utility for dividing an amount into uneven partitions.",
 		category: "developer-tool",
-		status: "experiment",
+		status: "maintained",
 		year: "2020",
 		technologies: ["Python", "Flask", "WTForms", "Bootstrap"],
 		topics: ["Utility", "Learning"],
 		sourceUrl: "https://github.com/TinoMuzambi/AmountDivider",
+		liveUrl: "https://amount-divider.vercel.app/",
 	}),
 	legacyProject({
 		slug: "react-blog",
@@ -800,10 +873,12 @@ export const projects: ProjectRecord[] = [
 		title: "Blog.TinoMuzambi",
 		shortDescription: "A React blog with Storyblok content, Firebase comments and dark mode.",
 		category: "product",
+		status: "maintained",
 		year: "2020",
 		technologies: ["React", "TypeScript", "Storyblok", "Firebase", "Firestore"],
 		topics: ["Publishing", "Comments", "CMS"],
 		sourceUrl: "https://github.com/TinoMuzambi/ReactBlog",
+		liveUrl: "https://blog.tinomuzambi.com",
 	}),
 	legacyProject({
 		slug: "twibot",
@@ -847,7 +922,9 @@ export const projects: ProjectRecord[] = [
 		year: "2019",
 		technologies: ["Kotlin", "Android", "XML"],
 		topics: ["Mobile", "Learning"],
-		sourceUrl: "https://github.com/TinoMuzambi/Calculator",
+		limitations: [
+			"This early Android exercise is retained as historical work, but its original public source link is no longer available.",
+		],
 	}),
 	legacyProject({
 		slug: "student-number-generator",
@@ -866,11 +943,12 @@ export const projects: ProjectRecord[] = [
 		title: "Flip It",
 		shortDescription: "A minimal flash-card interface for revising development concepts.",
 		category: "experiment",
-		status: "experiment",
+		status: "maintained",
 		year: "2023",
 		technologies: ["Next.js", "TypeScript", "React"],
 		topics: ["Learning tool", "Interaction"],
 		sourceUrl: "https://github.com/TinoMuzambi/Flip-It",
+		liveUrl: "https://flip-it-xi.vercel.app",
 	}),
 ]
 
@@ -882,6 +960,7 @@ export const projectCategories: ProjectCategory[] = [
 	"research",
 	"data",
 	"product",
+	"systems",
 	"developer-tool",
 	"experiment",
 ]

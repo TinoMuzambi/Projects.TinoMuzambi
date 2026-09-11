@@ -8,7 +8,7 @@ export const projectArchiveJson = {
 	description:
 		"Public research, data, product and engineering project records with implementation notes and verification context.",
 	canonicalUrl: siteUrl,
-	lastAudited: "2026-09-06",
+	lastAudited: "2026-09-11",
 	projectCount: projects.length,
 	projects: projects.map((project) => ({
 		...project,
@@ -18,7 +18,7 @@ export const projectArchiveJson = {
 
 const projectText = (project: ProjectRecord) => {
 	const externalLinks = project.links
-		.map((item) => `- ${item.label}: ${item.url}`)
+		.map((item) => `- ${item.label}${item.availability === "unavailable" ? " [unavailable]" : ""}: ${item.url}`)
 		.join("\n")
 
 	return [
@@ -39,6 +39,7 @@ export const llmsText = [
 	"",
 	"This is the canonical plain-text index for projects.tinomuzambi.com.",
 	"The human pages, projects.json and this file derive from the same typed project records.",
+	"I use Claude Code and Codex to accelerate delivery, grounded in software and computer science foundations built before generative AI.",
 	"",
 	`Main portfolio: https://tinomuzambi.com`,
 	`Projects JSON: ${siteUrl}/projects.json`,
@@ -75,8 +76,10 @@ export const archiveJsonLd = {
 }
 
 export const getProjectJsonLd = (project: ProjectRecord) => {
-	const source = project.links.find((item) => item.kind === "source")
-	const demo = project.links.find((item) => item.kind === "demo" || item.kind === "report")
+	const source = project.links.find((item) => item.kind === "source" && item.availability !== "unavailable")
+	const demo = project.links.find(
+		(item) => (item.kind === "demo" || item.kind === "report") && item.availability !== "unavailable"
+	)
 
 	return {
 		"@context": "https://schema.org",

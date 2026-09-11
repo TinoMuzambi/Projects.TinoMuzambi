@@ -2,82 +2,93 @@
 
 ## Purpose
 
-This site is an engineering archive, not a second personal landing page. It should let a recruiter scan the strongest work in under a minute, then let an engineer open the evidence and implementation notes without changing contexts.
+This site is a recruiter-friendly engineering field guide. The first screen should answer what Tino builds and make the full archive searchable. Selected records then show role, state, evidence and links without requiring a long case study read.
 
 ## Color tokens
 
-- Paper `#ffffff` for the default reading surface
-- Ink `#000000` for copy, rules and high-contrast controls
-- Plum `#6437b6` for selection, focus and identity
-- Aqua `#58cdb7` for active evidence and current work
-- Lilac `#dcd6f7` for inspected project drawers
-- Interface gray `#e8ebee` for archived work and secondary surfaces
+Pine is the default palette and matches the approved main portfolio:
 
-Colors come directly from the sibling portfolio. The archive uses them in smaller, data-bearing regions rather than repeating the portfolio's full-page color sections. There are no gradients, shadows or low-contrast tinted text.
+- Paper `#F8FBF7`
+- Ink `#142018`
+- Rule `#9BAAA0`
+- Primary green `#236B4A`
+- Secondary ochre `#C77D13`
+- Surface `#E5EEE7`
+
+The production palette studio also exposes the approved Original, Cobalt, Burgundy and Night presets. All six semantic roles remain adjustable and persist in local storage. The interface uses the semantic roles rather than fixed decorative colors so every preset remains coherent.
 
 ## Typography
 
-- Noto Sans Variable for body copy, controls, metadata and the condensed archive masthead
-- Bricolage Grotesque Variable for project names and section headings
+- Instrument Sans Variable for headings, project names and large interface copy
+- Noto Sans Variable for body copy, controls and metadata
 - Tabular Noto Sans numerals for dates and counts
-- Sentence case throughout, with no tracked uppercase labels
-- Narrative line length capped near 65 characters and technical prose capped near 75 characters
+- Left alignment throughout
+- Narrative line lengths stay below 70 characters
+- Links use text-width animated underlines rather than full container rules
 
 ## Layout and alignment
 
-The layout is a wide, left-aligned ledger. Major regions use 2px black rules and the project registry uses 1px rules. The header is compact and sticky. Featured projects appear as editorial rows rather than cards. The complete catalogue becomes a two-part inspection desk on wide screens and a single-column drawer list on small screens.
+The archive combines a field guide with an inspection desk. A quiet header leads directly into one strong heading and a large search control. Selected work uses one lead case study and three compact records. A single organic live portal is the visual signature. The complete archive remains a structured ledger.
 
 ```text
-┌ Tino Muzambi / Engineering archive       Main portfolio ┐
-├──────────────────────────────────────────────────────────┤
-│ Work is clearer with the working notes attached.         │
-│ Short archive description                 scope + count  │
-├ Selected work ────────────────────────────────────────────┤
-│ Project          Why it matters       State       Period │
-│ Project          Why it matters       State       Period │
-├ Complete project index ───────────────────────────────────┤
-│ Search and filter controls                               │
-│                                                          │
-│ Project registry       │ Inspected project drawer        │
-│ Project registry       │ Problem                         │
-│ Project registry       │ Contribution                    │
-│ Project registry       │ Decisions, limits and evidence  │
-├──────────────────────────────────────────────────────────┤
-│ llms.txt · projects.json · sitemap · identity links      │
-└──────────────────────────────────────────────────────────┘
+Desktop
+
+┌ Projects        Portfolio  GitHub  CV  Colours ┐
+├─────────────────────────────────────────────────┤
+│ Things I have built, tested and learned from.   │
+│ [ Search all 34 projects                    ]   │
+│ 34 projects                                    │
+├ Selected work ──────────────────────────────────┤
+│ Lead case study            │ Supporting record │
+│ summary, role, state       ├───────────────────│
+│ stack and explicit links   │ Supporting record │
+│                            ├───────────────────│
+│                            │ Supporting record │
+├ Live portal ────────────────────────────────────┤
+│ Context and fallback       │ generous organic  │
+│ links                      │ live iframe        │
+├ Complete project index ─────────────────────────┤
+│ Search  Area filters  Availability  More        │
+│ Year  Project  Summary  Area  State  Stack  Links│
+│ Ledger rows                │ inspection drawer │
+└─────────────────────────────────────────────────┘
 
 Mobile
 
-┌ Tino / Archive                         Portfolio ┐
-├─────────────────────────────────────────────────┤
-│ Compact introduction                            │
-├ Selected project rows                           │
-├ Search                                           │
-│ Filters wrap within the viewport                 │
-│ Project row                                      │
-│ └ Open drawer content                            │
-│ Project row                                      │
-├ Machine resources and contact                    │
-└─────────────────────────────────────────────────┘
+┌ Projects                         Colours  Menu ┐
+├────────────────────────────────────────────────┤
+│ One strong heading                             │
+│ [ Search the archive                        ]  │
+│ Project count                                  │
+├ Lead selected project                          │
+├ Three compact selected records                 │
+├ Live portal with safe, generous crop           │
+├ Search and focused filters                     │
+│ Compact record                                 │
+│ Open details and explicit links                │
+└────────────────────────────────────────────────┘
 ```
 
 ## Information hierarchy
 
-1. A compact statement that identifies Tino Muzambi's engineering archive
-2. Four evidence-rich selected projects
-3. Search, category and status filters
-4. The complete project registry
-5. Project detail routes with problem, contribution, decisions, outcome and limits
-6. Machine-readable resources and links back to the main portfolio
-
-Older work remains readable and searchable. Its status and interface-gray treatment communicate age without hiding it or lowering text contrast.
+1. One plainspoken heading, project count and prominent search
+2. Four selected projects led by Music Recommendation Evaluation
+3. One verified live project portal
+4. Search and focused area or availability filters
+5. Secondary technology filters behind More filters
+6. Complete project ledger and concise case-study routes
+7. Quiet identity and machine-readable links in the footer
 
 ## Motion principles
 
-There is one memorable interaction. A project row behaves like a document drawer. Activating it reveals the project's problem, contribution, decisions, limitations and evidence in place. The response uses a 180ms color and reveal transition without bounce, parallax or ambient motion. Keyboard operation, `aria-expanded` and a reduced-motion fallback are required.
+- Core content is visible in the first render
+- Link underlines animate only across the text width
+- The portal contours move slowly as the one ambient gesture
+- Project drawers and the palette studio respond in 180ms
+- Reduced motion removes all animation and smooth scrolling
 
 ## Review against generic design patterns
 
-The first work-in-progress direction used a cream background, acid accent, radial glow, italic headline highlight, numbered cards, marquee, round arrow control, pill filters, offset shadows and motion across many elements. Those choices have been removed.
+The previous implementation was a strong evidence archive but leaned too far into a monochrome editorial ledger, used six equal selected rows and ended with a visible machine-reader promotion. Those choices were technically clear but missed the approved portfolio character and the revised brief.
 
-Hard rules and dense rows can also become a generic editorial treatment. Here they are justified by the sibling identity and made project-specific through the inspection-desk behavior, explicit evidence fields, stable identifiers and honest archive states. The archive does not reuse the sibling portfolio's fixed side rails, portrait composition, question-and-answer sequence or full-height opening.
+The revised direction keeps the evidence-bearing ledger because the content genuinely behaves like records. It avoids a generic card grid by giving selected work an asymmetric editorial hierarchy. It avoids turning the sibling relationship into a clone by reserving the organic portal for one live project and keeping the archive header and navigation conventional rather than adopting the portfolio rails and full-screen biography sequence. The paper grain is visible but restrained, and decorative contours appear only around the live portal.

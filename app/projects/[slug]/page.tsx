@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 
@@ -61,9 +62,15 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 				<div className="archive-shell project-hero">
 					<div className="project-hero-copy">
 						<Link className="back-link" href="/#index">Back to project index</Link>
-						<p className="section-label text-plum">{project.id}</p>
 						<h1>{project.title}</h1>
 						<p>{project.shortDescription}</p>
+						<nav className="project-hero-actions" aria-label={`${project.title} primary links`}>
+							{project.links.filter((item) => item.availability !== "unavailable").map((item) => (
+								<a className="text-link" href={item.url} key={`${item.kind}:${item.url}`} target="_blank" rel="noreferrer">
+									{item.label}<span className="sr-only"> (opens in a new tab)</span>
+								</a>
+							))}
+						</nav>
 					</div>
 					<aside className="project-facts" aria-label="Project facts">
 						<dl>
@@ -76,6 +83,22 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 					</aside>
 				</div>
 			</section>
+
+			{project.screenshots?.length ? (
+				<section className="archive-shell project-media" aria-label={`${project.title} project media`}>
+					{project.screenshots.map((screenshot) => (
+						<figure key={screenshot.src}>
+							<Image
+								src={screenshot.src}
+								alt={screenshot.alt}
+								width={screenshot.width}
+								height={screenshot.height}
+								sizes="(max-width: 768px) calc(100vw - 1.5rem), min(94rem, calc(100vw - 2.5rem))"
+							/>
+						</figure>
+					))}
+				</section>
+			) : null}
 
 			<div className="archive-shell project-body">
 				<article className="project-narrative">
@@ -146,9 +169,13 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 							<ul className="project-link-list">
 								{project.links.map((item) => (
 									<li key={`${item.kind}:${item.url}`}>
-										<a href={item.url} target="_blank" rel="noreferrer">
-											{item.label}<span className="sr-only"> (opens in a new tab)</span>
-										</a>
+										{item.availability === "unavailable" ? (
+											<span className="unavailable-link">{item.label}: unavailable</span>
+										) : (
+											<a className="text-link" href={item.url} target="_blank" rel="noreferrer">
+												{item.label}<span className="sr-only"> (opens in a new tab)</span>
+											</a>
+										)}
 										<span>Checked {item.checkedAt ?? "date unavailable"}</span>
 									</li>
 								))}

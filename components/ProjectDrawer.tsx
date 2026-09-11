@@ -11,11 +11,13 @@ type ProjectDrawerProps = {
 const firstOrFallback = (items: string[] | null, fallback: string) => items?.[0] ?? fallback
 
 export function ProjectDrawer({ project, compact = false }: ProjectDrawerProps) {
+	const availableLink = project.links.find((item) => item.availability !== "unavailable")
+
 	return (
 		<div className="project-drawer" data-compact={compact ? "true" : "false"}>
 			<div className="flex items-start justify-between gap-5 border-b border-ink pb-4">
 				<div>
-					<p className="section-label">Inspecting {project.id}</p>
+					<p className="section-label">Project record</p>
 					<h3 className="mt-2 font-display text-2xl font-[680] leading-tight tracking-[-0.035em] md:text-3xl">
 						{project.title}
 					</h3>
@@ -54,9 +56,9 @@ export function ProjectDrawer({ project, compact = false }: ProjectDrawerProps) 
 				<Link className="primary-action" href={`/projects/${project.slug}`}>
 					Read the full project record
 				</Link>
-				{project.links[0] ? (
-					<a href={project.links[0].url} target="_blank" rel="noreferrer">
-						{project.links[0].label}
+				{availableLink ? (
+					<a className="text-link" href={availableLink.url} target="_blank" rel="noreferrer">
+						{availableLink.label}
 						<span className="sr-only"> (opens in a new tab)</span>
 					</a>
 				) : null}
