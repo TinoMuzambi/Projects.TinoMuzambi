@@ -295,6 +295,7 @@ export const projects: ProjectRecord[] = [
 			link("report", "Read the report", "https://tinomuzambi.github.io/ClockInOut/"),
 			link("source", "Source repository", "https://github.com/TinoMuzambi/ClockInOut"),
 		],
+		previewUrl: "https://tinomuzambi.github.io/ClockInOut/#plot-some-graphs",
 		relatedExperience: [
 			{ label: "MSc Data Science", url: "https://tinomuzambi.com/#education" },
 		],

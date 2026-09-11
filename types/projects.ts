@@ -77,6 +77,7 @@ export type ProjectRecord = {
 	outcomes: string[] | null
 	limitations: string[] | null
 	links: ProjectLink[]
+	previewUrl?: string
 	screenshots?: ProjectScreenshot[]
 	relatedExperience: Array<{
 		label: string

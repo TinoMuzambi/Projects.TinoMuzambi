@@ -5,7 +5,7 @@ import { featuredProjects, getProject, projects } from "@/content/projects"
 import { archiveJsonLd } from "@/lib/public-data"
 
 export default function Home() {
-	const portalProject = getProject("ring-comparison")
+	const portalProject = getProject("clock-in-out-analysis")
 	const jsonLd = JSON.stringify(archiveJsonLd).replace(/</g, "\\u003c")
 
 	return (

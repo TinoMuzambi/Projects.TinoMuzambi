@@ -3,7 +3,7 @@ import type { ProjectRecord } from "@/types/projects"
 
 export function LivePortal({ project }: { project: ProjectRecord }) {
 	const liveLink = project.links.find(
-		(item) => item.kind === "demo" && item.availability === "live"
+		(item) => ["demo", "report"].includes(item.kind) && item.availability === "live"
 	)
 	if (!liveLink) return null
 
@@ -12,10 +12,10 @@ export function LivePortal({ project }: { project: ProjectRecord }) {
 			<div className="archive-shell portal-layout">
 				<div className="portal-copy">
 					<p className="section-label">Live portal</p>
-					<h2 id="portal-title">A working project, in context.</h2>
+					<h2 id="portal-title">A data story, in context.</h2>
 					<p>
-						Ring Ledger is a maintained search and filtering tool built around a small,
-						inspectable local dataset. The live interface remains the evidence.
+						Clock In/Out Analysis turns 250 daily records into a published account of office
+						hours, study and ordinary commitments. The report and its source remain open for inspection.
 					</p>
 					<ProjectActions project={project} />
 					<p className="portal-fallback">
@@ -28,8 +28,8 @@ export function LivePortal({ project }: { project: ProjectRecord }) {
 					<div className="portal-contour portal-contour-inner" aria-hidden="true" />
 					<div className="project-portal">
 						<iframe
-							title="Live Ring Ledger project"
-							src={liveLink.url}
+							title={`Live ${project.title} project`}
+							src={project.previewUrl ?? liveLink.url}
 							loading="lazy"
 							referrerPolicy="strict-origin-when-cross-origin"
 							sandbox="allow-forms allow-popups allow-same-origin allow-scripts"
